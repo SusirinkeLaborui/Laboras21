@@ -1,6 +1,7 @@
 ﻿<Window x:Class="Laboras21.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Laboras21="clr-namespace:Laboras21"
         Title="MainWindow" Height="720" Width="1280">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -20,7 +21,7 @@
             <Button Grid.Row="2" Content="Stop computing" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
         </StackPanel>
         <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2" >
-            <Canvas Background="LightGray" />
+            <Laboras21:SuperCanvas Background="LightGray" />
         </Border>
     </Grid>
 </Window>
