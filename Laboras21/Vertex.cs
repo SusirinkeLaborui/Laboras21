@@ -8,8 +8,8 @@ namespace Laboras21
 {
     class Vertex
     {
-        Point Coordinates { get; set; }
-        List<Vertex> Neighbours { get; private set; }
+        public Point Coordinates { get; set; }
+        public List<Vertex> Neighbours { get; private set; }
 
         public Vertex(Point coords)
         {
