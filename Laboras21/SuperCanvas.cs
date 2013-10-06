@@ -10,12 +10,12 @@ namespace Laboras21
 {
     class SuperCanvas : Canvas
     {
-        public void AddNode(Point node)
+        public void NotifyNodesChanged()
         {
-            
+
         }
 
-        public void AddEdge(Point start, Point end)
+        public void NotifyNodeChanged(int node)
         {
 
         }
