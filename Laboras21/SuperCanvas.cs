@@ -10,6 +10,11 @@ namespace Laboras21
 {
     class SuperCanvas : Canvas
     {
+        public void SetCollection(IReadOnlyList<Vertex> vertices)
+        {
+
+        }
+
         public void NotifyNodesChanged()
         {
 
