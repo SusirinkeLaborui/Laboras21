@@ -8,6 +8,6 @@ namespace Laboras21
 {
     interface IRandomNumberGenerator
     {
-        public Point getPoint();
+        public Point GeneratePoint();
     }
 }

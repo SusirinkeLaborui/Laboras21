@@ -8,21 +8,18 @@ namespace Laboras21
 {
     public static class DataProvider
     {
-        private DataProvider()
-        {
-        }
 
-        public static List<Point> readFromFile(string filename)
+        public static List<Point> ReadFromFile(string filename)
         {
             throw new NotImplementedException();
         }
 
-        public static List<Point> generate(IRandomNumberGenerator rng)
+        public static List<Point> Generate(IRandomNumberGenerator rng)
         {
             throw new NotImplementedException();
         }
 
-        public static void saveToFile(string filename, List<Vertex> vertices)
+        public static void SaveToFile(string filename, List<Vertex> vertices)
         {
             throw new NotImplementedException();
         }
