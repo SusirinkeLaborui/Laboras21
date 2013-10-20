@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///C:/PROGRAM FILES (X86)/MICROSOFT VISUAL STUDIO 11.0/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/ReverseEngineeringLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Code Generation/Text Transformation Log">
+  <MessageClass Name="Message" Label="Message" Option="Show informational messages" />
+  <MessageClass Name="Warning" Label="Warning" Option="Show warnings" />
+  <MessageClass Name="Error" Label="Error" Option="Show errors" />
+  <MessageClass Name="Property" Label="Property" Option="Show metadata" />
+  <MessageClass Name="Diagnostic" Label="Message" Option="Show diagnostic messages" />
+  <Message Timestamp="2013-10-07T10:48:49" Importance="High" Text="Reverse Engineering Started." />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'baf5cdc7-2e65-4a57-92ad-19b1995d55f3' -  (ClassifierTemplateParameter)" />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Laboras21_ModelingProject::Laboras21' -  (Package)" />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Laboras21_ModelingProject::Laboras21::Point' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="Medium" Text="Element reverse engineered into the UML model: 'Laboras21_ModelingProject::Laboras21::Vertex' -  (Class)" />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Laboras21_ModelingProject::Laboras21::Vertex::Coordinates' -  (Property)" />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Laboras21_ModelingProject::Laboras21::Vertex::Neighbours' -  (Property)" />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Laboras21_ModelingProject::Laboras21::Vertex::Vertex' -  (Operation)" />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Laboras21_ModelingProject::Laboras21::Vertex::Vertex::coords' -  (Parameter)" />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Laboras21_ModelingProject::System' -  (Package)" />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Laboras21_ModelingProject::System::Collections' -  (Package)" />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Laboras21_ModelingProject::System::Collections::Generic' -  (Package)" />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Laboras21_ModelingProject::System::Collections::Generic::List' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Laboras21_ModelingProject::System::Collections::Generic::List&lt;Vertex‎&gt;' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: Laboras21_ModelingProject::Laboras21::Vertex to Laboras21_ModelingProject::Laboras21::Point (Association)" />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: Laboras21_ModelingProject::Laboras21::Vertex to Laboras21_ModelingProject::System::Collections::Generic::List&lt;Vertex‎&gt; (Association)" />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: Laboras21_ModelingProject::System::Collections::Generic::List&lt;Vertex‎&gt; to Laboras21_ModelingProject::System::Collections::Generic::IReadOnlyList&lt;Vertex‎&gt; (InterfaceRealization)" />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="High" Text="(1) type(s) fully reverse engineered." />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="High" Text="(3) type(s) partially reverse engineered.  These types were not included in the original selection so their full definitions are not reverse engineered.  Instead, this shallow operation has simply ensured these types exist in the UML model because they are needed in order to fully describe other elements." />
+  <Message Timestamp="2013-10-07T10:48:50" Importance="High" Text="The reverse engineering operation completed with (0) error(s), and (0) warning(s)." />
+</Log>

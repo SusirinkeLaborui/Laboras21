@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="7dbe3eff-7c60-405b-8628-87c536cbf888" name="ActivityDiagram" linkedPackageId="e86b0dfe-87bf-43a7-bd38-802e33b973eb" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="f3273cb1-5f4f-4b0f-a6fa-c157ae613d2f">
+      <profileInstance Id="1432a5a4-fa0a-4bd3-9ad6-3b763e19b119" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="6db55e5f-2a01-4872-93be-79a241bba506">
+      <profileInstance Id="600fbc56-d46b-4af3-80a6-94ad26ab85ce" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="a2cb50e6-a831-4219-9527-4fe4cc3e3e86">
+      <profileInstance Id="c495f370-9e75-4ed7-a59b-4917861bc085" name="CSharpProfile">
+        <elementDefinition Id="5492b799-6bed-4412-aad8-de35cafc34f3" />
+      </profileInstance>
+      <elementDefinition Id="8a2dd50d-ad8a-4d45-af2e-349b4d3c983d" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="3345f83a-cbcd-4efa-88e5-3002fdfb872a" name="ActivityDiagram" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="829059a9-c8e2-4807-8a2f-fe0ace3a260c" />
+        <nodes>
+          <initialNode Id="8c636b96-d4cb-4bdb-99e2-f32a3c917436" name="Initial1" isLeaf="false">
+            <elementDefinition Id="77781470-4c49-4ed5-b825-f32f6e3aa0e8" />
+            <flowNodeTargets>
+              <controlFlow Id="78d272c0-b4b6-4552-9f3d-e134468c2063" isLeaf="false">
+                <decisionNodeMoniker Id="713d10bd-e597-4b08-bf62-87a6ba255a6e" LastKnownName="Decision1" />
+                <elementDefinition Id="dce52662-0590-4d25-aa8c-7d3a2cc95e05" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <decisionNode Id="713d10bd-e597-4b08-bf62-87a6ba255a6e" name="Decision1" isLeaf="false">
+            <elementDefinition Id="1a275e8b-0936-4002-832f-d76bbf469060" />
+            <flowNodeTargets>
+              <controlFlow Id="268557a8-90a2-4291-93b9-474140e24da1" guard="Generuoti duomenis" isLeaf="false">
+                <opaqueActionMoniker Id="3769e0d6-048f-4693-98d9-ad679c5fb452" LastKnownName="Pasirinkti generavimo algoritmą" />
+                <elementDefinition Id="85f4b080-b394-4280-bd37-55cec202fffe" />
+              </controlFlow>
+              <controlFlow Id="eaf5886e-d976-4805-bab0-e6cc4bb9cbf7" isLeaf="false">
+                <opaqueActionMoniker Id="a1608a11-0292-4abc-bd7c-7c84befb5e38" LastKnownName="Nuskaityti failo duomenis" />
+                <elementDefinition Id="eacda55b-d336-4a2a-942d-88f42e6e6660" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="3769e0d6-048f-4693-98d9-ad679c5fb452" name="Pasirinkti generavimo algoritmą" isLeaf="false">
+            <elementDefinition Id="8e04ce38-89a5-4754-b18f-8e904fbaa446" />
+            <flowNodeTargets>
+              <controlFlow Id="1d10d608-efe5-416c-8af4-fbd8806aee2f" isLeaf="false">
+                <opaqueActionMoniker Id="2b865456-744b-4b64-8645-753c044044b7" LastKnownName="Įvesti algoritmo parametrus" />
+                <elementDefinition Id="b2ac3e03-8deb-445f-930d-1d3c263f1264" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="a1608a11-0292-4abc-bd7c-7c84befb5e38" name="Nuskaityti failo duomenis" isLeaf="false">
+            <elementDefinition Id="b93c8bc1-2393-474a-9c12-9990c7536341" />
+          </opaqueAction>
+          <opaqueAction Id="2b865456-744b-4b64-8645-753c044044b7" name="Įvesti algoritmo parametrus" isLeaf="false">
+            <elementDefinition Id="7feb65a8-de2b-4e64-b587-622aea933e4a" />
+            <flowNodeTargets>
+              <controlFlow Id="1e90df76-bd14-40f6-8de2-cf4ebdd33a85" isLeaf="false">
+                <decisionNodeMoniker Id="6fbc8b32-9dfd-4254-bdd7-0a5710069e26" LastKnownName="Decision2" />
+                <elementDefinition Id="07aed502-d1fa-4ff6-8fc0-3ec56c61b470" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="6fbc8b32-9dfd-4254-bdd7-0a5710069e26" name="Decision2" isLeaf="false">
+            <elementDefinition Id="d1d26240-a63b-4a53-8ff9-0228f2414503" />
+            <flowNodeTargets>
+              <controlFlow Id="7b267d7e-16f7-40cf-bc08-2963c5613faf" guard="Parametrai neteisingi" isLeaf="false">
+                <opaqueActionMoniker Id="25677bce-0ce2-499f-92bf-9e1298fb578e" LastKnownName="Parodyti klaidos pranešimą" />
+                <elementDefinition Id="94827e03-87ee-4035-b846-1214873a8efe" />
+              </controlFlow>
+              <controlFlow Id="589a1e46-db63-4a7d-851c-59a336368f20" guard="Parametrai teisingi" isLeaf="false">
+                <opaqueActionMoniker Id="b24f2687-7d52-4883-82ef-16d7a3548bc6" LastKnownName="Generuoti duomenis" />
+                <elementDefinition Id="a492412d-e95a-4ad7-9351-1f92708f6dfd" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="fb7f8c12-e455-4885-a467-34470b0d0ed6" name="Action4" isLeaf="false">
+            <elementDefinition Id="3d5813d4-3207-4e25-b1f3-fb9f63984ae1" />
+          </opaqueAction>
+          <activityFinalNode Id="38bb326e-dcfd-47a4-a643-7c33512312c1" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="8d30399d-8668-4183-8634-52033c040f70" />
+          </activityFinalNode>
+          <opaqueAction Id="25677bce-0ce2-499f-92bf-9e1298fb578e" name="Parodyti klaidos pranešimą" isLeaf="false">
+            <elementDefinition Id="86a9d7e0-fa0c-4076-8436-d5a8770d6309" />
+            <flowNodeTargets>
+              <controlFlow Id="b6e48c35-c95a-402b-ab15-1eb0a302e08e" isLeaf="false">
+                <opaqueActionMoniker Id="2b865456-744b-4b64-8645-753c044044b7" LastKnownName="Įvesti algoritmo parametrus" />
+                <elementDefinition Id="c65f86a3-e101-428a-957f-8dd251b81a50" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="b24f2687-7d52-4883-82ef-16d7a3548bc6" name="Generuoti duomenis" isLeaf="false">
+            <elementDefinition Id="c071ca1d-0976-4934-beef-c0d0bdff9b75" />
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="e86b0dfe-87bf-43a7-bd38-802e33b973eb" name="Laboras21_ModelingProject">
+    <elementDefinition Id="2e55aa71-de82-4253-b9ea-b96a75611c80" />
+  </package>
+</activityRootModel>

@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner"
+  dslVersion="1.0.0.0"
+  Id="2e55aa71-de82-4253-b9ea-b96a75611c80"
+  name="Laboras21_ModelingProject" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="8a2dd50d-ad8a-4d45-af2e-349b4d3c983d">
+      <profileInstance
+        Id="5492b799-6bed-4412-aad8-de35cafc34f3"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="fd31cc3b-24e4-40ad-959c-4ac54c1f523b"
+        LastKnownName="Laboras21"
+        LastKnownLocation="Package_1047.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="894b767c-05e0-4c6c-9f98-a11151bea060"
+        LastKnownName="System"
+        LastKnownLocation="Package1_1047.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="bedc283e-ffa7-4660-a924-f5f4218e8c0d"
+        name="Subsystem1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="5eeeca38-3743-4124-89d4-4f1569273dcb"
+        name="Vartotojas"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="9927ff94-9d5a-417f-8ccc-9ad4ea75f77a"
+            isDerived="false"
+            sourceEndRoleName="Vartotojas"
+            targetEndRoleName="Nauodoti duomenis iš failo"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="a84adf20-43b6-4cba-9827-4abe6c8dd7c0"
+              LastKnownName="Nauodoti duomenis iš failo"
+              LastKnownLocation="Laboras21_ModelingProject.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3999ff1c-e145-4157-bdff-8d39e45ad9fe"
+                  name="Vartotojas"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="65d4902b-79a6-4afb-8507-8c8a15f82fd3"
+                  name="Nauodoti duomenis iš failo"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="bede1db8-3ed1-4e90-a7d1-58b4474552aa"
+            isDerived="false"
+            sourceEndRoleName="Vartotojas"
+            targetEndRoleName="Generuoti duomenis"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="4aaab47f-1779-44d4-a689-5b56c204164c"
+              LastKnownName="Generuoti duomenis"
+              LastKnownLocation="Laboras21_ModelingProject.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="58e7c2e2-d1e2-485f-89f6-300bb1e717b8"
+                  name="Vartotojas"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ebec7fd0-70d9-48f9-91e0-2ec1d121ea88"
+                  name="Generuoti duomenis"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="a84adf20-43b6-4cba-9827-4abe6c8dd7c0"
+        name="Nauodoti duomenis iš failo"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="e7aa36a8-f0cd-4cec-985c-332142fa9439">
+            <useCaseMoniker
+              Id="f391cd86-51d1-49ec-89c3-0e0e69c281e6"
+              LastKnownName="Rasti trumpiausią dengiantį medį grafe"
+              LastKnownLocation="Laboras21_ModelingProject.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="4aaab47f-1779-44d4-a689-5b56c204164c"
+        name="Generuoti duomenis"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="36ed2df3-2e04-407b-aa7f-1983ccf5762f">
+            <useCaseMoniker
+              Id="f391cd86-51d1-49ec-89c3-0e0e69c281e6"
+              LastKnownName="Rasti trumpiausią dengiantį medį grafe"
+              LastKnownLocation="Laboras21_ModelingProject.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="f391cd86-51d1-49ec-89c3-0e0e69c281e6"
+        name="Rasti trumpiausią dengiantį medį grafe"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="7d6fa39a-9c6f-4dcb-97bf-4e84c99f096a">
+            <useCaseMoniker
+              Id="44936ea2-8310-4ff7-9357-1f309cec5471"
+              LastKnownName="Išsaugoti rezultatus į failą"
+              LastKnownLocation="Laboras21_ModelingProject.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="44936ea2-8310-4ff7-9357-1f309cec5471"
+        name="Išsaugoti rezultatus į failą"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="829059a9-c8e2-4807-8a2f-fe0ace3a260c"
+        name="ActivityDiagram"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <initialNode
+            Id="77781470-4c49-4ed5-b825-f32f6e3aa0e8"
+            name="Initial1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="dce52662-0590-4d25-aa8c-7d3a2cc95e05"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="1a275e8b-0936-4002-832f-d76bbf469060"
+                  LastKnownName="Decision1"
+                  LastKnownLocation="Laboras21_ModelingProject.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <decisionNode
+            Id="1a275e8b-0936-4002-832f-d76bbf469060"
+            name="Decision1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="85f4b080-b394-4280-bd37-55cec202fffe"
+                guard="Generuoti duomenis"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="8e04ce38-89a5-4754-b18f-8e904fbaa446"
+                  LastKnownName="Pasirinkti generavimo algoritmą"
+                  LastKnownLocation="Laboras21_ModelingProject.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="eacda55b-d336-4a2a-942d-88f42e6e6660"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="b93c8bc1-2393-474a-9c12-9990c7536341"
+                  LastKnownName="Nuskaityti failo duomenis"
+                  LastKnownLocation="Laboras21_ModelingProject.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="8e04ce38-89a5-4754-b18f-8e904fbaa446"
+            name="Pasirinkti generavimo algoritmą"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="b2ac3e03-8deb-445f-930d-1d3c263f1264"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="7feb65a8-de2b-4e64-b587-622aea933e4a"
+                  LastKnownName="Įvesti algoritmo parametrus"
+                  LastKnownLocation="Laboras21_ModelingProject.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="b93c8bc1-2393-474a-9c12-9990c7536341"
+            name="Nuskaityti failo duomenis"
+            isLeaf="false" />
+          <opaqueAction
+            Id="7feb65a8-de2b-4e64-b587-622aea933e4a"
+            name="Įvesti algoritmo parametrus"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="07aed502-d1fa-4ff6-8fc0-3ec56c61b470"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="d1d26240-a63b-4a53-8ff9-0228f2414503"
+                  LastKnownName="Decision2"
+                  LastKnownLocation="Laboras21_ModelingProject.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode
+            Id="d1d26240-a63b-4a53-8ff9-0228f2414503"
+            name="Decision2"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="94827e03-87ee-4035-b846-1214873a8efe"
+                guard="Parametrai neteisingi"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="86a9d7e0-fa0c-4076-8436-d5a8770d6309"
+                  LastKnownName="Parodyti klaidos pranešimą"
+                  LastKnownLocation="Laboras21_ModelingProject.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="a492412d-e95a-4ad7-9351-1f92708f6dfd"
+                guard="Parametrai teisingi"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="c071ca1d-0976-4934-beef-c0d0bdff9b75"
+                  LastKnownName="Generuoti duomenis"
+                  LastKnownLocation="Laboras21_ModelingProject.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="3d5813d4-3207-4e25-b1f3-fb9f63984ae1"
+            name="Action4"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="8d30399d-8668-4183-8634-52033c040f70"
+            name="ActivityFinal1"
+            isLeaf="false" />
+          <opaqueAction
+            Id="86a9d7e0-fa0c-4076-8436-d5a8770d6309"
+            name="Parodyti klaidos pranešimą"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="c65f86a3-e101-428a-957f-8dd251b81a50"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="7feb65a8-de2b-4e64-b587-622aea933e4a"
+                  LastKnownName="Įvesti algoritmo parametrus"
+                  LastKnownLocation="Laboras21_ModelingProject.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="c071ca1d-0976-4934-beef-c0d0bdff9b75"
+            name="Generuoti duomenis"
+            isLeaf="false" />
+        </nodes>
+      </activity>
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>
