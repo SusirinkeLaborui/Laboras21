@@ -58,6 +58,7 @@
     <Compile Include="NormalRandomNumberGenerator.cs" />
     <Compile Include="DataProvider.cs" />
     <Compile Include="IRandomNumberGenerator.cs" />
+    <Compile Include="MagicalNumbers.cs" />
     <Compile Include="MinimalSpanningTreeFinder.cs" />
     <Compile Include="UniformRandomNumeberGenerator.cs" />
     <Compile Include="Vertex.cs" />
