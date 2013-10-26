@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace Laboras21
 {
-    class SuperCanvas : Canvas
+    public class SuperCanvas : Canvas
     {
         public void SetCollection(IReadOnlyList<Vertex> vertices)
         {

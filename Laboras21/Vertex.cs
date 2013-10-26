@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Laboras21
 {
-    class Vertex
+    public class Vertex
     {
         public Point Coordinates { get; set; }
         public List<Vertex> Neighbours { get; private set; }

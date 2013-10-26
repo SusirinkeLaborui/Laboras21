@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Laboras21
 {
-    interface IRandomNumberGenerator
+    public interface IRandomNumberGenerator
     {
-        public Point GeneratePoint();
+        Point GeneratePoint();
     }
 }

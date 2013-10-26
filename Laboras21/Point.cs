@@ -1,6 +1,6 @@
 ﻿namespace Laboras21
 {
-    struct Point
+    public struct Point
     {
         public int x, y;
 

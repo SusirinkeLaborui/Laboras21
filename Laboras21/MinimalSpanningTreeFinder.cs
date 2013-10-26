@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Laboras21
 {
-    static class MinimalSpanningTreeFinder
+    public class MinimalSpanningTreeFinder
     {
         public List<Vertex> Find(List<Point> points)
         {
