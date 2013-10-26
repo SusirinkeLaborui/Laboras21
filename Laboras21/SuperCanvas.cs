@@ -24,5 +24,9 @@ namespace Laboras21
         {
 
         }
+
+        public void DrawEdge(Vertex vertex1, Vertex vertex2)
+        {
+        }
     }
 }
