@@ -46,9 +46,6 @@ namespace Laboras21
             point.y += MagicalNumbers.CoordWidth / 2;
             Ellipse e = new Ellipse();
             e.Fill = brush;
-            e.Width = MagicalNumbers.CoordWidth / 100;
-            e.Height = MagicalNumbers.CoordWidth / 100;
-            Children.Add(e);
         }
 
         private void Redraw()
