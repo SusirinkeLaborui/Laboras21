@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
 using System;
+using System.Windows.Shapes;
+using System.Windows.Media;
 
 //jo, jo, tuoj
 #pragma warning disable 169
@@ -11,6 +13,7 @@ namespace Laboras21
     {
         private List<Tuple<Point, Point>> edges = new List<Tuple<Point,Point>>();
         private IReadOnlyList<Vertex> nodes;
+        private SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
 
         public void SetCollection(IReadOnlyList<Vertex> vertices)
         {
@@ -39,12 +42,22 @@ namespace Laboras21
 
         private void DrawNode(Point point)
         {
-
+            point.x += MagicalNumbers.CoordWidth / 2;
+            point.y += MagicalNumbers.CoordWidth / 2;
+            Ellipse e = new Ellipse();
+            e.Fill = brush;
+            e.Width = MagicalNumbers.CoordWidth / 100;
+            e.Height = MagicalNumbers.CoordWidth / 100;
+            Children.Add(e);
         }
 
         private void Redraw()
         {
+            foreach(var n in nodes)
+                DrawNode(n.Coordinates);
 
+            foreach (var e in edges)
+                DrawEdge(e.Item1, e.Item2);
         }
     }
 }

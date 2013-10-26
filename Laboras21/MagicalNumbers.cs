@@ -8,6 +8,6 @@ namespace Laboras21
 {
     static class MagicalNumbers
     {
-        public static const int CoordWidth = 20000;
+        public const int CoordWidth = 20000;
     }
 }
