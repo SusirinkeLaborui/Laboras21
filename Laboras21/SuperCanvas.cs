@@ -37,6 +37,11 @@ namespace Laboras21
 
         }
 
+        private void DrawNode(Point point)
+        {
+
+        }
+
         private void Redraw()
         {
 
