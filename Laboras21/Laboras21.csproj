@@ -54,9 +54,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BadFileFormatException.cs" />
+    <Compile Include="NormalRandomNumberGenerator.cs" />
     <Compile Include="DataProvider.cs" />
     <Compile Include="IRandomNumberGenerator.cs" />
     <Compile Include="MinimalSpanningTreeFinder.cs" />
+    <Compile Include="UniformRandomNumeberGenerator.cs" />
     <Compile Include="Vertex.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
