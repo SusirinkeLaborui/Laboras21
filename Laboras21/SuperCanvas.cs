@@ -4,9 +4,6 @@ using System;
 using System.Windows.Shapes;
 using System.Windows.Media;
 
-//jo, jo, tuoj
-#pragma warning disable 169
-
 namespace Laboras21
 {
     public class SuperCanvas : Canvas

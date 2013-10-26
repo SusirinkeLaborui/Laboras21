@@ -17,7 +17,7 @@ namespace Laboras21
         {
             if (drawableCanvas == null)
             {
-                throw new ArgumentException("Specified canvas was null!", "drawableCanvas");
+                throw new ArgumentException("Canvas was null!", "drawableCanvas");
             }
 
             canvas = drawableCanvas;

@@ -9,13 +9,13 @@ namespace Laboras21
 {
     public static class DataProvider
     {
-
         public static async Task<List<Point>> ReadFromFile(string filename)
         {
             var file = new StreamReader(filename);
             var fileContents = await file.ReadToEndAsync();
             var lines = fileContents.Split('\n');
-            List<Point> data = new List<Point>();
+            var data = new List<Point>();
+
             foreach (var line in lines)
             {
                 string[] point = line.Split(' ');
@@ -34,8 +34,7 @@ namespace Laboras21
                 catch (Exception e)
                 {                    
                     throw new BadFileFormatException(line, e.Message);
-                }
-             
+                }             
             }
             
             return data;
@@ -51,16 +50,16 @@ namespace Laboras21
             return generatedData;
         }
 
+        /*
+         * 12. Rezultatų tekstinis failas bus sudarytas viršūnių kaimynių formatu:
+         * kiekviena viršūnei bus skirta viena eilutė
+         * ten bus nurodyta viršūnės koordinatės, kaimynių skaičius ir jų koordinatės.
+         * Vienos rezultatų eilutės duomenys bus atskiriami tarpu.
+         * 
+         */
         public static async void SaveToFile(string filename, List<Vertex> vertices)
         {
             StringBuilder fileContent = new StringBuilder();
-            /*
-             * 12. Rezultatų tekstinis failas bus sudarytas viršūnių kaimynių formatu:
-             * kiekviena viršūnei bus skirta viena eilutė
-             * ten bus nurodyta viršūnės koordinatės, kaimynių skaičius ir jų koordinatės.
-             * Vienos rezultatų eilutės duomenys bus atskiriami tarpu.
-             * 
-             */
             foreach (var vertex in vertices)
             {
                 fileContent.AppendFormat("{0} {1} {2}", vertex.Coordinates.x, vertex.Coordinates.y, vertex.Neighbours.Count);
@@ -75,9 +74,7 @@ namespace Laboras21
 
             var file = new StreamWriter(filename);
             await file.WriteAsync(fileContent.ToString());
-            file.Close();
-            
+            file.Close();            
         }
-
     }
 }
