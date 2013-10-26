@@ -91,6 +91,11 @@ namespace Laboras21
                 graph.Add(new Vertex(points[i]));
             }
 
+            if (canvas != null)
+            {
+                canvas.SetCollection(graph);
+            }
+
             while (treePoints.Count < graph.Count)
             {
                 int minimalDistance = GetDistanceSqr(treePoints[0].Coordinates, sparePoints[0].Coordinates);
