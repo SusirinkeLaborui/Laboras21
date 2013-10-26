@@ -59,22 +59,30 @@ namespace Laboras21
          */
         public static async void SaveToFile(string filename, List<Vertex> vertices)
         {
-            StringBuilder fileContent = new StringBuilder();
-            foreach (var vertex in vertices)
+            using (var file = new StreamWriter(filename))
             {
-                fileContent.AppendFormat("{0} {1} {2}", vertex.Coordinates.x, vertex.Coordinates.y, vertex.Neighbours.Count);
+                var fileContent = new StringBuilder();
+                var fileWriteTask = file.WriteAsync(string.Empty);
 
-                foreach (var neighbour in vertex.Neighbours)
+                foreach (var vertex in vertices)
                 {
-                    fileContent.Append(" {0} {1}", neighbour.Coordinates.x, neighbour.Coordinates.y);
+                    fileContent.AppendFormat("{0} {1} {2}", vertex.Coordinates.x, vertex.Coordinates.y, vertex.Neighbours.Count);
 
+                    foreach (var neighbour in vertex.Neighbours)
+                    {
+                        fileContent.Append(" {0} {1}", neighbour.Coordinates.x, neighbour.Coordinates.y);
+
+                    }
+                    fileContent.Append("\n");
+
+                    await fileWriteTask;
+                    fileWriteTask = file.WriteAsync(fileContent.ToString());
+                    fileContent.Clear();
                 }
-                fileContent.Append("\n");
-            }
 
-            var file = new StreamWriter(filename);
-            await file.WriteAsync(fileContent.ToString());
-            file.Close();            
+                await fileWriteTask;
+                file.Close();
+            }
         }
     }
 }
