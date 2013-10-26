@@ -1,28 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="7dbe3eff-7c60-405b-8628-87c536cbf888" name="ActivityDiagram" linkedPackageId="e86b0dfe-87bf-43a7-bd38-802e33b973eb" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="f3273cb1-5f4f-4b0f-a6fa-c157ae613d2f">
-      <profileInstance Id="1432a5a4-fa0a-4bd3-9ad6-3b763e19b119" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="6db55e5f-2a01-4872-93be-79a241bba506">
-      <profileInstance Id="600fbc56-d46b-4af3-80a6-94ad26ab85ce" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="a2cb50e6-a831-4219-9527-4fe4cc3e3e86">
-      <profileInstance Id="c495f370-9e75-4ed7-a59b-4917861bc085" name="CSharpProfile">
-        <elementDefinition Id="5492b799-6bed-4412-aad8-de35cafc34f3" />
-      </profileInstance>
-      <elementDefinition Id="8a2dd50d-ad8a-4d45-af2e-349b4d3c983d" />
-    </packageHasProfileInstances>
-  </profileInstances>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="7dbe3eff-7c60-405b-8628-87c536cbf888" name="Duomenų generavimas" linkedPackageId="e86b0dfe-87bf-43a7-bd38-802e33b973eb" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
   <packagedElements>
     <activityRootModelHasActivity>
-      <activity Id="3345f83a-cbcd-4efa-88e5-3002fdfb872a" name="ActivityDiagram" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+      <activity Id="3345f83a-cbcd-4efa-88e5-3002fdfb872a" name="Duomenų generavimas" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
         <elementDefinition Id="829059a9-c8e2-4807-8a2f-fe0ace3a260c" />
         <nodes>
           <initialNode Id="8c636b96-d4cb-4bdb-99e2-f32a3c917436" name="Initial1" isLeaf="false">
@@ -58,6 +38,12 @@
           </opaqueAction>
           <opaqueAction Id="a1608a11-0292-4abc-bd7c-7c84befb5e38" name="Nuskaityti failo duomenis" isLeaf="false">
             <elementDefinition Id="b93c8bc1-2393-474a-9c12-9990c7536341" />
+            <flowNodeTargets>
+              <controlFlow Id="a19cb06b-3a70-4127-be88-a1bca2538faa" isLeaf="false">
+                <activityFinalNodeMoniker Id="176a0149-32fe-461c-8c20-cf0afd51f689" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="dbd341bd-af92-4f5d-8ad1-21f88153327d" />
+              </controlFlow>
+            </flowNodeTargets>
           </opaqueAction>
           <opaqueAction Id="2b865456-744b-4b64-8645-753c044044b7" name="Įvesti algoritmo parametrus" isLeaf="false">
             <elementDefinition Id="7feb65a8-de2b-4e64-b587-622aea933e4a" />
@@ -81,12 +67,6 @@
               </controlFlow>
             </flowNodeTargets>
           </decisionNode>
-          <opaqueAction Id="fb7f8c12-e455-4885-a467-34470b0d0ed6" name="Action4" isLeaf="false">
-            <elementDefinition Id="3d5813d4-3207-4e25-b1f3-fb9f63984ae1" />
-          </opaqueAction>
-          <activityFinalNode Id="38bb326e-dcfd-47a4-a643-7c33512312c1" name="ActivityFinal1" isLeaf="false">
-            <elementDefinition Id="8d30399d-8668-4183-8634-52033c040f70" />
-          </activityFinalNode>
           <opaqueAction Id="25677bce-0ce2-499f-92bf-9e1298fb578e" name="Parodyti klaidos pranešimą" isLeaf="false">
             <elementDefinition Id="86a9d7e0-fa0c-4076-8436-d5a8770d6309" />
             <flowNodeTargets>
@@ -98,12 +78,41 @@
           </opaqueAction>
           <opaqueAction Id="b24f2687-7d52-4883-82ef-16d7a3548bc6" name="Generuoti duomenis" isLeaf="false">
             <elementDefinition Id="c071ca1d-0976-4934-beef-c0d0bdff9b75" />
+            <flowNodeTargets>
+              <controlFlow Id="fccbc991-6dcf-4bdb-b2d7-0c1e806d2f93" isLeaf="false">
+                <activityFinalNodeMoniker Id="176a0149-32fe-461c-8c20-cf0afd51f689" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="7d9b5376-cab3-46c1-bcdf-c28fcd4adffc" />
+              </controlFlow>
+            </flowNodeTargets>
           </opaqueAction>
+          <activityFinalNode Id="176a0149-32fe-461c-8c20-cf0afd51f689" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="51c6def6-cf1c-42d7-a244-c06be0bc2ab7" />
+          </activityFinalNode>
         </nodes>
       </activity>
     </activityRootModelHasActivity>
   </packagedElements>
   <package Id="e86b0dfe-87bf-43a7-bd38-802e33b973eb" name="Laboras21_ModelingProject">
     <elementDefinition Id="2e55aa71-de82-4253-b9ea-b96a75611c80" />
+    <profileInstances>
+      <packageHasProfileInstances Id="f3273cb1-5f4f-4b0f-a6fa-c157ae613d2f">
+        <profileInstance Id="1432a5a4-fa0a-4bd3-9ad6-3b763e19b119" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="6db55e5f-2a01-4872-93be-79a241bba506">
+        <profileInstance Id="600fbc56-d46b-4af3-80a6-94ad26ab85ce" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="a2cb50e6-a831-4219-9527-4fe4cc3e3e86">
+        <profileInstance Id="c495f370-9e75-4ed7-a59b-4917861bc085" name="CSharpProfile">
+          <elementDefinition Id="5492b799-6bed-4412-aad8-de35cafc34f3" />
+        </profileInstance>
+        <elementDefinition Id="8a2dd50d-ad8a-4d45-af2e-349b4d3c983d" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </activityRootModel>

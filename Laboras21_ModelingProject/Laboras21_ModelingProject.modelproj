@@ -22,12 +22,12 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
-    <Content Include="ActivityDiagram.activitydiagram">
+    <Content Include="DuomenųGeneravimoVeiklosDiagrama.activitydiagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="ActivityDiagram.activitydiagram.layout">
+    <Content Include="DuomenųGeneravimoVeiklosDiagrama.activitydiagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>ActivityDiagram.activitydiagram</DependentUpon>
+      <DependentUpon>DuomenųGeneravimoVeiklosDiagrama.activitydiagram</DependentUpon>
     </Content>
     <Content Include="ModelDefinition\Package1_1047.uml">
       <SubType>Content</SubType>
@@ -48,6 +48,9 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="ModelDefinition\Package_1047.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1111.uml">
       <SubType>Content</SubType>
     </Content>
     <Content Include="UMLClassDiagram1.classdiagram">

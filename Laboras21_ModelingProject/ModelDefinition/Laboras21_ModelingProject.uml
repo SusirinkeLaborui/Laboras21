@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="2e55aa71-de82-4253-b9ea-b96a75611c80"
   name="Laboras21_ModelingProject" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -129,6 +129,84 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="52482b7e-df15-4b58-8eaa-56189526de82"
+            isDerived="false"
+            sourceEndRoleName="Vartotojas"
+            targetEndRoleName="Rasti trumpiausią dengiantį medį grafe"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="f391cd86-51d1-49ec-89c3-0e0e69c281e6"
+              LastKnownName="Rasti trumpiausią dengiantį medį grafe"
+              LastKnownLocation="Laboras21_ModelingProject.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e79e1a86-6c9e-48f1-810c-18ff4827bd0b"
+                  name="Vartotojas"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2c5bf334-8201-43ed-a7ec-2ac40c0adc7b"
+                  name="Rasti trumpiausią dengiantį medį grafe"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="257bc3c4-ee31-4839-810c-87718d303a16"
+            isDerived="false"
+            sourceEndRoleName="Vartotojas"
+            targetEndRoleName="Išsaugoti rezultatus į failą"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="44936ea2-8310-4ff7-9357-1f309cec5471"
+              LastKnownName="Išsaugoti rezultatus į failą"
+              LastKnownLocation="Laboras21_ModelingProject.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7d205143-1375-4aef-8789-406c190de05e"
+                  name="Vartotojas"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ae0a453e-4722-4c5d-9f70-3dd93b5f6059"
+                  name="Išsaugoti rezultatus į failą"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
       </actor>
     </packageHasNamedElement>
@@ -137,51 +215,21 @@
         Id="a84adf20-43b6-4cba-9827-4abe6c8dd7c0"
         name="Nauodoti duomenis iš failo"
         isAbstract="false"
-        isLeaf="false">
-        <additions>
-          <include
-            Id="e7aa36a8-f0cd-4cec-985c-332142fa9439">
-            <useCaseMoniker
-              Id="f391cd86-51d1-49ec-89c3-0e0e69c281e6"
-              LastKnownName="Rasti trumpiausią dengiantį medį grafe"
-              LastKnownLocation="Laboras21_ModelingProject.uml" />
-          </include>
-        </additions>
-      </useCase>
+        isLeaf="false" />
     </packageHasNamedElement>
     <packageHasNamedElement>
       <useCase
         Id="4aaab47f-1779-44d4-a689-5b56c204164c"
         name="Generuoti duomenis"
         isAbstract="false"
-        isLeaf="false">
-        <additions>
-          <include
-            Id="36ed2df3-2e04-407b-aa7f-1983ccf5762f">
-            <useCaseMoniker
-              Id="f391cd86-51d1-49ec-89c3-0e0e69c281e6"
-              LastKnownName="Rasti trumpiausią dengiantį medį grafe"
-              LastKnownLocation="Laboras21_ModelingProject.uml" />
-          </include>
-        </additions>
-      </useCase>
+        isLeaf="false" />
     </packageHasNamedElement>
     <packageHasNamedElement>
       <useCase
         Id="f391cd86-51d1-49ec-89c3-0e0e69c281e6"
         name="Rasti trumpiausią dengiantį medį grafe"
         isAbstract="false"
-        isLeaf="false">
-        <additions>
-          <include
-            Id="7d6fa39a-9c6f-4dcb-97bf-4e84c99f096a">
-            <useCaseMoniker
-              Id="44936ea2-8310-4ff7-9357-1f309cec5471"
-              LastKnownName="Išsaugoti rezultatus į failą"
-              LastKnownLocation="Laboras21_ModelingProject.uml" />
-          </include>
-        </additions>
-      </useCase>
+        isLeaf="false" />
     </packageHasNamedElement>
     <packageHasNamedElement>
       <useCase
@@ -193,7 +241,7 @@
     <packageHasNamedElement>
       <activity
         Id="829059a9-c8e2-4807-8a2f-fe0ace3a260c"
-        name="ActivityDiagram"
+        name="Duomenų generavimas"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false"
@@ -258,7 +306,18 @@
           <opaqueAction
             Id="b93c8bc1-2393-474a-9c12-9990c7536341"
             name="Nuskaityti failo duomenis"
-            isLeaf="false" />
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="dbd341bd-af92-4f5d-8ad1-21f88153327d"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="51c6def6-cf1c-42d7-a244-c06be0bc2ab7"
+                  LastKnownName="ActivityFinal1"
+                  LastKnownLocation="Laboras21_ModelingProject.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
           <opaqueAction
             Id="7feb65a8-de2b-4e64-b587-622aea933e4a"
             name="Įvesti algoritmo parametrus"
@@ -300,14 +359,6 @@
             </flowNodeTargets>
           </decisionNode>
           <opaqueAction
-            Id="3d5813d4-3207-4e25-b1f3-fb9f63984ae1"
-            name="Action4"
-            isLeaf="false" />
-          <activityFinalNode
-            Id="8d30399d-8668-4183-8634-52033c040f70"
-            name="ActivityFinal1"
-            isLeaf="false" />
-          <opaqueAction
             Id="86a9d7e0-fa0c-4076-8436-d5a8770d6309"
             name="Parodyti klaidos pranešimą"
             isLeaf="false">
@@ -325,9 +376,235 @@
           <opaqueAction
             Id="c071ca1d-0976-4934-beef-c0d0bdff9b75"
             name="Generuoti duomenis"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="7d9b5376-cab3-46c1-bcdf-c28fcd4adffc"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="51c6def6-cf1c-42d7-a244-c06be0bc2ab7"
+                  LastKnownName="ActivityFinal1"
+                  LastKnownLocation="Laboras21_ModelingProject.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode
+            Id="51c6def6-cf1c-42d7-a244-c06be0bc2ab7"
+            name="ActivityFinal1"
             isLeaf="false" />
         </nodes>
       </activity>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="dd3d905b-62b6-46b6-b6f0-94285341b4bd"
+        name="Vartotojas"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="b2681d5f-f527-4468-b68a-2928c8909553"
+            isDerived="false"
+            sourceEndRoleName="Vartotojas1"
+            targetEndRoleName="Rasti trumpiausią dengiantį medį grafe1"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="ca7178ea-76ad-4b1b-889e-032126b5dcd0"
+              LastKnownName="1. Rasti trumpiausią dengiantį medį grafe"
+              LastKnownLocation="Laboras21_ModelingProject.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7495ac58-ebbf-43fc-9102-5e126a5d5f4e"
+                  name="Vartotojas1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="cb9e9a36-aa6e-40bd-a8a0-6a2923479fe7"
+                  name="Rasti trumpiausią dengiantį medį grafe1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="4c11d0bc-67be-4520-9f16-57a7f7eaeb7e"
+        name="2. Nauodoti duomenis iš failo"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="95e97bd6-f088-4350-a8ce-7d805543e815"
+            LastKnownName="Subsystem2"
+            LastKnownLocation="Laboras21_ModelingProject.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="183c08fb-a9fb-4e82-8607-9e692a5e41d9"
+        name="3. Generuoti duomenis, kurie yra tolygiai išsiibarstę"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="95e97bd6-f088-4350-a8ce-7d805543e815"
+            LastKnownName="Subsystem2"
+            LastKnownLocation="Laboras21_ModelingProject.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="ca7178ea-76ad-4b1b-889e-032126b5dcd0"
+        name="1. Rasti trumpiausią dengiantį medį grafe"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="1f841a99-9c97-4804-954c-9e148422768a"
+            isDerived="false"
+            sourceEndRoleName="1. Rasti trumpiausią dengiantį medį grafe"
+            targetEndRoleName="1. Rasti trumpiausią dengiantį medį grafe"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="ca7178ea-76ad-4b1b-889e-032126b5dcd0"
+              LastKnownName="1. Rasti trumpiausią dengiantį medį grafe"
+              LastKnownLocation="Laboras21_ModelingProject.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="228ac854-34a4-425d-a7a7-a45df6407f77"
+                  name="1. Rasti trumpiausią dengiantį medį grafe"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1d663409-f7f1-479e-84ec-9274b6c87beb"
+                  name="1. Rasti trumpiausią dengiantį medį grafe"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <extendedCases>
+          <extend
+            Id="754adba5-c044-45ec-9a3b-773624551122">
+            <useCaseMoniker
+              Id="4c11d0bc-67be-4520-9f16-57a7f7eaeb7e"
+              LastKnownName="2. Nauodoti duomenis iš failo"
+              LastKnownLocation="Laboras21_ModelingProject.uml" />
+          </extend>
+          <extend
+            Id="fde8321a-9532-4c0b-ab95-a5fc675f8d2d">
+            <useCaseMoniker
+              Id="183c08fb-a9fb-4e82-8607-9e692a5e41d9"
+              LastKnownName="3. Generuoti duomenis, kurie yra tolygiai išsiibarstę"
+              LastKnownLocation="Laboras21_ModelingProject.uml" />
+          </extend>
+          <extend
+            Id="105e6035-8966-4bf8-85b4-5ccfd7436be1">
+            <useCaseMoniker
+              Id="5d78815f-8474-4968-a5c3-e08836dacf21"
+              LastKnownName="4. Generuoti duomenis naudojant normalųjį skirstinį"
+              LastKnownLocation="Laboras21_ModelingProject.uml" />
+          </extend>
+          <extend
+            Id="82246104-d730-45e8-917b-ac194537cbba">
+            <useCaseMoniker
+              Id="7394f512-5ab1-4f45-bbbd-5415ceb3217a"
+              LastKnownName="5. Išsaugoti rezultatus į failą"
+              LastKnownLocation="Laboras21_ModelingProject.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="95e97bd6-f088-4350-a8ce-7d805543e815"
+            LastKnownName="Subsystem2"
+            LastKnownLocation="Laboras21_ModelingProject.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="7394f512-5ab1-4f45-bbbd-5415ceb3217a"
+        name="5. Išsaugoti rezultatus į failą"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="95e97bd6-f088-4350-a8ce-7d805543e815"
+            LastKnownName="Subsystem2"
+            LastKnownLocation="Laboras21_ModelingProject.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="95e97bd6-f088-4350-a8ce-7d805543e815"
+        name="Subsystem2"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="5d78815f-8474-4968-a5c3-e08836dacf21"
+        name="4. Generuoti duomenis naudojant normalųjį skirstinį"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="95e97bd6-f088-4350-a8ce-7d805543e815"
+            LastKnownName="Subsystem2"
+            LastKnownLocation="Laboras21_ModelingProject.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="7f2d1295-f51d-41b2-ab67-e722553e96d7"
+        name="UseCase1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="18331b25-e1fc-42a2-bbd2-af6751ea40d1"
+        LastKnownName="Package1"
+        LastKnownLocation="Package_1111.uml" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

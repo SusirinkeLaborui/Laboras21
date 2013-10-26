@@ -1,105 +1,132 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="3ffdd0ff-6eba-49d4-a2de-581609def442" name="UseCaseDiagram" linkedPackageId="23ecdb59-f55f-4360-8fa7-10dc72dd7c43" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
-  <profileInstances>
-    <packageHasProfileInstances Id="83ba95d2-0f45-41ba-a9e9-433d931fb07c">
-      <profileInstance Id="c26c261f-2e19-4185-bfdb-203f82e8bb59" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="859bdd56-71c6-40d5-b0b4-616ff30b2fa0">
-      <profileInstance Id="2e7253ee-e12d-4fe1-8a1c-250028dba4f1" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="0f4fb364-e045-457e-ac1d-c5aa038d365b">
-      <profileInstance Id="61ab7deb-8139-4ae7-922b-c3aae2a6409d" name="CSharpProfile">
-        <elementDefinition Id="5492b799-6bed-4412-aad8-de35cafc34f3" />
-      </profileInstance>
-      <elementDefinition Id="8a2dd50d-ad8a-4d45-af2e-349b4d3c983d" />
-    </packageHasProfileInstances>
-  </profileInstances>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" dslVersion="1.0.0.0" Id="3ffdd0ff-6eba-49d4-a2de-581609def442" name="UseCaseDiagram" linkedPackageId="23ecdb59-f55f-4360-8fa7-10dc72dd7c43" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
   <packagedElements>
     <useCaseModelRootHasTypes>
-      <actor Id="9dcf4a8f-1392-4f9c-a766-24f98ed73830" name="Vartotojas" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="5eeeca38-3743-4124-89d4-4f1569273dcb" />
+      <actor Id="d7eba1eb-39d4-4fe1-961c-0273285aeeaf" name="Vartotojas" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="dd3d905b-62b6-46b6-b6f0-94285341b4bd" />
         <targetEnds>
-          <association Id="7c4b1874-8493-4e5b-b74c-8dfcbbe3c0ca" isDerived="false" sourceEndRoleName="Vartotojas" targetEndRoleName="Nauodoti duomenis iš failo" isLeaf="false" isAbstract="false">
-            <useCaseMoniker Id="4a6dc0f6-2140-44dc-a24f-84511f061d49" LastKnownName="Nauodoti duomenis iš failo" />
+          <association Id="5a6a6aa2-d14d-4ec4-a825-7a278dfd077a" isDerived="false" sourceEndRoleName="Vartotojas1" targetEndRoleName="Rasti trumpiausią dengiantį medį grafe1" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="368c7fc1-3e6f-407e-be6c-18af94370df2" LastKnownName="1. Rasti trumpiausią dengiantį medį grafe" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
-                <memberEnd Id="7c8124a4-7d50-43c8-ae66-5df90d093b2a" name="Vartotojas" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="3999ff1c-e145-4157-bdff-8d39e45ad9fe" />
+                <memberEnd Id="cbdf5862-a0cc-4ee6-9b72-489460c228b5" name="Vartotojas1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="7495ac58-ebbf-43fc-9102-5e126a5d5f4e" />
                 </memberEnd>
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
-                <memberEnd Id="61b61876-17e8-4731-ba94-397b1e142700" name="Nauodoti duomenis iš failo" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="65d4902b-79a6-4afb-8507-8c8a15f82fd3" />
+                <memberEnd Id="f9e5da60-6f9a-404c-8084-231f30b00afd" name="Rasti trumpiausią dengiantį medį grafe1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="cb9e9a36-aa6e-40bd-a8a0-6a2923479fe7" />
                 </memberEnd>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
-            <elementDefinition Id="9927ff94-9d5a-417f-8ccc-9ad4ea75f77a" />
-          </association>
-          <association Id="545ea08f-6396-4313-932c-fce099d7217f" isDerived="false" sourceEndRoleName="Vartotojas" targetEndRoleName="Generuoti duomenis" isLeaf="false" isAbstract="false">
-            <useCaseMoniker Id="b359c2ff-06aa-44ad-9d7d-45f8eed68731" LastKnownName="Generuoti duomenis" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="e1bb5cb4-0c9a-4605-9b2f-129683648689" name="Vartotojas" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="58e7c2e2-d1e2-485f-89f6-300bb1e717b8" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="068787f0-434a-4b38-8709-74e8c02e4a1c" name="Generuoti duomenis" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="ebec7fd0-70d9-48f9-91e0-2ec1d121ea88" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="bede1db8-3ed1-4e90-a7d1-58b4474552aa" />
+            <elementDefinition Id="b2681d5f-f527-4468-b68a-2928c8909553" />
           </association>
         </targetEnds>
       </actor>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="4a6dc0f6-2140-44dc-a24f-84511f061d49" name="Nauodoti duomenis iš failo" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="a84adf20-43b6-4cba-9827-4abe6c8dd7c0" />
-        <additions>
-          <include Id="b6cd56de-4b99-4bac-9794-1d1281fe068f">
-            <useCaseMoniker Id="03fbafae-e7ab-44e8-b561-30a7f063f278" LastKnownName="Rasti trumpiausią dengiantį medį grafe" />
-            <elementDefinition Id="e7aa36a8-f0cd-4cec-985c-332142fa9439" />
-          </include>
-        </additions>
+      <useCase Id="c815a785-8485-43d2-8e50-41a3eff37e6b" name="2. Nauodoti duomenis iš failo" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="4c11d0bc-67be-4520-9f16-57a7f7eaeb7e" />
+        <subjects>
+          <subsystemMoniker Id="0e502a4f-398c-4d2c-81e0-ecd5b7799caf" LastKnownName="Subsystem2" />
+        </subjects>
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="b359c2ff-06aa-44ad-9d7d-45f8eed68731" name="Generuoti duomenis" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="4aaab47f-1779-44d4-a689-5b56c204164c" />
-        <additions>
-          <include Id="838bacee-d7d2-4684-a880-3ae1733c70a3">
-            <useCaseMoniker Id="03fbafae-e7ab-44e8-b561-30a7f063f278" LastKnownName="Rasti trumpiausią dengiantį medį grafe" />
-            <elementDefinition Id="36ed2df3-2e04-407b-aa7f-1983ccf5762f" />
-          </include>
-        </additions>
+      <useCase Id="5a99cf53-ac5a-4b48-931c-1d8bbd453d1b" name="3. Generuoti duomenis, kurie yra tolygiai išsiibarstę" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="183c08fb-a9fb-4e82-8607-9e692a5e41d9" />
+        <subjects>
+          <subsystemMoniker Id="0e502a4f-398c-4d2c-81e0-ecd5b7799caf" LastKnownName="Subsystem2" />
+        </subjects>
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="03fbafae-e7ab-44e8-b561-30a7f063f278" name="Rasti trumpiausią dengiantį medį grafe" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="f391cd86-51d1-49ec-89c3-0e0e69c281e6" />
-        <additions>
-          <include Id="338658a7-b3a4-469b-9cf9-f58ecc45bb99">
-            <useCaseMoniker Id="68939d20-e529-43b9-946d-e765bae02866" LastKnownName="Išsaugoti rezultatus į failą" />
-            <elementDefinition Id="7d6fa39a-9c6f-4dcb-97bf-4e84c99f096a" />
-          </include>
-        </additions>
+      <useCase Id="368c7fc1-3e6f-407e-be6c-18af94370df2" name="1. Rasti trumpiausią dengiantį medį grafe" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ca7178ea-76ad-4b1b-889e-032126b5dcd0" />
+        <targetEnds>
+          <association Id="79db8723-eb06-49f5-b436-4167e7326221" isDerived="false" sourceEndRoleName="1. Rasti trumpiausią dengiantį medį grafe" targetEndRoleName="1. Rasti trumpiausią dengiantį medį grafe" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="368c7fc1-3e6f-407e-be6c-18af94370df2" LastKnownName="1. Rasti trumpiausią dengiantį medį grafe" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a23fad28-b705-4653-843f-11fa45e23f4b" name="1. Rasti trumpiausią dengiantį medį grafe" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="228ac854-34a4-425d-a7a7-a45df6407f77" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e72cab92-e2f1-4a48-9a2e-6ff7329eac21" name="1. Rasti trumpiausią dengiantį medį grafe" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="1d663409-f7f1-479e-84ec-9274b6c87beb" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="1f841a99-9c97-4804-954c-9e148422768a" />
+          </association>
+        </targetEnds>
+        <extendedCases>
+          <extend Id="74480d6c-b871-4021-8ae0-b43578a7efbc">
+            <useCaseMoniker Id="c815a785-8485-43d2-8e50-41a3eff37e6b" LastKnownName="2. Nauodoti duomenis iš failo" />
+            <elementDefinition Id="754adba5-c044-45ec-9a3b-773624551122" />
+          </extend>
+          <extend Id="c6bea99c-17c3-46f3-a499-8205e7fb75f5">
+            <useCaseMoniker Id="5a99cf53-ac5a-4b48-931c-1d8bbd453d1b" LastKnownName="3. Generuoti duomenis, kurie yra tolygiai išsiibarstę" />
+            <elementDefinition Id="fde8321a-9532-4c0b-ab95-a5fc675f8d2d" />
+          </extend>
+          <extend Id="7ebba6c6-79f6-41e0-90b0-16cef4edc08c">
+            <useCaseMoniker Id="fcd86a9b-78b9-4aa0-bb98-61f23751a7ae" LastKnownName="4. Generuoti duomenis naudojant normalųjį skirstinį" />
+            <elementDefinition Id="105e6035-8966-4bf8-85b4-5ccfd7436be1" />
+          </extend>
+          <extend Id="d193f3bf-a694-4a22-94b5-f407b1c69d8f">
+            <useCaseMoniker Id="617dd0a9-223e-4f33-83ce-36ad1dad74b6" LastKnownName="5. Išsaugoti rezultatus į failą" />
+            <elementDefinition Id="82246104-d730-45e8-917b-ac194537cbba" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker Id="0e502a4f-398c-4d2c-81e0-ecd5b7799caf" LastKnownName="Subsystem2" />
+        </subjects>
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="68939d20-e529-43b9-946d-e765bae02866" name="Išsaugoti rezultatus į failą" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="44936ea2-8310-4ff7-9357-1f309cec5471" />
+      <useCase Id="617dd0a9-223e-4f33-83ce-36ad1dad74b6" name="5. Išsaugoti rezultatus į failą" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="7394f512-5ab1-4f45-bbbd-5415ceb3217a" />
+        <subjects>
+          <subsystemMoniker Id="0e502a4f-398c-4d2c-81e0-ecd5b7799caf" LastKnownName="Subsystem2" />
+        </subjects>
       </useCase>
     </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="0e502a4f-398c-4d2c-81e0-ecd5b7799caf" name="Subsystem2" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="95e97bd6-f088-4350-a8ce-7d805543e815" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <packageHasNamedElement>
+      <useCase Id="fcd86a9b-78b9-4aa0-bb98-61f23751a7ae" name="4. Generuoti duomenis naudojant normalųjį skirstinį" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="5d78815f-8474-4968-a5c3-e08836dacf21" />
+        <subjects>
+          <subsystemMoniker Id="0e502a4f-398c-4d2c-81e0-ecd5b7799caf" LastKnownName="Subsystem2" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
   </packagedElements>
   <package Id="23ecdb59-f55f-4360-8fa7-10dc72dd7c43" name="Laboras21_ModelingProject">
     <elementDefinition Id="2e55aa71-de82-4253-b9ea-b96a75611c80" />
+    <profileInstances>
+      <packageHasProfileInstances Id="83ba95d2-0f45-41ba-a9e9-433d931fb07c">
+        <profileInstance Id="c26c261f-2e19-4185-bfdb-203f82e8bb59" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="859bdd56-71c6-40d5-b0b4-616ff30b2fa0">
+        <profileInstance Id="2e7253ee-e12d-4fe1-8a1c-250028dba4f1" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="0f4fb364-e045-457e-ac1d-c5aa038d365b">
+        <profileInstance Id="61ab7deb-8139-4ae7-922b-c3aae2a6409d" name="CSharpProfile">
+          <elementDefinition Id="5492b799-6bed-4412-aad8-de35cafc34f3" />
+        </profileInstance>
+        <elementDefinition Id="8a2dd50d-ad8a-4d45-af2e-349b4d3c983d" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </useCaseModelRoot>

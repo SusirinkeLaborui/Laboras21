@@ -1,25 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="c41ad6fe-4cb0-488f-8044-228b86d6a2b6" name="UMLClassDiagram1" linkedPackageId="ebef13da-1a85-453c-8a0d-34bf383af55a" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="de4aeea8-8287-4289-8cbc-ce4d0bbda18a">
-      <profileInstance Id="155cb80f-abe4-4ecf-aabc-5cd465dec5a8" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="0200f1c1-da1e-4000-8f4a-97c76c1b12df">
-      <profileInstance Id="12877401-450d-4f55-95d7-770fe0ba5658" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="082c1eff-8720-4b12-b261-ea761647a747">
-      <profileInstance Id="49c99329-de03-445b-b241-6b3136f1d0a0" name="CSharpProfile">
-        <elementDefinition Id="5492b799-6bed-4412-aad8-de35cafc34f3" />
-      </profileInstance>
-      <elementDefinition Id="8a2dd50d-ad8a-4d45-af2e-349b4d3c983d" />
-    </packageHasProfileInstances>
-  </profileInstances>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="c41ad6fe-4cb0-488f-8044-228b86d6a2b6" name="UMLClassDiagram1" linkedPackageId="ebef13da-1a85-453c-8a0d-34bf383af55a" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="87813914-fc28-4079-b0bd-2ccc9eb6ccf8" name="DataProvider" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -1392,5 +1372,25 @@
   </packagedElements>
   <package Id="ebef13da-1a85-453c-8a0d-34bf383af55a" name="Laboras21_ModelingProject">
     <elementDefinition Id="2e55aa71-de82-4253-b9ea-b96a75611c80" />
+    <profileInstances>
+      <packageHasProfileInstances Id="de4aeea8-8287-4289-8cbc-ce4d0bbda18a">
+        <profileInstance Id="155cb80f-abe4-4ecf-aabc-5cd465dec5a8" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="0200f1c1-da1e-4000-8f4a-97c76c1b12df">
+        <profileInstance Id="12877401-450d-4f55-95d7-770fe0ba5658" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="082c1eff-8720-4b12-b261-ea761647a747">
+        <profileInstance Id="49c99329-de03-445b-b241-6b3136f1d0a0" name="CSharpProfile">
+          <elementDefinition Id="5492b799-6bed-4412-aad8-de35cafc34f3" />
+        </profileInstance>
+        <elementDefinition Id="8a2dd50d-ad8a-4d45-af2e-349b4d3c983d" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </logicalClassDesignerModel>
