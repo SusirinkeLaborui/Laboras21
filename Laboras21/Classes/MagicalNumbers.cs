@@ -12,5 +12,7 @@ namespace Laboras21
         public const int MaxX = 10000;
         public const int MinY = -10000;
         public const int MaxY = 10000;
+        public const int DataWidth = MaxX - MinX;
+        public const int DataHeight = MaxY - MinY;
     }
 }

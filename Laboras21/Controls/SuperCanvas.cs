@@ -11,6 +11,34 @@ namespace Laboras21
         private List<Tuple<Point, Point>> edges = new List<Tuple<Point,Point>>();
         private IReadOnlyList<Vertex> nodes;
         private SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+        private double xFactor = 0;//bwahahahahahaha
+        private double yFactor = 0;
+        private int xOffset = 0;
+        private int yOffset = 0;
+        private const int nodeRadius = 4;
+
+        private struct DoublePoint
+        {
+            public double x;
+            public double y;
+        }
+
+        public SuperCanvas()
+        {
+            SizeChanged += SuperCanvas_SizeChanged;
+            xOffset = (MagicalNumbers.MaxX - MagicalNumbers.MinX) / 2;
+            yOffset = (MagicalNumbers.MaxY - MagicalNumbers.MinY) / 2;
+            /*var temp = new List<Vertex>();
+            temp.Add(new Vertex(new Point(0, 0)));
+            SetCollection(temp);*/
+        }
+
+        void SuperCanvas_SizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
+        {
+            xFactor = e.NewSize.Width / MagicalNumbers.DataWidth;
+            yFactor = e.NewSize.Height / MagicalNumbers.DataHeight;
+            Redraw();
+        }
 
         public void SetCollection(IReadOnlyList<Vertex> vertices)
         {
@@ -39,19 +67,37 @@ namespace Laboras21
 
         private void DrawNode(Point point)
         {
-            point.x -= MagicalNumbers.MinX / 2;
-            point.y -= MagicalNumbers.MinX / 2;
-            Ellipse e = new Ellipse();
-            e.Fill = brush;
+            var node = new Ellipse();
+            var p = Translate(point);
+            node.SetValue(Canvas.LeftProperty, p.x - nodeRadius);
+            node.SetValue(Canvas.TopProperty, p.y - nodeRadius);
+            node.Width = node.Height = nodeRadius * 2;
+            node.Fill = brush;
+
+            Children.Add(node);
+        }
+
+        private DoublePoint Translate(Point point)
+        {
+            DoublePoint p;
+            p.x = point.x + xOffset;
+            p.x *= xFactor;
+            p.y = point.y + yOffset;
+            p.y *= yFactor;
+            return p;
         }
 
         private void Redraw()
         {
-            foreach(var n in nodes)
-                DrawNode(n.Coordinates);
+            Children.Clear();
+            if (nodes != null)
+            {
+                foreach (var n in nodes)
+                    DrawNode(n.Coordinates);
 
-            foreach (var e in edges)
-                DrawEdge(e.Item1, e.Item2);
+                foreach (var e in edges)
+                    DrawEdge(e.Item1, e.Item2);
+            }
         }
     }
 }
