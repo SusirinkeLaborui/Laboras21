@@ -16,6 +16,7 @@ namespace Laboras21
         private int xOffset = 0;
         private int yOffset = 0;
         private const int nodeRadius = 4;
+        private const int lineWidth = 2;
 
         private struct DoublePoint
         {
@@ -28,9 +29,14 @@ namespace Laboras21
             SizeChanged += SuperCanvas_SizeChanged;
             xOffset = (MagicalNumbers.MaxX - MagicalNumbers.MinX) / 2;
             yOffset = (MagicalNumbers.MaxY - MagicalNumbers.MinY) / 2;
+
+            //testing
+
             /*var temp = new List<Vertex>();
             temp.Add(new Vertex(new Point(0, 0)));
-            SetCollection(temp);*/
+            temp.Add(new Vertex(new Point(4000, 2000)));
+            SetCollection(temp);
+            DrawEdge(temp[0], temp[1]);*/
         }
 
         void SuperCanvas_SizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
@@ -62,7 +68,16 @@ namespace Laboras21
 
         private void DrawEdge(Point point1, Point point2)
         {
-
+            Line l = new Line();
+            var p1 = Translate(point1);
+            var p2 = Translate(point2);
+            l.X1 = p1.x;
+            l.X2 = p2.x;
+            l.Y1 = p1.y;
+            l.Y2 = p2.y;
+            l.Stroke = brush;
+            l.StrokeThickness = lineWidth;
+            Children.Add(l);
         }
 
         private void DrawNode(Point point)
