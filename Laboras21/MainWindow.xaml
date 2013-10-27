@@ -14,7 +14,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Content="Load from file" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
+                <Button Grid.Column="0" Content="Load from file" Click="ButtonLoadFromFile_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
                 <Button Grid.Column="1" Content="Generate data" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
             </Grid>
             <Button Grid.Row="1" Content="Start computing" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
