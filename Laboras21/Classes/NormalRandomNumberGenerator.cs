@@ -31,8 +31,8 @@ namespace Laboras21
             } while (r == 0.0 || r > 1.0);
 
             double d = Math.Sqrt(-2.0 * Math.Log(r) / r);
-            x *= d * standardDeviation * MagicalNumbers.CoordWidth * 0.5;
-            y *= d * standardDeviation * MagicalNumbers.CoordWidth * 0.5;
+            x *= d * standardDeviation * (MagicalNumbers.MaxX - MagicalNumbers.MinX) * 0.5 + MagicalNumbers.MinX + MagicalNumbers.MaxX;
+            y *= d * standardDeviation * (MagicalNumbers.MaxY - MagicalNumbers.MinY) * 0.5 + MagicalNumbers.MinY + MagicalNumbers.MaxY;
 
             return new Point((int)x, (int)y);
         }

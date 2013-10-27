@@ -21,12 +21,16 @@ namespace Laboras21
     {
         List<Point> graphPoints;
         bool result = false;
+        GeneratorOptionViewModel viewModel;
 
         public GeneratorOptionSelectionWindow(List<Point> graphPoints)
         {
             this.graphPoints = graphPoints;
 
             InitializeComponent();
+
+            viewModel = new GeneratorOptionViewModel();
+            DataContext = viewModel;
             DistributionComboBox_SelectionChanged(this, null);
         }
 
@@ -39,17 +43,78 @@ namespace Laboras21
 
         private void DistributionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            VisualStateManager.GoToElementState(this.LayoutRoot, "State" + (distributionComboBox.SelectedItem as ComboBoxItem).Content.ToString() + "Distribution", true);
+            VisualStateManager.GoToElementState(this.LayoutRoot, 
+                "State" + (distributionComboBox.SelectedItem as ComboBoxItem).Content.ToString() + "Distribution", true);
         }
 
-        private void buttonOk_Click(object sender, RoutedEventArgs e)
+        private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
+            if (distributionComboBox.SelectedIndex == 0)
+            {
+                if (!ValidateUniformDistributionVariables())
+                {
+                    return;
+                }
 
+                var uniformGenerator = new UniformRandomNumeberGenerator();
+                throw new NotImplementedException();
+            }
+            else
+            {
+                if (!ValidateNormalDistributionVariables())
+                {
+                    return;
+                }
+
+                var normalGenerator = new NormalRandomNumberGenerator(viewModel.StandardDeviation);
+                throw new NotImplementedException();
+            }
         }
 
-        private void buttonCancel_Click(object sender, RoutedEventArgs e)
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+        
+        private bool ValidateUniformDistributionVariables()
+        {            
+            bool result = true;
+
+            result &= !Validation.GetHasError(textBoxMinX);
+            result &= !Validation.GetHasError(textBoxMaxX);
+            result &= !Validation.GetHasError(textBoxMinY);
+            result &= !Validation.GetHasError(textBoxMaxY);
+
+            if (result)
+            {
+                result &= viewModel.MinX < viewModel.MaxX;
+
+                if (!result)
+                {
+                    MessageBox.Show("Minimum X has to be less than Maximum X!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
+            if (result)
+            {
+                result &= viewModel.MinX < viewModel.MaxX;
+
+                if (!result)
+                {
+                    MessageBox.Show("Minimum Y has to be less than Maximum Y!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
+            return result;
+        }
+
+        private bool ValidateNormalDistributionVariables()
+        {
+            bool result = true;
+
+            result &= !Validation.GetHasError(textBoxStandardDeviation);
+
+            return result;
         }
     }
 }

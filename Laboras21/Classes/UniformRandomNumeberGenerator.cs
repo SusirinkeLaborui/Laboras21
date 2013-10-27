@@ -17,8 +17,8 @@ namespace Laboras21
 
         public Point GeneratePoint()
         {
-            var x = random.Next(-MagicalNumbers.CoordWidth / 2, MagicalNumbers.CoordWidth / 2);
-            var y = random.Next(-MagicalNumbers.CoordWidth / 2, MagicalNumbers.CoordWidth / 2);
+            var x = random.Next(MagicalNumbers.MinX, MagicalNumbers.MaxX);
+            var y = random.Next(MagicalNumbers.MinY, MagicalNumbers.MaxY);
             return new Point(x, y);
         }
     }

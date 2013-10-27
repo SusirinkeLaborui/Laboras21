@@ -1,7 +1,19 @@
 ﻿<Window x:Class="Laboras21.GeneratorOptionSelectionWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Laboras21="clr-namespace:Laboras21"
         Title="GeneratorOptionSelectionWindow" Height="300" Width="300">
+    
+    <Window.Resources>
+        <Style x:Key="ValidatedTextBoxStyle" TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
     <Grid Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="45" />
@@ -19,6 +31,7 @@
                 <ComboBoxItem Content="Normal" />
             </ComboBox>
         </Grid>
+        
         <Grid Grid.Row="1" x:Name="UniformDistributionGrid" Visibility="Visible">
             <Grid>
                 <Grid.RowDefinitions>
@@ -33,22 +46,66 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="0" Name="textBlockMinX" Text="Minimum X" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="0" Grid.Column="1" Name="textBoxMinX" Height="20" Margin="10,0" />
+                <TextBox Grid.Row="0" Grid.Column="1" Name="textBoxMinX" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0">
+                    <TextBox.Text>
+                        <Binding Path="MinX" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <Laboras21:CoordinateValidationRule Dimension="x" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>                
+                
                 <TextBlock Grid.Row="1" Grid.Column="0" Name="textBlockMaxX" Text="Maximum X" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="1" Grid.Column="1" Name="textBoxMaxX" Height="20" Margin="10,0" />
+                <TextBox Grid.Row="1" Grid.Column="1" Name="textBoxMaxX" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0">
+                    <TextBox.Text>
+                        <Binding Path="MaxX" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <Laboras21:CoordinateValidationRule Dimension="x" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                
                 <TextBlock Grid.Row="2" Grid.Column="0" Name="textBlockMinY" Text="Minimum Y" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="2" Grid.Column="1" Name="textBoxMinY" Height="20" Margin="10,0" />
+                <TextBox Grid.Row="2" Grid.Column="1" Name="textBoxMinY" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0">
+                    <TextBox.Text>
+                        <Binding Path="MinY" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <Laboras21:CoordinateValidationRule Dimension="y" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                
                 <TextBlock Grid.Row="3" Grid.Column="0" Name="textBlockMaxY" Text="Minimum Y" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="3" Grid.Column="1" Name="textBoxMaxY" Height="20" Margin="10,0" />
+                <TextBox Grid.Row="3" Grid.Column="1" Name="textBoxMaxY" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0">
+                    <TextBox.Text>
+                        <Binding Path="MaxY" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <Laboras21:CoordinateValidationRule Dimension="y" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
             </Grid>
         </Grid>
+        
         <Grid Grid.Row="1" x:Name="NormalDistributionGrid" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*" />
                 <ColumnDefinition Width="4*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Name="textBlockStandardDeviation" Text="Standard deviation" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="1" Name="textBoxStandardDeviation" Height="20" Margin="10,0" />
+            <TextBox Grid.Column="1" Name="textBoxStandardDeviation" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0" >
+                <TextBox.Text>
+                    <Binding Path="StandardDeviation" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <Laboras21:DoubleValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </Grid>
         
         <Grid Grid.Row="2">
@@ -56,8 +113,8 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="OK" Name="buttonOk" Click="buttonOk_Click" Padding="40,5" VerticalAlignment="Center" HorizontalAlignment="Center" />
-            <Button Grid.Column="1" Content="Cancel" Name="buttonCancel" Click="buttonCancel_Click"  Padding="40,5" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Button Grid.Column="0" Content="OK" Name="buttonOk" Click="ButtonOk_Click" Padding="40,5" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Button Grid.Column="1" Content="Cancel" Name="buttonCancel" Click="ButtonCancel_Click"  Padding="40,5" VerticalAlignment="Center" HorizontalAlignment="Center" />
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

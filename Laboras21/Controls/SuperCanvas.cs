@@ -39,8 +39,8 @@ namespace Laboras21
 
         private void DrawNode(Point point)
         {
-            point.x += MagicalNumbers.CoordWidth / 2;
-            point.y += MagicalNumbers.CoordWidth / 2;
+            point.x -= MagicalNumbers.MinX / 2;
+            point.y -= MagicalNumbers.MinX / 2;
             Ellipse e = new Ellipse();
             e.Fill = brush;
         }
