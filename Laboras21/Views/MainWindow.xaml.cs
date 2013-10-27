@@ -20,29 +20,65 @@ namespace Laboras21
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<Point> graphPoints = new List<Point>();
+
         public MainWindow()
         {
             InitializeComponent();
+
+            VisualStateManager.GoToElementState(this.LayoutRoot, "StateInput", true);
         }
 
-        private void ButtonLoadFromFile_Click(object sender, RoutedEventArgs e)
+        private void ButtonLoad_Click(object sender, RoutedEventArgs e)
         {
-            var synth = new System.Speech.Synthesis.SpeechSynthesizer();
-            synth.SetOutputToDefaultAudioDevice();
+            VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
 
-            System.Speech.Synthesis.VoiceGender[] genders = 
-            { 
-                 System.Speech.Synthesis.VoiceGender.Male,
-                 System.Speech.Synthesis.VoiceGender.Female
-            };
+            Sing();
+        }
 
-            var poemToPlay = Poem1;
+        private void ButtonGenerate_Click(object sender, RoutedEventArgs e)
+        {
+            var generatorWindow = new GeneratorOptionSelectionWindow(graphPoints);
 
-            for (int i = 0; i < poemToPlay.Length; i++)
+            if (generatorWindow.ShowDialog() == false)
             {
-                synth.SelectVoiceByHints(genders[i % genders.Length]);
-                synth.Speak(poemToPlay[i]);
+                return;
             }
+
+            VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
+        }
+
+        private void ButtonStartComputing_Click(object sender, RoutedEventArgs e)
+        {
+            VisualStateManager.GoToElementState(this.LayoutRoot, "StateComputing", true);
+        }
+
+        private void ButtonStopComputing_Click(object sender, RoutedEventArgs e)
+        {
+            VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
+        }
+
+        private async void Sing()
+        {
+            await Task.Run(() =>
+                {
+                    var synth = new System.Speech.Synthesis.SpeechSynthesizer();
+                    synth.SetOutputToDefaultAudioDevice();
+
+                    System.Speech.Synthesis.VoiceGender[] genders = 
+                    { 
+                         System.Speech.Synthesis.VoiceGender.Male,
+                         System.Speech.Synthesis.VoiceGender.Female
+                    };
+
+                    var poemToPlay = Poem1;
+
+                    for (int i = 0; i < poemToPlay.Length; i++)
+                    {
+                        synth.SelectVoiceByHints(genders[i % genders.Length]);
+                        synth.Speak(poemToPlay[i]);
+                    }
+                });
         }
 
         readonly string[] Poem1 =

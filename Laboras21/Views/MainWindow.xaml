@@ -2,8 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Laboras21="clr-namespace:Laboras21"
-        Title="MainWindow" Height="300" Width="500">
-    <Grid>
+        Title="MainWindow" MinHeight="300" MinWidth="500" Height="300" Width="500">
+    <Grid x:Name="LayoutRoot">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="300" />
@@ -14,14 +14,67 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Content="Load from file" Click="ButtonLoadFromFile_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
-                <Button Grid.Column="1" Content="Generate data" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
+                <Button Grid.Column="0" x:Name="buttonLoad" Content="Load from file" Click="ButtonLoad_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
+                <Button Grid.Column="1" x:Name="buttonGenerate" Content="Generate data" Click="ButtonGenerate_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
             </Grid>
-            <Button Grid.Row="1" Content="Start computing" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
-            <Button Grid.Row="2" Content="Stop computing" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
+            <Button Grid.Row="1" x:Name="buttonStartComputing" Content="Start computing" Click="ButtonStartComputing_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
+            <Button Grid.Row="2" x:Name="buttonStopComputing" Content="Stop computing" Click="ButtonStopComputing_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
         </StackPanel>
-        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2" >
+        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2" >
             <Laboras21:SuperCanvas Background="LightGray" />
         </Border>
+        
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="CustomStates">
+                <VisualState x:Name="StateInput">
+                    <Storyboard>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonLoad" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonGenerate" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStopComputing" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                    </Storyboard>                    
+                </VisualState>
+                <VisualState x:Name="StateReadyToCompute">
+                    <Storyboard>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonLoad" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonGenerate" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStopComputing" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="StateComputing">
+                    <Storyboard>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonLoad" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonGenerate" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStopComputing" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Window>
