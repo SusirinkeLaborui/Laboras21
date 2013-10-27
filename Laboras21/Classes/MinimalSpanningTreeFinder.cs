@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Laboras21
@@ -8,6 +9,8 @@ namespace Laboras21
     public class MinimalSpanningTreeFinder
     {
         private SuperCanvas canvas;
+        private Task<List<Vertex>> currentFindTask;
+        CancellationTokenSource cancellationTokenSource;
 
         public MinimalSpanningTreeFinder()
         {
@@ -23,21 +26,56 @@ namespace Laboras21
             canvas = drawableCanvas;
         }
 
+        public void CancelSearch()
+        {
+            lock (cancellationTokenSource)
+            {
+                if (cancellationTokenSource != null)
+                {
+                    cancellationTokenSource.Cancel();
+                }
+            }
+        }
+
         public async Task<List<Vertex>> FindAsync(IReadOnlyList<Point> points)
         {
+            if (currentFindTask != null)
+            {
+                throw new InvalidOperationException("Only one find operation may be performed at any single time on a single finder object!");
+            }
+
+            cancellationTokenSource = new CancellationTokenSource();
+
             if (points.Count == 0)
             {
-                return await Task.Run(() =>
-                {
-                    return new List<Vertex>();
-                });
+                currentFindTask = Task.Run(() =>
+                    {
+                        return new List<Vertex>();
+                    });
             }
             else
             {
-                return await Task.Run(() =>
+                currentFindTask = Task.Run(() =>
+                    {
+                        return Find(points, cancellationTokenSource.Token);
+                    }, cancellationTokenSource.Token);
+            }
+
+            try
+            {
+                return await currentFindTask;
+            }
+            catch (OperationCanceledException)
+            {
+                return null;
+            }
+            finally
+            {
+                lock (cancellationTokenSource)
                 {
-                    return Find(points);
-                });
+                    currentFindTask = null;
+                    cancellationTokenSource = null;
+                }
             }
         }
 
@@ -76,7 +114,7 @@ namespace Laboras21
             }
         }
 
-        private List<Vertex> Find(IReadOnlyList<Point> points)
+        private List<Vertex> Find(IReadOnlyList<Point> points, CancellationToken cancellationToken)
         {
             var treePoints = new List<PointInArray>(points.Count);      // Taškai, kurie jau įtraukti į medį
             var sparePoints = new List<PointInArray>(points.Count);     // Taškai, kurie dar neįtraukti į medį
@@ -112,6 +150,8 @@ namespace Laboras21
                             minimalSparePoint = j;
                         }
                     }
+
+                    cancellationToken.ThrowIfCancellationRequested();
                 }
 
                 graph[treePoints[minimalTreePoint].Index].Neighbours.Add(graph[sparePoints[minimalSparePoint].Index]);
