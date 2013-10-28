@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Laboras21
 {
-    class UniformRandomNumeberGenerator : IRandomNumberGenerator
+    class UniformRandomNumberGenerator : IRandomNumberGenerator
     {
         private Random random;
 
-        public UniformRandomNumeberGenerator()
+        public UniformRandomNumberGenerator()
         {
             random = new Random();
         }

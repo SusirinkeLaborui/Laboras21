@@ -25,8 +25,8 @@ namespace Laboras21
             double x, y, r;
             do
             {
-                x = random.Next(-1, 1);
-                y = random.Next(-1, 1);
+                x = random.NextDouble() * 2 - 1;
+                y = random.NextDouble() * 2 - 1;
                 r = x * x + y * y;
             } while (r == 0.0 || r > 1.0);
 

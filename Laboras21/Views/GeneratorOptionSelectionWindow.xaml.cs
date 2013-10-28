@@ -22,6 +22,7 @@ namespace Laboras21
         List<Point> graphPoints;
         bool result = false;
         GeneratorOptionViewModel viewModel;
+        public bool? Result { get; private set; }
 
         public GeneratorOptionSelectionWindow(List<Point> graphPoints)
         {
@@ -49,15 +50,17 @@ namespace Laboras21
 
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
+            IRandomNumberGenerator generator;
+
+            if (!ValidateCommonDistributionVariables())
+            {
+                return;
+            }
+
             if (distributionComboBox.SelectedIndex == 0)
             {
-                if (!ValidateUniformDistributionVariables())
-                {
-                    return;
-                }
-
-                var uniformGenerator = new UniformRandomNumeberGenerator();
-                throw new NotImplementedException();
+                generator = new UniformRandomNumberGenerator();
+                throw new NotImplementedException();        // Uniform generator constructor has to take in min/max values
             }
             else
             {
@@ -66,17 +69,37 @@ namespace Laboras21
                     return;
                 }
 
-                var normalGenerator = new NormalRandomNumberGenerator(viewModel.StandardDeviation);
-                throw new NotImplementedException();
+                generator = new NormalRandomNumberGenerator(viewModel.StandardDeviation);
             }
-        }
 
-        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
-        {
+            if (graphPoints.Capacity < viewModel.NumberOfPoints)
+            {
+                graphPoints.Capacity = viewModel.NumberOfPoints;
+            }
+
+            for (int i = 0; i < viewModel.NumberOfPoints; i++)
+            {
+                graphPoints.Add(generator.GeneratePoint());
+            }
+
+            int minx = graphPoints.Select(x => x.x).Min(),
+                maxx = graphPoints.Select(x => x.x).Max(),
+                miny = graphPoints.Select(x => x.y).Min(),
+                maxy = graphPoints.Select(x => x.y).Max();
+
+            double reduceX = ((double)(maxx - minx)) / (viewModel.MaxX - viewModel.MinX);
+            double reduceY = ((double)(maxy - miny)) / (viewModel.MaxY - viewModel.MinY);
+
+            for (int i = 0; i < graphPoints.Count; i++)
+            {
+                graphPoints[i] = new Point((int)(graphPoints[i].x / reduceX), (int)(graphPoints[i].y / reduceY));
+            }
+
+            Result = true;
             Close();
         }
-        
-        private bool ValidateUniformDistributionVariables()
+
+        private bool ValidateCommonDistributionVariables()
         {            
             bool result = true;
 
@@ -84,25 +107,26 @@ namespace Laboras21
             result &= !Validation.GetHasError(textBoxMaxX);
             result &= !Validation.GetHasError(textBoxMinY);
             result &= !Validation.GetHasError(textBoxMaxY);
+            result &= !Validation.GetHasError(textBoxN);
 
-            if (result)
+            if (!result)
             {
-                result &= viewModel.MinX < viewModel.MaxX;
-
-                if (!result)
-                {
-                    MessageBox.Show("Minimum X has to be less than Maximum X!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                MessageBox.Show("One or more field has an invalid value!");
+                return result;
             }
 
-            if (result)
+            result &= viewModel.MinX < viewModel.MaxX;
+            if (!result)
             {
-                result &= viewModel.MinX < viewModel.MaxX;
+                MessageBox.Show("Minimum X has to be less than Maximum X!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return result;
+            }
 
-                if (!result)
-                {
-                    MessageBox.Show("Minimum Y has to be less than Maximum Y!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+            result &= viewModel.MinX < viewModel.MaxX;
+            if (!result)
+            {
+                MessageBox.Show("Minimum Y has to be less than Maximum Y!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return result;
             }
 
             return result;
@@ -113,6 +137,12 @@ namespace Laboras21
             bool result = true;
 
             result &= !Validation.GetHasError(textBoxStandardDeviation);
+            result &= !Validation.GetHasError(textBoxN);
+
+            if (!result)
+            {
+                MessageBox.Show("One or more field has an invalid value!");
+            }
 
             return result;
         }

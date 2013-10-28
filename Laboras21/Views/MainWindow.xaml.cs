@@ -39,8 +39,10 @@ namespace Laboras21
         private void ButtonGenerate_Click(object sender, RoutedEventArgs e)
         {
             var generatorWindow = new GeneratorOptionSelectionWindow(graphPoints);
-
-            if (generatorWindow.ShowDialog() == false)
+            
+            generatorWindow.ShowDialog();
+            var dialogResult = generatorWindow.Result;
+            if (!dialogResult.HasValue || !dialogResult.Value)
             {
                 return;
             }
@@ -51,6 +53,16 @@ namespace Laboras21
         private void ButtonStartComputing_Click(object sender, RoutedEventArgs e)
         {
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateComputing", true);
+
+            var graph = new List<Vertex>();
+            graph.Capacity = graphPoints.Capacity;
+
+            foreach (var node in graphPoints)
+            {
+                graph.Add(new Vertex(node));
+            }
+
+            canvas.SetCollection(graph);
         }
 
         private void ButtonStopComputing_Click(object sender, RoutedEventArgs e)

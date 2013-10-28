@@ -21,7 +21,7 @@
             <Button Grid.Row="2" x:Name="buttonStopComputing" Content="Stop computing" Click="ButtonStopComputing_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
         </StackPanel>
         <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2" >
-            <Laboras21:SuperCanvas Background="LightGray" />
+            <Laboras21:SuperCanvas x:Name="canvas" Background="LightGray" />
         </Border>
         
         <VisualStateManager.VisualStateGroups>

@@ -10,11 +10,18 @@ namespace Laboras21
 {
     class GeneratorOptionViewModel : INotifyPropertyChanged
     {
+        private int n;
         private int minX;
         private int maxX;
         private int minY;
         private int maxY;
         private double standardDeviation;
+
+        public int NumberOfPoints
+        {
+            get { return n; }
+            set { n = value; NotifyPropertyChanged(); }
+        }
 
         public int MinX
         {

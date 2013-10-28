@@ -24,7 +24,7 @@ namespace Laboras21
             }
             catch (Exception)
             {
-                return new ValidationResult(false, "Entered value is not an valid number.");
+                return new ValidationResult(false, "Entered value is not a valid number.");
             }
 
             return new ValidationResult(true, null);
