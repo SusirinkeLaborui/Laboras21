@@ -573,5 +573,161 @@
         </signatures>
       </class>
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="ceb7e96b-642b-4843-a9a4-63ae12bfda99"
+        name="List&lt;Tuple‎&lt;Point‎, Point‎&gt;‎&gt;"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="d4defb6a-b035-477a-b506-63f8de32954b"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a13157cc-916b-4b49-be22-2ec25c887a14">
+                <propertyInstance
+                  Id="a2b7667c-861c-4204-9359-ef5d8d32b269"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="30833d3e-8329-4988-b4c1-629f00ac3911">
+                <propertyInstance
+                  Id="a00c567d-4bf8-4e59-9318-b4742937fa91"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="34760913-a528-4f48-8c60-f415a822d8c9">
+                <propertyInstance
+                  Id="288db0e8-4337-4c37-bef1-6a24a6accaee"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="65049845-ecf0-48af-ba66-f5dffddd5e53">
+                <propertyInstance
+                  Id="af2efa8f-7ac0-4166-8841-da71645636ef"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="11b39cb0-1457-463e-90aa-aeb8897ff65e">
+                <propertyInstance
+                  Id="d427b255-694e-48cb-abec-b014724a9d74"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <signatures>
+          <templateBinding
+            Id="791eb63f-f00c-435c-af4a-e45e85a52ee5">
+            <redefinableTemplateSignatureMoniker
+              Id="fbf5fc8a-45a8-4e41-aa15-9a58b57677fa"
+              LastKnownLocation="Package3_1047.uml" />
+            <relationshipOwnedElementsInternal>
+              <templateBindingHasTemplateParameterSubstitution>
+                <templateParameterSubstitution
+                  Id="4ccabd4e-1345-4ee3-849c-efcbe3dfa021">
+                  <actuals>
+                    <classMoniker
+                      Id="f67631f7-94df-4677-b351-a0541397eca9"
+                      LastKnownName="Tuple&lt;Point‎, Point‎&gt;"
+                      LastKnownLocation="Package1_1047.uml" />
+                  </actuals>
+                  <formal>
+                    <classifierTemplateParameterMoniker
+                      Id="baf5cdc7-2e65-4a57-92ad-19b1995d55f3"
+                      LastKnownLocation="Package3_1047.uml" />
+                  </formal>
+                </templateParameterSubstitution>
+              </templateBindingHasTemplateParameterSubstitution>
+            </relationshipOwnedElementsInternal>
+          </templateBinding>
+        </signatures>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="f3a009f6-5f60-46c6-a377-28ac6d4236f0"
+        name="List&lt;Tuple‎&lt;Point‎, Point‎&gt;‎&gt;"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="fc4796d0-9034-45a0-aad2-7943e962c190"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2a3fe2e0-dc6e-4808-aba7-949a3004dd4b">
+                <propertyInstance
+                  Id="456d7aeb-00dc-461d-981f-303ce3d68f35"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5cf36ed5-faae-4d9c-8079-54b7a973e0a0">
+                <propertyInstance
+                  Id="16ac92f3-a091-4229-addb-0d549d41911d"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e82b268f-6b23-4442-9e3e-f10f41bf42fc">
+                <propertyInstance
+                  Id="2b0e2e40-1150-4d5e-9328-264fc38c476d"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0f3a3cd9-f403-4087-a6d7-668e719287b5">
+                <propertyInstance
+                  Id="a2f175b0-e51c-471b-ba38-edcbd43276a4"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="54ae8099-4cae-494f-bc3b-e3387f05ec85">
+                <propertyInstance
+                  Id="b2e7f787-39b0-4ad0-87f3-0a5723b47fe5"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <signatures>
+          <templateBinding
+            Id="09b1c03b-4fe9-4969-9696-06b257976869">
+            <redefinableTemplateSignatureMoniker
+              Id="fbf5fc8a-45a8-4e41-aa15-9a58b57677fa"
+              LastKnownLocation="Package3_1047.uml" />
+            <relationshipOwnedElementsInternal>
+              <templateBindingHasTemplateParameterSubstitution>
+                <templateParameterSubstitution
+                  Id="d055fc53-dbce-4dc0-8f4f-ce4258c5fd1e">
+                  <actuals>
+                    <classMoniker
+                      Id="f67631f7-94df-4677-b351-a0541397eca9"
+                      LastKnownName="Tuple&lt;Point‎, Point‎&gt;"
+                      LastKnownLocation="Package1_1047.uml" />
+                  </actuals>
+                  <formal>
+                    <classifierTemplateParameterMoniker
+                      Id="baf5cdc7-2e65-4a57-92ad-19b1995d55f3"
+                      LastKnownLocation="Package3_1047.uml" />
+                  </formal>
+                </templateParameterSubstitution>
+              </templateBindingHasTemplateParameterSubstitution>
+            </relationshipOwnedElementsInternal>
+          </templateBinding>
+        </signatures>
+      </class>
+    </packageHasNamedElement>
   </packagedElements>
 </package>

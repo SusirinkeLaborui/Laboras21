@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Laboras21
+namespace Laboras21.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

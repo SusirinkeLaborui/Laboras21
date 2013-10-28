@@ -72,13 +72,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\BadFileFormatException.cs" />
-    <Compile Include="ViewModels\CoordinateValidationRule.cs" />
-    <Compile Include="Classes\NormalRandomNumberGenerator.cs" />
+    <Compile Include="ValidationRules\CoordinateValidationRule.cs" />
+    <Compile Include="Generators\NormalRandomNumberGenerator.cs" />
     <Compile Include="Classes\DataProvider.cs" />
-    <Compile Include="Classes\IRandomNumberGenerator.cs" />
+    <Compile Include="Generators\IRandomNumberGenerator.cs" />
     <Compile Include="Classes\MagicalNumbers.cs" />
     <Compile Include="Classes\MinimalSpanningTreeFinder.cs" />
-    <Compile Include="Classes\UniformRandomNumeberGenerator.cs" />
+    <Compile Include="Generators\UniformRandomNumberGenerator.cs" />
     <Compile Include="Classes\Vertex.cs" />
     <Page Include="Views\GeneratorOptionSelectionWindow.xaml">
       <SubType>Designer</SubType>
@@ -94,9 +94,9 @@
     </Compile>
     <Compile Include="Classes\Point.cs" />
     <Compile Include="Controls\SuperCanvas.cs" />
-    <Compile Include="ViewModels\DoubleValidationRule.cs" />
+    <Compile Include="ValidationRules\DoubleValidationRule.cs" />
     <Compile Include="ViewModels\GeneratorOptionViewModel.cs" />
-    <Compile Include="ViewModels\PositiveIntValidationRule.cs" />
+    <Compile Include="ValidationRules\PositiveIntValidationRule.cs" />
     <Compile Include="Views\GeneratorOptionSelectionWindow.xaml.cs">
       <DependentUpon>GeneratorOptionSelectionWindow.xaml</DependentUpon>
     </Compile>

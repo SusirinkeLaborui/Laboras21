@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Laboras21.Generators;
+using Laboras21.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Laboras21
+namespace Laboras21.Views
 {
     /// <summary>
     /// Interaction logic for GeneratorOptionSelectionWindow.xaml

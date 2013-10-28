@@ -1,0 +1,1651 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="00446805-07b1-4063-a4e4-6aa97219e8a4"
+  name="Controls"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="7c66c581-d244-4a19-9407-69a0dc953d09"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DLaboras21.Controls"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="ce431f85-142c-4668-bf27-c695d94a1381"
+        name="SuperCanvas"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="0b44a571-6164-454c-a675-472acaecdc4e"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="0a05858b-1079-4aa3-bb7e-f02cad475b66"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="934a17b3-f526-4f48-be53-806f90e7e206">
+                <propertyInstance
+                  Id="415f03cd-3fd6-460d-a1e4-51f014723606"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="691d7e5f-c05b-44e0-ab85-f9da42b400e5">
+                <propertyInstance
+                  Id="e52e137d-17cf-491d-bb43-c5649708fa32"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="06209d47-aa3f-4c8b-a776-25661b410149">
+                <propertyInstance
+                  Id="a487e529-daaa-49d4-ba63-51564d760901"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b22e090a-7ded-41c6-ba07-5144e3be665d">
+                <propertyInstance
+                  Id="a6d6d953-a7ee-405f-a80c-0e364e185354"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="10bc06a6-26cd-4f14-ae9d-1e3246e153cb">
+                <propertyInstance
+                  Id="c8d4a0e8-bedd-4a6e-8b70-34d2aa569038"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="d21303ed-089b-4fd9-8b06-52e55a3ce9cf"
+            isSubstitutable="false">
+            <classMoniker
+              Id="b0306bb8-61e2-48ac-9bed-15108975a401"
+              LastKnownName="Canvas"
+              LastKnownLocation="Package6_1047.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="7fc36b7b-d582-42d7-9e62-d7902f47b5ad"
+            name="edges"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="470e077a-2b19-4eea-9fce-b510dcedf019"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3Dedges"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="1f474576-b4f2-40f7-afeb-69112fb05018"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c375426c-1b37-4b40-ae74-c73a03fea565">
+                    <propertyInstance
+                      Id="2101cdb2-1185-4fae-a5ba-675d4da2bbbf"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3a81886e-4ad6-4516-92d5-5cdff2ffe367">
+                    <propertyInstance
+                      Id="f258c4ca-a7e6-41cd-9170-21f14d960a02"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="864a95bb-7d2a-4744-b070-15a575dc8aa4">
+                    <propertyInstance
+                      Id="401a8076-af44-4b7a-9b05-13e9b4ec7b94"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="da90fbdc-4fe7-443c-b7b2-29fed03ef545">
+                    <propertyInstance
+                      Id="7223bfb1-d997-4b90-8789-306bd7270648"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b4fe4762-5fed-4b2a-a39e-a30a99ef20b4">
+                    <propertyInstance
+                      Id="366206a6-ecc2-4fff-a6ba-2dcf22869166"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="f3a009f6-5f60-46c6-a377-28ac6d4236f0"
+                LastKnownName="List&lt;Tuple‎&lt;Point‎, Point‎&gt;‎&gt;"
+                LastKnownLocation="Package3_1047.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="0aacda33-afca-4f05-9404-887301323d4b"
+            name="nodes"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="8e5d5fe8-1a29-462f-af53-ad39def68639"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3Dnodes"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="855d841c-2a3b-4e3c-99ed-d8340b14b28f"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0c291fe1-3bb3-4c61-8367-3e0019b6befe">
+                    <propertyInstance
+                      Id="5652d694-a5a0-494b-83c6-bbadc9a05772"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2d2ba3ca-02bb-4eef-8d9c-20947086590c">
+                    <propertyInstance
+                      Id="862e28b3-85ac-4131-999b-b9bc65f24b94"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="199eeb97-2071-424b-99af-a3a1701e3ec4">
+                    <propertyInstance
+                      Id="e1e6a152-b949-416f-a844-e640614e570c"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ffa2f06a-8c06-469d-bd88-5d9145047a8e">
+                    <propertyInstance
+                      Id="2c518068-3500-4a32-9fb1-2fa7121321b9"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="29837211-9f72-4c69-ab09-a5f6f9a34c17">
+                    <propertyInstance
+                      Id="ea95f167-d800-4f4c-bb51-6bab075a1bdb"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="6f728264-5386-400e-92bd-34d3459e9925"
+                LastKnownName="IReadOnlyList&lt;Vertex‎&gt;"
+                LastKnownLocation="Package3_1047.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="cc9ce572-24e4-4fa2-b280-a076239af714"
+            name="brush"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="8dac7a7c-7cdb-4bf5-8e38-6ad4c2a34ad0"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3Dbrush"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="50c773f2-af2b-48cc-bfab-500ac5d8cfc1"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fc7733b7-84f3-480c-8c56-9b036aedb864">
+                    <propertyInstance
+                      Id="366b567a-d098-478f-96d8-5d5d13de8b9a"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7892c366-a9a2-4e9b-8db7-dcff6d131063">
+                    <propertyInstance
+                      Id="d759d95d-4e3f-4411-8bbc-8af907c3d460"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9e497b4e-57dd-4ec7-b4c7-7c2f4feed724">
+                    <propertyInstance
+                      Id="8d5bdb87-7018-4e2e-9ecf-90fdbdcd390b"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="053bc4b0-cf25-4fde-8d01-1839e6a3440e">
+                    <propertyInstance
+                      Id="9a1a660b-075a-460c-ae3a-f451fb0bd6c5"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cd7c2d46-9e3b-4c91-a9bc-fc6e7969f114">
+                    <propertyInstance
+                      Id="d7553dab-633c-4750-a034-007227c8983f"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="22c30091-4fec-44a8-b4fe-4becb28d1114"
+                LastKnownName="SolidColorBrush"
+                LastKnownLocation="Package4_1200.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="e2f2196b-51f4-4064-b619-f1ddb997dbdc"
+            name="xFactor"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="775d7d4e-67f2-4c52-bdba-465d812fc108"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3DxFactor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="fb9a5bd5-d759-400d-8596-dade0815da45"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="81be6b87-a4d5-47d3-be60-9c451698c801">
+                    <propertyInstance
+                      Id="a2d2969e-b64c-4aca-82be-0136f739d386"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ddd67529-d342-45ac-9bef-c287ce54dce0">
+                    <propertyInstance
+                      Id="c7e2f959-3cd0-4c1a-82d7-54086c1015cb"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="31ff1471-1b28-4fee-bbea-531a012dc8a5">
+                    <propertyInstance
+                      Id="deabd7cf-7b8e-4568-8eb1-2f6a1655f33b"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a88b79f2-d9b2-4caf-9088-2c5b50a06511">
+                    <propertyInstance
+                      Id="6a736005-85c6-40e7-9867-1e76d4b35928"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b36da45b-c93f-44b9-8305-71013e58b299">
+                    <propertyInstance
+                      Id="93dfdc75-1fcd-4baa-af49-758e1df4de0f"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="3fa1a4b8-4906-4abd-92ff-55e25298728b"
+                LastKnownName="Double"
+                LastKnownLocation="Package1_1047.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="d8e15ead-bf3e-4596-ac77-2ba64321d80f"
+            name="yFactor"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="e6cdc545-df02-4393-8c12-d0c60cacf927"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3DyFactor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="acb68d20-65c6-46b2-b0e8-4e885c298d98"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ff186f5e-cb2c-4861-bdf4-79b48e84abb8">
+                    <propertyInstance
+                      Id="9fcd2eac-75bb-4838-9c0f-eae54ee97134"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="04566e99-0f25-4dbe-8f49-bb6ae171eaaf">
+                    <propertyInstance
+                      Id="d9b1410e-af37-45f6-9771-5c4c6afacd3d"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b1eec04e-e6e9-4473-8299-f201225f106a">
+                    <propertyInstance
+                      Id="c8258f6e-9ce5-4cf0-b5e2-76b34d7df82b"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="96917d3c-f7f5-4a1d-b220-9f0dd712c8a5">
+                    <propertyInstance
+                      Id="649bc60a-a1ae-45a3-acb8-9427aa2b652a"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b9cc239e-f594-4014-8aef-bd17ed81be32">
+                    <propertyInstance
+                      Id="156539fc-556f-41f0-92cf-ffd4aa9c6516"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="3fa1a4b8-4906-4abd-92ff-55e25298728b"
+                LastKnownName="Double"
+                LastKnownLocation="Package1_1047.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="947c8121-4d12-4a01-8eb0-cff7e3bace5e"
+            name="xOffset"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="1f5733ea-67c5-49b0-8a2a-18959bcf280d"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3DxOffset"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="2376d532-b76c-4cc8-a9f2-de8de51d3754"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b8f2aded-ce07-4151-b1e6-f6ee9273efdb">
+                    <propertyInstance
+                      Id="8cd161a0-8bdb-4023-a3a5-de71268f63b1"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="95def552-1976-486d-b6bb-71f7f6577703">
+                    <propertyInstance
+                      Id="ed80bba8-e23f-4ad9-8a10-eea7a070d41b"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c4cee321-3699-4ab6-86a9-ec9dc058e1a0">
+                    <propertyInstance
+                      Id="be5b04e3-70ca-4ffd-84fd-b0bf88ee41b7"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="03c89cf6-a77e-43a7-8d78-61379dc95f97">
+                    <propertyInstance
+                      Id="e2a01992-d16d-4143-8a56-2f65cb1c8445"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="61dfa34e-9fd2-426c-9d26-5e027f6d4283">
+                    <propertyInstance
+                      Id="15af18b3-a10a-4b71-ba49-c1b68d978ce4"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                LastKnownName="Integer"
+                LastKnownLocation="Laboras21_ModelingProject.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="e719baef-1ab1-42ba-aa39-bfd8ad6378c8"
+            name="yOffset"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="f968c2f5-2b20-45da-89f3-2b11133caf99"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3DyOffset"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="d43b0588-2b59-4b01-b901-490530a6fca0"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="08acfa1d-7ad6-40e0-989a-375647f9cda7">
+                    <propertyInstance
+                      Id="06195997-d4c9-4529-93de-2b3688bcf3c5"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7aeb568b-8c1f-4267-b860-cd1852c941b5">
+                    <propertyInstance
+                      Id="11091f7c-ba23-4add-9caa-4815b89082d5"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b1d90847-3713-413f-a13d-afb0959d647f">
+                    <propertyInstance
+                      Id="3faecfcd-a6b6-40b1-9e07-06d2413e54ee"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ed4bd3ee-ded2-4c7b-b1f4-0ea964b84707">
+                    <propertyInstance
+                      Id="d1ab3450-9dd4-4aac-9ae2-716354f2564a"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5ef7ead1-0b58-4853-89f8-b777b2a02b33">
+                    <propertyInstance
+                      Id="e0b9e8e3-c018-4328-b07f-e571d50acefc"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                LastKnownName="Integer"
+                LastKnownLocation="Laboras21_ModelingProject.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="c659d275-9a67-4062-a796-f29e532b34bd"
+            name="nodeRadius"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="dc6feda3-5c5e-4517-83ff-8c01ff94139e"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3DnodeRadius"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="081b3133-2542-4a83-993e-d340dcd13d9b"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="842f12d2-5fa7-4e32-ab4c-848da956d608">
+                    <propertyInstance
+                      Id="f36b9c89-3359-4dfe-8a2b-90554d5c3ada"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3a0a8899-3f15-4eaa-a5c4-bd82a5d50430">
+                    <propertyInstance
+                      Id="bbfc4bc4-ee61-4899-ac70-4ce06f11e612"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7315a3b8-29ff-4f64-9987-64a12f349b91">
+                    <propertyInstance
+                      Id="45f0b406-7df5-4ca5-b2db-d9274a7b9491"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f89731d0-3274-4cfd-ac1b-a24a035b0c72">
+                    <propertyInstance
+                      Id="37b3d592-d0d0-473f-98e0-0131e571dad0"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="78b8b24a-aa44-40bc-a164-fe8b28243c5e">
+                    <propertyInstance
+                      Id="6a340c71-4f51-4a33-b674-a6eed88c9014"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </property>
+          <property
+            Id="1529bd33-f0d6-4d4f-b4ec-ec82b7ad5833"
+            name="lineWidth"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="3ad3c91c-7e92-4a3a-b287-1ed7a8018fa2"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3DlineWidth"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="6e0341d2-a4fc-4a42-a9be-3c54ec03e452"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="11234003-9c11-49c6-82b9-eecc5aca5b79">
+                    <propertyInstance
+                      Id="ab7fc5a8-dbd3-4a81-ac08-9ec29586000a"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0553d80f-6655-4936-9d13-7be284236854">
+                    <propertyInstance
+                      Id="87e6a37b-a5d0-4d61-80e5-69e0477771af"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="126d9d22-5df6-406c-bb23-77464b457002">
+                    <propertyInstance
+                      Id="bf158165-5331-4073-bf6f-49f9daeed0b2"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d6026c94-d44f-4f06-80c6-695b57ffe22e">
+                    <propertyInstance
+                      Id="3f5417d1-fe91-435d-b8d0-128b47105b1c"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f95cdfc6-2b6e-4c2c-b0e3-0950cd9a4ee2">
+                    <propertyInstance
+                      Id="136c7c54-5b87-4dd8-985c-6a45f4e178df"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="8ab5c985-f1fc-41a8-85a2-79c096570dbe"
+            name="DrawEdge"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="d9b1b99b-5b1f-4f48-8295-d273b0e68e1e"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3D(Name%3DDrawEdge OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21 Type%3DVertex)%2C(Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21 Type%3DVertex)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="7e7a6bc3-3db1-4705-b55f-738fcf57e3f8"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5079d211-b668-4a04-b8f2-7d4b5433f19f">
+                    <propertyInstance
+                      Id="85bb12e5-c1a6-433a-9292-6634b154cb44"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="607c9936-f6bd-4bf8-a4e2-e415879ddf25">
+                    <propertyInstance
+                      Id="467608ff-aefa-42fd-98f4-3cc2db888f43"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7e2371d3-6c20-4aa3-a7c3-81148c560013">
+                    <propertyInstance
+                      Id="df7d256f-9229-4a50-a953-286c36fcc5d1"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d7a7c06b-09bf-46e2-b457-4c2f5c32ce55">
+                    <propertyInstance
+                      Id="b9528461-5bec-469d-90ba-3668050593a7"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="27c47747-bc24-4243-b189-e9dc4a168ed4">
+                    <propertyInstance
+                      Id="d29df7e7-7d95-46d3-aa83-c2f3643c2bff"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f850c1fe-1052-4f18-8843-0e8a06e41a8d">
+                    <propertyInstance
+                      Id="238205ee-574d-463b-8f74-f4a19f9cdcd4"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a1ee6737-f616-4681-8e04-3af774171d2e"
+                  name="vertex1"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="21ff2642-f42f-41e8-b07b-6e24d824c7a0"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3D(Name%3DDrawEdge OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21 Type%3DVertex)%2C(Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21 Type%3DVertex)]) ParameterIdentifier%3Dvertex1"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="78307cc0-f56c-4372-bb63-0f44110c2b21"
+                      LastKnownName="Vertex"
+                      LastKnownLocation="Package_1047.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="0a019a0e-986a-491e-bcff-e533ccdc0d29"
+                  name="vertex2"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="0193a620-7d3c-4479-b846-fe30e3df0a3b"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3D(Name%3DDrawEdge OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21 Type%3DVertex)%2C(Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21 Type%3DVertex)]) ParameterIdentifier%3Dvertex2"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="78307cc0-f56c-4372-bb63-0f44110c2b21"
+                      LastKnownName="Vertex"
+                      LastKnownLocation="Package_1047.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="bf81186b-4102-4ab6-abd6-117085b041ba"
+            name="SuperCanvas_SizeChanged"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="99670b9e-81c7-4174-97ad-08760ec21d52"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3D(Name%3DSuperCanvas_SizeChanged OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DObject)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationFramework.dll&quot; Namespace%3DSystem.Windows Type%3DSizeChangedEventArgs)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="b30aa364-a056-4959-9c50-2870e66daca8"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2aec992a-bfa6-418b-a7bd-4bf6732f20c6">
+                    <propertyInstance
+                      Id="229d4734-08d6-461c-a40b-96b1abfd0fed"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dffca8a3-dcd1-4d7b-ae07-8124a193d565">
+                    <propertyInstance
+                      Id="1aadc26c-13eb-4f91-9938-92ce599e6d6a"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1ceb8151-e0c4-4dc5-8e08-74abaf592e8f">
+                    <propertyInstance
+                      Id="2b2db037-d253-4286-88bf-a6c669981ef3"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8dad2a17-8b50-41bf-a0c1-2a589f5a62a6">
+                    <propertyInstance
+                      Id="3efdd067-56fc-4225-90e2-8696ecf406b2"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8da5b071-241a-4a56-bc37-5c53e58f9d0f">
+                    <propertyInstance
+                      Id="94ba25e7-9d2a-4a6c-92e2-cd70de6e69a0"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="23321aaf-c0e8-4780-bc8f-f53c0ea7ccc0">
+                    <propertyInstance
+                      Id="03cefb7b-f583-41ca-abf8-4e2a8a802228"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ae9ef5dc-3893-4f41-ad0b-95f4877008bc"
+                  name="sender"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="ca7677df-f611-4d94-a8e8-b6109550cf79"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3D(Name%3DSuperCanvas_SizeChanged OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DObject)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationFramework.dll&quot; Namespace%3DSystem.Windows Type%3DSizeChangedEventArgs)]) ParameterIdentifier%3Dsender"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="22943294-1dae-4238-a612-d78e8777659e"
+                      LastKnownName="Object"
+                      LastKnownLocation="Package1_1047.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="35d5889c-c950-4476-a002-f86dc8bd1c26"
+                  name="e"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="5528d16e-f8e6-4e27-a043-1570fb085ea7"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3D(Name%3DSuperCanvas_SizeChanged OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DObject)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationFramework.dll&quot; Namespace%3DSystem.Windows Type%3DSizeChangedEventArgs)]) ParameterIdentifier%3De"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="a471767c-e20f-48af-951f-d7286ad435f0"
+                      LastKnownName="SizeChangedEventArgs"
+                      LastKnownLocation="Package4_1047.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="ed147042-d559-4d27-84f7-fb79dc52bc8c"
+            name="DrawEdge"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="2a8100c7-a0bb-460e-9648-f1e2434869f3"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3D(Name%3DDrawEdge OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21 Type%3DPoint)%2C(Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21 Type%3DPoint)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="751069bd-722f-4f54-a77b-a6592eb23cad"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e57eece0-eafe-43f1-a436-336e4f266cba">
+                    <propertyInstance
+                      Id="15a56858-22a9-426f-ba6f-671adcea6274"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1dfb1a8d-2dc4-4808-bd28-23a2eb72fadc">
+                    <propertyInstance
+                      Id="1a013ce8-2e0a-4ed3-8b36-b7f57df2930e"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4ce24a1d-2ebf-4f9e-9745-baa1f4ae437b">
+                    <propertyInstance
+                      Id="7d88f7b8-9cfa-41a4-ad7d-025e04105f28"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="714130e8-58d4-43b3-95e9-9a270361471c">
+                    <propertyInstance
+                      Id="7070d6f7-6106-4b85-945f-f8e4a023135b"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6b70c582-f548-436e-ba8f-441d63dc4f59">
+                    <propertyInstance
+                      Id="b41cbbec-7595-4c2c-b632-1b8a424a4e68"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d5f6e395-9f58-490b-90e5-08c24e3ac9fd">
+                    <propertyInstance
+                      Id="5056ba64-76e2-4c65-98b0-cefb9232eac1"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="7ed0fdea-6da1-45f1-8999-45f553cfe490"
+                  name="point1"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="8ad8fc1a-75f7-402e-8dbf-0550341e760d"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3D(Name%3DDrawEdge OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21 Type%3DPoint)%2C(Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21 Type%3DPoint)]) ParameterIdentifier%3Dpoint1"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="c4b11e5c-54ac-48a4-be3a-cc965ba26e3b"
+                      LastKnownName="Point"
+                      LastKnownLocation="Package_1047.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3df754f4-f6aa-43d4-9ed5-9ef9ce809076"
+                  name="point2"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="566cb298-5096-40df-8186-7f33b19e7113"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3D(Name%3DDrawEdge OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21 Type%3DPoint)%2C(Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21 Type%3DPoint)]) ParameterIdentifier%3Dpoint2"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="c4b11e5c-54ac-48a4-be3a-cc965ba26e3b"
+                      LastKnownName="Point"
+                      LastKnownLocation="Package_1047.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="7b629288-ea40-4a1f-9da4-b275389adf89"
+            name="DrawNode"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="49a88379-6a58-4c33-8999-1e4337b37845"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3D(Name%3DDrawNode OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21 Type%3DPoint)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="140ac142-2188-4d85-8461-76851efbe6b1"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3f6fbafb-582d-4596-b3fb-199e5c048ae9">
+                    <propertyInstance
+                      Id="6f667e5c-033f-4bf3-aebb-fca903826162"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="80b03a32-7b82-4ca6-9114-beb4ba1327f5">
+                    <propertyInstance
+                      Id="83c88786-6333-4e83-8dbe-c3f5fe21af9f"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3d708d26-df0b-4ce7-9449-20afecc7009c">
+                    <propertyInstance
+                      Id="1698eb85-100f-4421-9acf-1d1480464004"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="28b473fd-96c9-4c70-9979-d8e609a323bf">
+                    <propertyInstance
+                      Id="d61cf357-22df-4ee9-8326-82b663adb999"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5efc4859-8e9f-4afa-b33e-cdd7dec2ea43">
+                    <propertyInstance
+                      Id="b720c427-90fb-4038-a9db-56aa68d4c84d"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e1a4c059-4f52-4b34-b479-c69484f3215a">
+                    <propertyInstance
+                      Id="9296072d-8281-4fa5-b87f-ba00ec905ab2"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3f870fd7-2222-498e-9de3-505fc0484294"
+                  name="point"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="c6ddc704-09b3-4382-ba28-fc1329d0ae66"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3D(Name%3DDrawNode OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21 Type%3DPoint)]) ParameterIdentifier%3Dpoint"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="c4b11e5c-54ac-48a4-be3a-cc965ba26e3b"
+                      LastKnownName="Point"
+                      LastKnownLocation="Package_1047.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="81d11805-79ce-48ba-a4bb-ef62b9aed3fb"
+            name="Translate"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="8b765f76-0df7-4e00-84da-d14ff4e69dab"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3D(Name%3DTranslate OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21 Type%3DPoint)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c889cd86-29ab-4bf9-ac3e-ced869528793"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6ed83d9b-432f-457b-8ac8-b467a4a35e66">
+                    <propertyInstance
+                      Id="cf915459-e963-4a92-ab83-b2165e899563"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="98e58efb-3fca-4fa9-8be9-7f68002e598c">
+                    <propertyInstance
+                      Id="3cbecddd-4803-4f60-abbb-c4a728c60e45"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ee09a33e-332c-48e2-b3ec-8d89472256c6">
+                    <propertyInstance
+                      Id="624d6762-465c-45ce-a5a4-c6a29c61ec60"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9c872095-6186-4469-97cc-1871ef08487e">
+                    <propertyInstance
+                      Id="fa9e9cc8-ee2d-4dbf-bba0-7d8328c1efe4"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="10d2e713-0466-457b-bab2-cf7588c622ea">
+                    <propertyInstance
+                      Id="1047712d-07e4-4159-95b4-ac2114431d3d"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="11aa44bf-e8bb-4fc9-a0bc-6edfb15f8987">
+                    <propertyInstance
+                      Id="6a1e2f51-1652-4587-b7e9-451db8548311"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="28e25913-d68a-4f58-94a3-43a9857623ea"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="2fe9d418-cb5c-4fcb-b48a-60a6f9c58a99"
+                      LastKnownName="DoublePoint"
+                      LastKnownLocation="Package2_2120.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ea6c8d71-11c0-4907-8e41-55195e1abeb7"
+                  name="point"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="029fbef2-1a9c-45ea-a09f-7dea29775123"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3D(Name%3DTranslate OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21 Type%3DPoint)]) ParameterIdentifier%3Dpoint"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="c4b11e5c-54ac-48a4-be3a-cc965ba26e3b"
+                      LastKnownName="Point"
+                      LastKnownLocation="Package_1047.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="8b0f7c1b-1419-4c88-9020-4a343e8bf92e"
+            name="Redraw"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="6aa57c76-a392-4208-9abf-21763882185d"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3DRedraw"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="510b5395-8958-4b8a-82d0-7c89b0b3cd36"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="756b409d-2145-4985-9170-8b505321e2b9">
+                    <propertyInstance
+                      Id="bf5390dd-52df-442e-8208-62c0beb7176d"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c73701fb-e125-4a85-a4d0-a40af215b70d">
+                    <propertyInstance
+                      Id="2b839659-45e6-44b3-a2ec-0e943d766359"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="561ebbf4-d29b-4383-93d5-1deace0b7533">
+                    <propertyInstance
+                      Id="6b43c1e0-9a7c-4f64-a3ed-035d79d0aef4"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5cb5276f-0d8e-49f7-ba55-ac492dd78213">
+                    <propertyInstance
+                      Id="3f527913-f8c7-431e-9b9d-ec3d9bdec3d6"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4a5c770a-f4a4-4fb5-965b-97abd0f8267d">
+                    <propertyInstance
+                      Id="8996be54-3269-4860-8baa-6f7e6b5cdb67"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d9437417-8d67-4c11-a7da-59b512cc1fe4">
+                    <propertyInstance
+                      Id="639427b6-2e94-4713-8f0d-ee47ad34278b"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="30b2810d-c0a0-4891-acd8-6b41349644e3"
+            name="SuperCanvas"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="125f72d2-cf53-4909-b918-2a31bdabd1fb"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="2a9835d0-862e-4fa4-ac69-3c67ab52f63d"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6687d9d2-dbd7-4b41-b9ae-976255e3183e">
+                    <propertyInstance
+                      Id="ff56c97f-ed47-4004-a427-443243823963"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="38ebba2a-6b17-4657-a485-2fae93e79c4b">
+                    <propertyInstance
+                      Id="ca15dae6-c31d-4a5c-be06-ee57b058e5d9"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d5ee52d1-165b-406b-bce2-990301c03741">
+                    <propertyInstance
+                      Id="aeaacaea-961c-4a2b-9def-a9f96567e62e"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="705cb4b0-a736-43ef-9793-25c54bd3e832">
+                    <propertyInstance
+                      Id="4dd96fba-dbce-4182-a967-80361bd63e66"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="12116286-1edf-4a3a-b8e0-57e1d828547e">
+                    <propertyInstance
+                      Id="a2efc614-b6b8-4fc0-9c92-7411465c6329"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4baa1964-3e20-4e34-8562-f27112a18d18">
+                    <propertyInstance
+                      Id="6a02b8ed-3c3f-4ae0-8521-4578f3252451"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="02983fc5-d341-4a84-a187-fe27557b08c0"
+            name="SetCollection"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="b4d183b6-082e-47dc-935e-d6ffb97b7aac"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3D(Name%3DSetCollection OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIReadOnlyList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21 Type%3DVertex)]))])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="b2e47b75-9960-4b2f-9e1c-dc7350b4a9c2"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="20116f2e-ec9f-4cbd-9c91-68f183508b9e">
+                    <propertyInstance
+                      Id="277fdb68-f037-4959-a1c0-fde6ee8b43e5"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7ccfc325-5572-43ef-ace9-e2f0f785c95c">
+                    <propertyInstance
+                      Id="723f8dee-998a-4cbd-b421-c5bc631874c2"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="15743b25-7740-4622-8be6-8cdc03030991">
+                    <propertyInstance
+                      Id="34570f80-8b5e-4356-bcac-5c619062a3f7"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cc99ae92-05e2-4368-9c3a-4a6f56259601">
+                    <propertyInstance
+                      Id="aa236d21-b96b-48fc-ac22-0185f9da6e77"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a06ab4c0-277d-4d1e-91d5-524d38536199">
+                    <propertyInstance
+                      Id="51cd80b1-d5ee-45db-840b-1c463374a503"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7562d79c-27c1-4520-89f1-5d8c8b304080">
+                    <propertyInstance
+                      Id="da7f994c-a33b-437f-a789-2309e449b192"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="81734d8f-55ce-43eb-8313-18a04638bc78"
+                  name="vertices"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="00fc22fd-70d6-45b9-9c10-c06b654d6757"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3DSuperCanvas Member%3D(Name%3DSetCollection OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIReadOnlyList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21 Type%3DVertex)]))]) ParameterIdentifier%3Dvertices"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="6f728264-5386-400e-92bd-34d3459e9925"
+                      LastKnownName="IReadOnlyList&lt;Vertex‎&gt;"
+                      LastKnownLocation="Package3_1047.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="2fe9d418-cb5c-4fcb-b48a-60a6f9c58a99"
+        name="DoublePoint"
+        visibility="Private"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="d278c48a-3684-4a7a-8cf9-348b7482435c"
+            handle="viewcode://./CodeSchema_Struct?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3D(Name%3DDoublePoint ParentType%3DSuperCanvas)"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="b5612371-780d-4c87-a4eb-d99de4f84c7f"
+            name="struct"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5156e235-b43a-4264-a07e-cdbe3b88ef85">
+                <propertyInstance
+                  Id="79044158-2d63-4454-aac2-5f8319cf4f28"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3f7680fc-6950-4748-951b-31636f2ec64c">
+                <propertyInstance
+                  Id="8246868c-b743-4b80-999d-52a35013c5bd"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e10b8a19-8707-4f89-816e-c0079d1621cd">
+                <propertyInstance
+                  Id="3cc0eef8-83f0-4b83-9795-e22527a81a3f"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c027812b-c5ad-44f6-9501-f7e32cdb98f5">
+                <propertyInstance
+                  Id="370716b0-de3f-4552-b013-b59755aaacb9"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="07fe0de4-6dc7-4076-8567-5ad0f1752677"
+            name="x"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="5c532da6-cc95-4bbe-aeca-295f1b71c7c1"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3D(Name%3DDoublePoint ParentType%3DSuperCanvas) Member%3Dx"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="bcb2e59a-1bf4-428c-b6ac-0a467b53ab51"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cdccee93-c49a-4c70-8189-a66a93150a70">
+                    <propertyInstance
+                      Id="e89c8e5b-f69b-4b25-bdf2-71d78f451e03"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c6a31a70-a4ae-4cd0-837a-2de2e6334593">
+                    <propertyInstance
+                      Id="cf34d231-0233-4390-ab04-578f87b33df4"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="929def23-2414-4603-a5c4-06fb42cd441a">
+                    <propertyInstance
+                      Id="d2044e4b-f624-44b7-95e9-0ab3c2fe370d"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="239c1598-819b-4591-88b7-18bf3c016466">
+                    <propertyInstance
+                      Id="9a124a34-33a9-459c-befb-3a744d2c7b8f"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bf2aa977-2f54-42a4-bb01-d3e90bfcc4b7">
+                    <propertyInstance
+                      Id="9df0e701-67a9-4fb9-be20-57438655a10e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="3fa1a4b8-4906-4abd-92ff-55e25298728b"
+                LastKnownName="Double"
+                LastKnownLocation="Package1_1047.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="3392dc13-0efc-486c-9698-d646c5dc730d"
+            name="y"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="5fd63d80-5877-4fae-bb5a-8b995505338e"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3D(Name%3DDoublePoint ParentType%3DSuperCanvas) Member%3Dy"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="dfee42dd-9087-4371-a24d-45ea7c85c410"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="082aaf7c-1c28-4b22-b7bd-c9010da567cc">
+                    <propertyInstance
+                      Id="4e78c598-e2c7-45d7-8476-12d20b8eb743"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="484738cf-e1f0-40b8-9935-a120c84c03cb">
+                    <propertyInstance
+                      Id="49c32a70-1a55-4467-bf6f-2a9dbbff1364"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9f60ae59-c443-4452-b7c7-93c3974dff75">
+                    <propertyInstance
+                      Id="d7fee041-1023-4757-b3a4-6bf806c38431"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="10f20e91-8f96-4d96-89b0-cdb989984677">
+                    <propertyInstance
+                      Id="7a20a443-2f78-4044-aef9-8d7e8ff9d00d"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="81d6adfb-490c-44f9-a4a8-2d7a1b69592b">
+                    <propertyInstance
+                      Id="5acba1c6-52a9-440c-bfcf-6291624e475e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="3fa1a4b8-4906-4abd-92ff-55e25298728b"
+                LastKnownName="Double"
+                LastKnownLocation="Package1_1047.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="fe74bc50-bafb-4349-9ffa-4be4381c1ddd"
+            name="DoublePoint"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="379ef603-93d1-4004-b61c-66650540bdd7"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FE:%2FMy docs%2FProgramavimo inzinerija%2FLaboras21%2FLaboras21%2Fbin%2FRelease%2FLaboras21.exe&quot; Namespace%3DLaboras21.Controls Type%3D(Name%3DDoublePoint ParentType%3DSuperCanvas) Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="79062e76-015d-47ed-90f9-0b7c17b3b1d8"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dcf6ec39-a2e1-45ee-812e-0e26f20fb238">
+                    <propertyInstance
+                      Id="74f4d4fb-42de-44da-bdd5-24023dacc99d"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5f01259c-60a5-4c99-bab2-00297b38dcfc">
+                    <propertyInstance
+                      Id="f28eca75-4e75-4397-b072-f179ebc5593c"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8173515c-455c-4087-83a3-a5e88527365f">
+                    <propertyInstance
+                      Id="228fbea9-6371-4356-b05f-9962ae834565"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1eaa5561-a4c1-4818-bacd-f96f861f1ba8">
+                    <propertyInstance
+                      Id="dbab873c-1851-4388-bc02-24616350c227"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9b661c80-2644-4121-af5a-4e0efccd9fa2">
+                    <propertyInstance
+                      Id="3a3b18e8-392d-4f28-bd32-dc2770b7818b"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d0aa229a-9eca-4a44-a455-cec1e7eca019">
+                    <propertyInstance
+                      Id="deb8eac0-ef2b-44a7-b03f-537def2ef0f6"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

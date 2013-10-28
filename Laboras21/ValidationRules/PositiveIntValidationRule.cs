@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace Laboras21
+namespace Laboras21.ValidationRules
 {
     class PositiveIntValidationRule : ValidationRule
     {

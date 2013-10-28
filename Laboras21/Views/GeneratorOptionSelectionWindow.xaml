@@ -1,7 +1,8 @@
-﻿<Window x:Class="Laboras21.GeneratorOptionSelectionWindow"
+﻿<Window x:Class="Laboras21.Views.GeneratorOptionSelectionWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Laboras21="clr-namespace:Laboras21"
+        xmlns:ValidationRules="clr-namespace:Laboras21.ValidationRules"
         Title="GeneratorOptionSelectionWindow" Height="337" Width="300">
     
     <Window.Resources>
@@ -51,7 +52,7 @@
                 <TextBox.Text>
                     <Binding Path="NumberOfPoints" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <Laboras21:PositiveIntValidationRule />
+                            <ValidationRules:PositiveIntValidationRule />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -62,7 +63,7 @@
                 <TextBox.Text>
                     <Binding Path="MinX" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <Laboras21:CoordinateValidationRule Dimension="x" />
+                            <ValidationRules:CoordinateValidationRule Dimension="x" />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -73,7 +74,7 @@
                 <TextBox.Text>
                     <Binding Path="MaxX" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <Laboras21:CoordinateValidationRule Dimension="x" />
+                            <ValidationRules:CoordinateValidationRule Dimension="x" />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -84,7 +85,7 @@
                 <TextBox.Text>
                     <Binding Path="MinY" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <Laboras21:CoordinateValidationRule Dimension="y" />
+                            <ValidationRules:CoordinateValidationRule Dimension="y" />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -95,7 +96,7 @@
                 <TextBox.Text>
                     <Binding Path="MaxY" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <Laboras21:CoordinateValidationRule Dimension="y" />
+                            <ValidationRules:CoordinateValidationRule Dimension="y" />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -112,7 +113,7 @@
                 <TextBox.Text>
                     <Binding Path="StandardDeviation" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <Laboras21:DoubleValidationRule />
+                            <ValidationRules:DoubleValidationRule />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>

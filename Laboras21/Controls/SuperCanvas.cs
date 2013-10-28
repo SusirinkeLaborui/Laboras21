@@ -4,7 +4,7 @@ using System;
 using System.Windows.Shapes;
 using System.Windows.Media;
 
-namespace Laboras21
+namespace Laboras21.Controls
 {
     public class SuperCanvas : Canvas
     {

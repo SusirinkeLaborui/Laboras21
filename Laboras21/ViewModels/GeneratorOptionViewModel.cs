@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Laboras21
+namespace Laboras21.ViewModels
 {
     class GeneratorOptionViewModel : INotifyPropertyChanged
     {
