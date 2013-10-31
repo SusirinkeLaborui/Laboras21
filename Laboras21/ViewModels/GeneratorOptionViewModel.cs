@@ -17,6 +17,18 @@ namespace Laboras21.ViewModels
         private int maxY;
         private double standardDeviation;
 
+        public GeneratorOptionViewModel()
+        {
+            n = MagicalNumbers.MaxN / 10;
+
+            minX = MagicalNumbers.MinX;
+            maxX = MagicalNumbers.MaxX;
+            minY = MagicalNumbers.MinY;
+            maxY = MagicalNumbers.MaxY;
+
+            standardDeviation = 1.0;
+        }
+
         public int NumberOfPoints
         {
             get { return n; }
