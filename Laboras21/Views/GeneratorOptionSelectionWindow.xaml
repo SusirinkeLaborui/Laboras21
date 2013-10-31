@@ -91,7 +91,7 @@
                 </TextBox.Text>
             </TextBox>
                 
-            <TextBlock Grid.Row="4" Grid.Column="0" Name="textBlockMaxY" Text="Minimum Y" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Name="textBlockMaxY" Text="Maximum Y" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <TextBox Grid.Row="4" Grid.Column="1" Name="textBoxMaxY" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0">
                 <TextBox.Text>
                     <Binding Path="MaxY" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
