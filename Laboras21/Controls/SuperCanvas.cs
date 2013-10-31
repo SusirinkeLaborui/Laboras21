@@ -3,6 +3,8 @@ using System.Windows.Controls;
 using System;
 using System.Windows.Shapes;
 using System.Windows.Media;
+using System.Windows.Threading;
+using System.Runtime.CompilerServices;
 
 namespace Laboras21.Controls
 {
@@ -11,6 +13,7 @@ namespace Laboras21.Controls
         private List<Tuple<Point, Point>> edges = new List<Tuple<Point,Point>>();
         private IReadOnlyList<Vertex> nodes;
         private SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+        private List<DispatcherOperation> drawTasks = new List<DispatcherOperation>();
         private double xFactor = 0;//bwahahahahahaha
         private double yFactor = 0;
         private int xOffset = 0;
@@ -48,48 +51,48 @@ namespace Laboras21.Controls
 
         public void SetCollection(IReadOnlyList<Vertex> vertices)
         {
-            Dispatcher.BeginInvoke((Action)(() =>
-            {
-                nodes = vertices;
-                Redraw();
-            }));
+            nodes = vertices;
+            Redraw();
         }
 
         public void DrawEdge(Vertex vertex1, Vertex vertex2)
         {
-            Dispatcher.BeginInvoke((Action)(() =>
-            {
-                Point p1 = vertex1.Coordinates;
-                Point p2 = vertex2.Coordinates;
-                edges.Add(new Tuple<Point, Point>(p1, p2));
-                DrawEdge(p1, p2);
-            }));
+            Point p1 = vertex1.Coordinates;
+            Point p2 = vertex2.Coordinates;
+            edges.Add(new Tuple<Point, Point>(p1, p2));
+            DrawEdge(p1, p2);
         }
 
         private void DrawEdge(Point point1, Point point2)
         {
-            Line l = new Line();
-            var p1 = Translate(point1);
-            var p2 = Translate(point2);
-            l.X1 = p1.x;
-            l.X2 = p2.x;
-            l.Y1 = p1.y;
-            l.Y2 = p2.y;
-            l.Stroke = brush;
-            l.StrokeThickness = lineWidth;
-            Children.Add(l);
+            drawTasks.Add(Dispatcher.BeginInvoke((Action)(() =>
+            {
+                Line l = new Line();
+                var p1 = Translate(point1);
+                var p2 = Translate(point2);
+                l.X1 = p1.x;
+                l.X2 = p2.x;
+                l.Y1 = p1.y;
+                l.Y2 = p2.y;
+                l.Stroke = brush;
+                l.StrokeThickness = lineWidth;
+                Children.Add(l);
+            })));
         }
 
         private void DrawNode(Point point)
         {
-            var node = new Ellipse();
-            var p = Translate(point);
-            node.SetValue(Canvas.LeftProperty, p.x - nodeRadius);
-            node.SetValue(Canvas.TopProperty, p.y - nodeRadius);
-            node.Width = node.Height = nodeRadius * 2;
-            node.Fill = brush;
+            drawTasks.Add(Dispatcher.BeginInvoke((Action)(() =>
+            {
+                var node = new Ellipse();
+                var p = Translate(point);
+                node.SetValue(Canvas.LeftProperty, p.x - nodeRadius);
+                node.SetValue(Canvas.TopProperty, p.y - nodeRadius);
+                node.Width = node.Height = nodeRadius * 2;
+                node.Fill = brush;
 
-            Children.Add(node);
+                Children.Add(node);
+            })));
         }
 
         private DoublePoint Translate(Point point)
@@ -102,9 +105,17 @@ namespace Laboras21.Controls
             return p;
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         private void Redraw()
         {
-            Children.Clear();
+            foreach (var t in drawTasks)
+                t.Abort();
+            drawTasks.Clear();
+            Dispatcher.BeginInvoke((Action)(() =>
+            {
+                Children.Clear();
+            }));
+
             if (nodes != null)
             {
                 foreach (var n in nodes)
