@@ -62,7 +62,6 @@ namespace Laboras21.Views
             if (distributionComboBox.SelectedIndex == 0)
             {
                 generator = new UniformRandomNumberGenerator(viewModel.MinX, viewModel.MaxX, viewModel.MinY, viewModel.MaxY);
-               
             }
             else
             {
