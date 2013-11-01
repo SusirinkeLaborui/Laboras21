@@ -26,7 +26,7 @@ namespace Laboras21.ViewModels
             minY = MagicalNumbers.MinY;
             maxY = MagicalNumbers.MaxY;
 
-            standardDeviation = 1.0;
+            standardDeviation = 2500.0;
         }
 
         public int NumberOfPoints

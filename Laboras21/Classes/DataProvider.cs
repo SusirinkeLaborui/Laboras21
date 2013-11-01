@@ -41,16 +41,6 @@ namespace Laboras21
             return data;
         }
 
-        public static List<Point> Generate(IRandomNumberGenerator rng, int verticesCount)
-        {
-            List<Point> generatedData = new List<Point>();
-            for (int i = 0; i < verticesCount; i++)
-            {
-                generatedData.Add(rng.GeneratePoint());
-            }
-            return generatedData;
-        }
-
         /*
          * 12. Rezultatų tekstinis failas bus sudarytas viršūnių kaimynių formatu:
          * kiekviena viršūnei bus skirta viena eilutė

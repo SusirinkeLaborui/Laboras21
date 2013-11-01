@@ -61,8 +61,8 @@ namespace Laboras21.Views
 
             if (distributionComboBox.SelectedIndex == 0)
             {
-                generator = new UniformRandomNumberGenerator();
-                throw new NotImplementedException();        // Uniform generator constructor has to take in min/max values
+                generator = new UniformRandomNumberGenerator(viewModel.MinX, viewModel.MaxX, viewModel.MinY, viewModel.MaxY);
+               
             }
             else
             {
@@ -71,7 +71,7 @@ namespace Laboras21.Views
                     return;
                 }
 
-                generator = new NormalRandomNumberGenerator(viewModel.StandardDeviation);
+                generator = new NormalRandomNumberGenerator(viewModel.StandardDeviation, viewModel.MinX, viewModel.MaxX, viewModel.MinY, viewModel.MaxY);
             }
 
             if (graphPoints.Capacity < viewModel.NumberOfPoints)
@@ -82,19 +82,6 @@ namespace Laboras21.Views
             for (int i = 0; i < viewModel.NumberOfPoints; i++)
             {
                 graphPoints.Add(generator.GeneratePoint());
-            }
-
-            int minx = graphPoints.Select(x => x.x).Min(),
-                maxx = graphPoints.Select(x => x.x).Max(),
-                miny = graphPoints.Select(x => x.y).Min(),
-                maxy = graphPoints.Select(x => x.y).Max();
-
-            double reduceX = ((double)(maxx - minx)) / (viewModel.MaxX - viewModel.MinX);
-            double reduceY = ((double)(maxy - miny)) / (viewModel.MaxY - viewModel.MinY);
-
-            for (int i = 0; i < graphPoints.Count; i++)
-            {
-                graphPoints[i] = new Point((int)(graphPoints[i].x / reduceX), (int)(graphPoints[i].y / reduceY));
             }
 
             Result = true;

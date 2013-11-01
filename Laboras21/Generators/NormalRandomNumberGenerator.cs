@@ -10,11 +10,21 @@ namespace Laboras21.Generators
     {
         private double standardDeviation;
         private Random random;
-
-        public NormalRandomNumberGenerator(double standardDeviation)
+        private int minX, maxX, minY, maxY;
+        private int offsetX, offsetY;
+        private int widthX, widthY;
+        public NormalRandomNumberGenerator(double standardDeviation, int minX, int maxX, int minY, int maxY)
         {
             this.standardDeviation = standardDeviation;
             random = new Random();
+            offsetX = minX + maxX;
+            offsetY = minY + maxY;
+            widthX = maxX - minX;
+            widthY = maxY - minY;
+            this.minX = minX;
+            this.maxX = maxX;
+            this.minY = minY;
+            this.maxY = maxY;
         }
 
         public Point GeneratePoint()
@@ -25,16 +35,22 @@ namespace Laboras21.Generators
             double x, y, r;
             do
             {
-                x = random.NextDouble() * 2 - 1;
-                y = random.NextDouble() * 2 - 1;
-                r = x * x + y * y;
-            } while (r == 0.0 || r > 1.0);
+                do
+                {
+                    x = random.NextDouble() * 2 - 1;
+                    y = random.NextDouble() * 2 - 1;
+                    r = x * x + y * y;
+                } while (r == 0.0 || r > 1.0);
 
-            double d = Math.Sqrt(-2.0 * Math.Log(r) / r);
-            x *= d * standardDeviation * (MagicalNumbers.MaxX - MagicalNumbers.MinX) * 0.5 + MagicalNumbers.MinX + MagicalNumbers.MaxX;
-            y *= d * standardDeviation * (MagicalNumbers.MaxY - MagicalNumbers.MinY) * 0.5 + MagicalNumbers.MinY + MagicalNumbers.MaxY;
+                double d = Math.Sqrt(-2.0 * Math.Log(r) / r);
+
+                x *= d * standardDeviation + offsetX;
+                y *= d * standardDeviation + offsetY;
+
+            } while (x > maxX || x < minY || y > maxY || y < minY);
 
             return new Point((int)x, (int)y);
         }
+
     }
 }
