@@ -177,7 +177,7 @@ namespace Laboras21
         {
             if (canvas != null)
             {
-                canvas.DrawEdge(vertex1, vertex2);
+                canvas.AddEdge(vertex1, vertex2);
             }
         }
     }

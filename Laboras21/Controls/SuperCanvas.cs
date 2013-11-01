@@ -5,6 +5,8 @@ using System.Windows.Shapes;
 using System.Windows.Media;
 using System.Windows.Threading;
 using System.Runtime.CompilerServices;
+using System.Windows;
+using System.Threading;
 
 namespace Laboras21.Controls
 {
@@ -46,7 +48,7 @@ namespace Laboras21.Controls
         {
             xFactor = e.NewSize.Width / MagicalNumbers.DataWidth;
             yFactor = e.NewSize.Height / MagicalNumbers.DataHeight;
-            Redraw();
+            Refresh();
         }
 
         public void SetCollection(IReadOnlyList<Vertex> vertices)
@@ -55,21 +57,19 @@ namespace Laboras21.Controls
             Redraw();
         }
 
-        public void DrawEdge(Vertex vertex1, Vertex vertex2)
+        public void AddEdge(Vertex vertex1, Vertex vertex2)
         {
             Point p1 = vertex1.Coordinates;
             Point p2 = vertex2.Coordinates;
             edges.Add(new Tuple<Point, Point>(p1, p2));
-            DrawEdge(p1, p2);
+            AddEdge(p1, p2);
         }
 
-        private void DrawEdge(Point point1, Point point2)
+        private void AddEdge(Point p1, Point p2)
         {
-            drawTasks.Add(Dispatcher.BeginInvoke((Action)(() =>
+            drawTasks.Add(Dispatcher.InvokeAsync(() =>
             {
                 Line l = new Line();
-                var p1 = Translate(point1);
-                var p2 = Translate(point2);
                 l.X1 = p1.x;
                 l.X2 = p2.x;
                 l.Y1 = p1.y;
@@ -77,22 +77,21 @@ namespace Laboras21.Controls
                 l.Stroke = brush;
                 l.StrokeThickness = lineWidth;
                 Children.Add(l);
-            })));
+            }));
         }
 
-        private void DrawNode(Point point)
+        private void AddNode(Point p)
         {
-            drawTasks.Add(Dispatcher.BeginInvoke((Action)(() =>
+            drawTasks.Add(Dispatcher.InvokeAsync(() =>
             {
                 var node = new Ellipse();
-                var p = Translate(point);
-                node.SetValue(Canvas.LeftProperty, p.x - nodeRadius);
-                node.SetValue(Canvas.TopProperty, p.y - nodeRadius);
+                node.SetValue(Canvas.LeftProperty, (double)(p.x - nodeRadius));
+                node.SetValue(Canvas.TopProperty, (double)(p.y - nodeRadius));
                 node.Width = node.Height = nodeRadius * 2;
                 node.Fill = brush;
 
                 Children.Add(node);
-            })));
+            }));
         }
 
         private DoublePoint Translate(Point point)
@@ -105,25 +104,50 @@ namespace Laboras21.Controls
             return p;
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        private void Redraw()
+        private async void Refresh()
+        {
+            var translate = new TranslateTransform(xOffset, yOffset);
+            var scale = new ScaleTransform(xFactor, yFactor);
+            var transform = new TransformGroup();
+            transform.Children.Add(translate);
+            transform.Children.Add(scale);
+
+            int n = await Dispatcher.InvokeAsync<int>(() =>
+            {
+                return Children.Count;
+            });
+
+            for (int i = 0; i < n; i++)
+            {
+                drawTasks.Add(Dispatcher.InvokeAsync(() =>
+                {
+                    Children[i].RenderTransform = transform;
+                }, DispatcherPriority.Background));
+            }
+        }
+
+        private async void Redraw()
         {
             foreach (var t in drawTasks)
                 t.Abort();
             drawTasks.Clear();
-            Dispatcher.BeginInvoke((Action)(() =>
+            await Dispatcher.InvokeAsync(() =>
             {
                 Children.Clear();
-            }));
+            });
 
             if (nodes != null)
             {
                 foreach (var n in nodes)
-                    DrawNode(n.Coordinates);
+                    AddNode(n.Coordinates);
 
                 foreach (var e in edges)
-                    DrawEdge(e.Item1, e.Item2);
+                    AddEdge(e.Item1, e.Item2);
             }
+            foreach (var task in drawTasks)
+                await task;
+            drawTasks.Clear();
+            Refresh();
         }
     }
 }
