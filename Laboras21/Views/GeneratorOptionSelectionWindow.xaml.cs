@@ -1,5 +1,6 @@
 ﻿using Laboras21.Generators;
 using Laboras21.ViewModels;
+using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Laboras21.Views
     /// <summary>
     /// Interaction logic for GeneratorOptionSelectionWindow.xaml
     /// </summary>
-    public partial class GeneratorOptionSelectionWindow : Window
+    public partial class GeneratorOptionSelectionWindow : MetroWindow
     {
         List<Point> graphPoints;
         bool result = false;

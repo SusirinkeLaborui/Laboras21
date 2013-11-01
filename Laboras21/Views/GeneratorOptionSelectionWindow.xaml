@@ -1,18 +1,28 @@
-﻿<Window x:Class="Laboras21.Views.GeneratorOptionSelectionWindow"
+﻿<MetroControls:MetroWindow x:Class="Laboras21.Views.GeneratorOptionSelectionWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Laboras21="clr-namespace:Laboras21"
         xmlns:ValidationRules="clr-namespace:Laboras21.ValidationRules"
-        Title="GeneratorOptionSelectionWindow" Height="337" Width="300">
-    
+        xmlns:MetroControls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="GeneratorOptionSelectionWindow" Height="337" Width="300" ResizeMode="CanMinimize">
+
     <Window.Resources>
-        <Style x:Key="ValidatedTextBoxStyle" TargetType="TextBox">
-            <Style.Triggers>
-                <Trigger Property="Validation.HasError" Value="true">
-                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Crimson.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="ValidatedTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="true">
+                        <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
     </Window.Resources>
     
     <Grid Name="LayoutRoot">
@@ -24,11 +34,11 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="4*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Distribution type:" />
-            <ComboBox Name="distributionComboBox" Grid.Column="1" Margin="10" SelectedIndex="0" SelectionChanged="DistributionComboBox_SelectionChanged" VerticalAlignment="Center" >
+            <ComboBox Name="distributionComboBox" Grid.Column="1" Margin="10" SelectedIndex="0" SelectionChanged="DistributionComboBox_SelectionChanged" Style="{StaticResource MetroComboBox}" VerticalAlignment="Center" >
                 <ComboBoxItem Content="Uniform" />
                 <ComboBoxItem Content="Normal" />
             </ComboBox>
@@ -48,7 +58,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Grid.Column="0" Name="textBlockN" Text="Number of vertices" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="0" Grid.Column="1" Name="textBoxN" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0">
+            <TextBox Grid.Row="0" Grid.Column="1" Name="textBoxN" MetroControls:TextboxHelper.ClearTextButton="True" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0">
                 <TextBox.Text>
                     <Binding Path="NumberOfPoints" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -59,7 +69,7 @@
             </TextBox>
             
             <TextBlock Grid.Row="1" Grid.Column="0" Name="textBlockMinX" Text="Minimum X" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Name="textBoxMinX" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0">
+            <TextBox Grid.Row="1" Grid.Column="1" Name="textBoxMinX" MetroControls:TextboxHelper.ClearTextButton="True" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0">
                 <TextBox.Text>
                     <Binding Path="MinX" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -70,7 +80,7 @@
             </TextBox>                
                 
             <TextBlock Grid.Row="2" Grid.Column="0" Name="textBlockMaxX" Text="Maximum X" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="2" Grid.Column="1" Name="textBoxMaxX" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0">
+            <TextBox Grid.Row="2" Grid.Column="1" Name="textBoxMaxX" MetroControls:TextboxHelper.ClearTextButton="True" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0">
                 <TextBox.Text>
                     <Binding Path="MaxX" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -81,7 +91,7 @@
             </TextBox>
                 
             <TextBlock Grid.Row="3" Grid.Column="0" Name="textBlockMinY" Text="Minimum Y" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="3" Grid.Column="1" Name="textBoxMinY" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0">
+            <TextBox Grid.Row="3" Grid.Column="1" Name="textBoxMinY" MetroControls:TextboxHelper.ClearTextButton="True" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0">
                 <TextBox.Text>
                     <Binding Path="MinY" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -92,7 +102,7 @@
             </TextBox>
                 
             <TextBlock Grid.Row="4" Grid.Column="0" Name="textBlockMaxY" Text="Maximum Y" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="4" Grid.Column="1" Name="textBoxMaxY" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0">
+            <TextBox Grid.Row="4" Grid.Column="1" Name="textBoxMaxY" MetroControls:TextboxHelper.ClearTextButton="True" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0">
                 <TextBox.Text>
                     <Binding Path="MaxY" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -109,7 +119,7 @@
                 <ColumnDefinition Width="4*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Name="textBlockStandardDeviation" Text="Standard deviation" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="1" Name="textBoxStandardDeviation" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0" >
+            <TextBox Grid.Column="1" Name="textBoxStandardDeviation" MetroControls:TextboxHelper.ClearTextButton="True" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0" >
                 <TextBox.Text>
                     <Binding Path="StandardDeviation" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -125,8 +135,8 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" IsDefault="True" Content="OK" Name="buttonOk" Click="ButtonOk_Click" Padding="40,5" VerticalAlignment="Center" HorizontalAlignment="Center" />
-            <Button Grid.Column="1" IsCancel="True" Content="Cancel" Name="buttonCancel"  Padding="40,5" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Button Grid.Column="0" IsDefault="True" Content="OK" Name="buttonOk" Click="ButtonOk_Click" Style="{StaticResource MetroAccentButton}" Padding="40,5" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Button Grid.Column="1" IsCancel="True" Content="Cancel" Name="buttonCancel" Style="{StaticResource MetroAccentButton}" Padding="40,5" VerticalAlignment="Center" HorizontalAlignment="Center" />
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
@@ -148,4 +158,4 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </Grid>
-</Window>
+</MetroControls:MetroWindow>
