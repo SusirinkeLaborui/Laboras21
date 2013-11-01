@@ -7,6 +7,7 @@ using System.Windows.Threading;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Laboras21.Controls
 {
@@ -16,117 +17,96 @@ namespace Laboras21.Controls
         private IReadOnlyList<Vertex> nodes;
         private SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
         private List<DispatcherOperation> drawTasks = new List<DispatcherOperation>();
+        private TransformGroup transform;
         private double xFactor = 0;//bwahahahahahaha
         private double yFactor = 0;
         private int xOffset = 0;
         private int yOffset = 0;
-        private const int nodeRadius = 4;
-        private const int lineWidth = 2;
-
-        private struct DoublePoint
-        {
-            public double x;
-            public double y;
-        }
+        private const int nodeRadius = 50;
+        private const int lineWidth = 30;
 
         public SuperCanvas()
         {
-            SizeChanged += SuperCanvas_SizeChanged;
             xOffset = (MagicalNumbers.MaxX - MagicalNumbers.MinX) / 2;
             yOffset = (MagicalNumbers.MaxY - MagicalNumbers.MinY) / 2;
+
+            xFactor = 1000.0 / MagicalNumbers.DataWidth;
+            yFactor = 1000.0 / MagicalNumbers.DataHeight;
+
+            var translate = new TranslateTransform(xOffset, yOffset);
+            var scale = new ScaleTransform(xFactor, yFactor);
+            transform = new TransformGroup();
+            transform.Children.Add(translate);
+            transform.Children.Add(scale);
 
             //testing
 
             /*var temp = new List<Vertex>();
             temp.Add(new Vertex(new Point(0, 0)));
-            temp.Add(new Vertex(new Point(4000, 2000)));
+            temp.Add(new Vertex(new Point(7000, 5000)));
             SetCollection(temp);
-            DrawEdge(temp[0], temp[1]);*/
+
+            AddEdge(temp[0], temp[1]);*/
         }
 
-        void SuperCanvas_SizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
-        {
-            xFactor = e.NewSize.Width / MagicalNumbers.DataWidth;
-            yFactor = e.NewSize.Height / MagicalNumbers.DataHeight;
-            Refresh();
-        }
-
-        public void SetCollection(IReadOnlyList<Vertex> vertices)
+        public async void SetCollection(IReadOnlyList<Vertex> vertices)
         {
             nodes = vertices;
-            Redraw();
+            await Redraw();
         }
 
         public void AddEdge(Vertex vertex1, Vertex vertex2)
         {
+            if (!InBounds(vertex1.Coordinates) || !InBounds(vertex2.Coordinates))
+                return;
             Point p1 = vertex1.Coordinates;
             Point p2 = vertex2.Coordinates;
             edges.Add(new Tuple<Point, Point>(p1, p2));
             AddEdge(p1, p2);
         }
 
+
+        private bool InBounds(Point p)
+        {
+            return p.x >= MagicalNumbers.MinX && p.x <= MagicalNumbers.MaxX && p.y >= MagicalNumbers.MinY && p.y <= MagicalNumbers.MaxY;
+        }
+
         private void AddEdge(Point p1, Point p2)
         {
+            Line l = new Line();
+            l.X1 = p1.x;
+            l.X2 = p2.x;
+            l.Y1 = p1.y;
+            l.Y2 = p2.y;
+            l.Stroke = brush;
+            l.StrokeThickness = lineWidth;
+            l.RenderTransform = transform;
+
             drawTasks.Add(Dispatcher.InvokeAsync(() =>
             {
-                Line l = new Line();
-                l.X1 = p1.x;
-                l.X2 = p2.x;
-                l.Y1 = p1.y;
-                l.Y2 = p2.y;
-                l.Stroke = brush;
-                l.StrokeThickness = lineWidth;
                 Children.Add(l);
-            }));
+            }, DispatcherPriority.Background));
         }
 
         private void AddNode(Point p)
         {
+            if (!InBounds(p))
+                return;
+            var node = new Ellipse();
+            node.SetValue(Canvas.LeftProperty, (double)p.x);
+            node.SetValue(Canvas.TopProperty, (double)p.y);
+            node.Width = node.Height = nodeRadius * 2;
+            node.Fill = brush;
+            node.RenderTransform = transform;
+
             drawTasks.Add(Dispatcher.InvokeAsync(() =>
             {
-                var node = new Ellipse();
-                node.SetValue(Canvas.LeftProperty, (double)(p.x - nodeRadius));
-                node.SetValue(Canvas.TopProperty, (double)(p.y - nodeRadius));
-                node.Width = node.Height = nodeRadius * 2;
-                node.Fill = brush;
-
                 Children.Add(node);
-            }));
+            }, DispatcherPriority.Background));
         }
 
-        private DoublePoint Translate(Point point)
-        {
-            DoublePoint p;
-            p.x = point.x + xOffset;
-            p.x *= xFactor;
-            p.y = point.y + yOffset;
-            p.y *= yFactor;
-            return p;
-        }
 
-        private async void Refresh()
-        {
-            var translate = new TranslateTransform(xOffset, yOffset);
-            var scale = new ScaleTransform(xFactor, yFactor);
-            var transform = new TransformGroup();
-            transform.Children.Add(translate);
-            transform.Children.Add(scale);
-
-            int n = await Dispatcher.InvokeAsync<int>(() =>
-            {
-                return Children.Count;
-            });
-
-            for (int i = 0; i < n; i++)
-            {
-                drawTasks.Add(Dispatcher.InvokeAsync(() =>
-                {
-                    Children[i].RenderTransform = transform;
-                }, DispatcherPriority.Background));
-            }
-        }
-
-        private async void Redraw()
+        private async Task Redraw()
         {
             foreach (var t in drawTasks)
                 t.Abort();
@@ -144,10 +124,16 @@ namespace Laboras21.Controls
                 foreach (var e in edges)
                     AddEdge(e.Item1, e.Item2);
             }
-            foreach (var task in drawTasks)
-                await task;
+
+            try
+            {
+                foreach (var task in drawTasks)
+                    await task;
+            }
+            catch (Exception e)
+            {
+            }
             drawTasks.Clear();
-            Refresh();
         }
     }
 }
