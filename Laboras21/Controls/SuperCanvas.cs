@@ -73,34 +73,34 @@ namespace Laboras21.Controls
 
         private void AddEdge(Point p1, Point p2)
         {
-            Line l = new Line();
-            l.X1 = p1.x;
-            l.X2 = p2.x;
-            l.Y1 = p1.y;
-            l.Y2 = p2.y;
-            l.Stroke = brush;
-            l.StrokeThickness = lineWidth;
-            l.RenderTransform = transform;
-
             drawTasks.Add(Dispatcher.InvokeAsync(() =>
             {
+                Line l = new Line();
+                l.X1 = p1.x;
+                l.X2 = p2.x;
+                l.Y1 = p1.y;
+                l.Y2 = p2.y;
+                l.Stroke = brush;
+                l.StrokeThickness = lineWidth;
+                l.RenderTransform = transform;
+
                 Children.Add(l);
             }, DispatcherPriority.Background));
         }
 
         private void AddNode(Point p)
         {
-            if (!InBounds(p))
-                return;
-            var node = new Ellipse();
-            node.SetValue(Canvas.LeftProperty, (double)p.x);
-            node.SetValue(Canvas.TopProperty, (double)p.y);
-            node.Width = node.Height = nodeRadius * 2;
-            node.Fill = brush;
-            node.RenderTransform = transform;
-
             drawTasks.Add(Dispatcher.InvokeAsync(() =>
             {
+                if (!InBounds(p))
+                    return;
+                var node = new Ellipse();
+                node.SetValue(Canvas.LeftProperty, (double)p.x);
+                node.SetValue(Canvas.TopProperty, (double)p.y);
+                node.Width = node.Height = nodeRadius * 2;
+                node.Fill = brush;
+                node.RenderTransform = transform;
+
                 Children.Add(node);
             }, DispatcherPriority.Background));
         }
@@ -114,7 +114,7 @@ namespace Laboras21.Controls
             await Dispatcher.InvokeAsync(() =>
             {
                 Children.Clear();
-            });
+            }).Task.ConfigureAwait(false);
 
             if (nodes != null)
             {
@@ -130,7 +130,7 @@ namespace Laboras21.Controls
                 foreach (var task in drawTasks)
                     await task;
             }
-            catch (Exception e)
+            catch (OperationCanceledException)
             {
             }
             drawTasks.Clear();
