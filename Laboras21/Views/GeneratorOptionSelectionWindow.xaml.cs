@@ -111,7 +111,7 @@ namespace Laboras21.Views
                 return result;
             }
 
-            result &= viewModel.MinX < viewModel.MaxX;
+            result &= viewModel.MinY < viewModel.MaxY;
             if (!result)
             {
                 MessageBox.Show("Minimum Y has to be less than Maximum Y!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
