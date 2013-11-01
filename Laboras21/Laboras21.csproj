@@ -88,6 +88,13 @@
     <Compile Include="Classes\MinimalSpanningTreeFinder.cs" />
     <Compile Include="Generators\UniformRandomNumberGenerator.cs" />
     <Compile Include="Classes\Vertex.cs" />
+    <Compile Include="Views\StyledMessageDialog.xaml.cs">
+      <DependentUpon>StyledMessageDialog.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\StyledMessageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Resource Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

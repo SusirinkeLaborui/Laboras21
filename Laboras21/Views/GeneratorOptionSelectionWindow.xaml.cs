@@ -100,21 +100,21 @@ namespace Laboras21.Views
 
             if (!result)
             {
-                MessageBox.Show("One or more fields has an invalid value!");
+                StyledMessageDialog.Show("One or more fields has an invalid value!", "Error");
                 return result;
             }
 
             result &= viewModel.MinX < viewModel.MaxX;
             if (!result)
             {
-                MessageBox.Show("Minimum X has to be less than Maximum X!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                StyledMessageDialog.Show("Minimum X has to be less than Maximum X!", "Error");
                 return result;
             }
 
             result &= viewModel.MinY < viewModel.MaxY;
             if (!result)
             {
-                MessageBox.Show("Minimum Y has to be less than Maximum Y!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                StyledMessageDialog.Show("Minimum Y has to be less than Maximum Y!", "Error");
                 return result;
             }
 
@@ -129,7 +129,7 @@ namespace Laboras21.Views
 
             if (!result)
             {
-                MessageBox.Show("One or more fields has an invalid value!");
+                StyledMessageDialog.Show("One or more fields has an invalid value!", "Error");
             }
 
             return result;
