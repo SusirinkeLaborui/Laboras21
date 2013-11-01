@@ -62,7 +62,6 @@ namespace Laboras21.Views
             if (distributionComboBox.SelectedIndex == 0)
             {
                 generator = new UniformRandomNumberGenerator(viewModel.MinX, viewModel.MaxX, viewModel.MinY, viewModel.MaxY);
-               
             }
             else
             {
@@ -100,7 +99,7 @@ namespace Laboras21.Views
 
             if (!result)
             {
-                MessageBox.Show("One or more field has an invalid value!");
+                MessageBox.Show("One or more fields has an invalid value!");
                 return result;
             }
 
@@ -126,11 +125,10 @@ namespace Laboras21.Views
             bool result = true;
 
             result &= !Validation.GetHasError(textBoxStandardDeviation);
-            result &= !Validation.GetHasError(textBoxN);
 
             if (!result)
             {
-                MessageBox.Show("One or more field has an invalid value!");
+                MessageBox.Show("One or more fields has an invalid value!");
             }
 
             return result;
