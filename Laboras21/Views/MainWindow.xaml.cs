@@ -28,7 +28,8 @@ namespace Laboras21.Views
         {
             InitializeComponent();
 
-            treeFinder = new MinimalSpanningTreeFinder(canvas);
+            treeFinder = new MinimalSpanningTreeFinder(canvas, progressBar);
+            canvas.ProgressBar = progressBar;
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateInput", true);
         }
 
@@ -38,7 +39,7 @@ namespace Laboras21.Views
 
             Sing();
         }
-
+        
         private async void ButtonGenerate_Click(object sender, RoutedEventArgs e)
         {
             var generatorWindow = new GeneratorOptionSelectionWindow(graph);
@@ -49,16 +50,33 @@ namespace Laboras21.Views
             {
                 return;
             }
-            
-            await canvas.SetCollection(graph);
 
-            VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
+            progressBar.Value = 0;
+
+            try
+            {
+                VisualStateManager.GoToElementState(this.LayoutRoot, "StateGenerating", true);
+                await canvas.SetCollection(graph);
+                VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
+            }
+            catch (OperationCanceledException)
+            {
+                VisualStateManager.GoToElementState(this.LayoutRoot, "StateInput", true);
+            }
+        }
+        
+        private async void ButtonStopGenerating_Click(object sender, RoutedEventArgs e)
+        {
+            await canvas.SetCollection(null);
         }
 
         private async void ButtonStartComputing_Click(object sender, RoutedEventArgs e)
         {
+            progressBar.Value = 0;
+
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateComputing", true);
             await treeFinder.FindAsync(graph);
+            await canvas.FinishDrawing();
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
         }
 

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace Laboras21
 {
@@ -12,12 +14,13 @@ namespace Laboras21
         private SuperCanvas canvas;
         private Task currentFindTask;
         CancellationTokenSource cancellationTokenSource;
+        private ProgressBar progressBar;
 
         public MinimalSpanningTreeFinder()
         {
         }
 
-        public MinimalSpanningTreeFinder(SuperCanvas drawableCanvas)
+        public MinimalSpanningTreeFinder(SuperCanvas drawableCanvas, ProgressBar progressBar)
         {
             if (drawableCanvas == null)
             {
@@ -25,6 +28,7 @@ namespace Laboras21
             }
 
             canvas = drawableCanvas;
+            this.progressBar = progressBar;
         }
 
         public void CancelSearch()
@@ -163,6 +167,8 @@ namespace Laboras21
                 treePoints.Add(sparePoints[minimalSparePoint]);
                 sparePoints[minimalSparePoint] = sparePoints[sparePoints.Count - 1];
                 sparePoints.RemoveAt(sparePoints.Count - 1);
+
+                ReportProgress(treePoints.Count, graph.Count);
             }
         }
 
@@ -177,6 +183,27 @@ namespace Laboras21
             {
                 canvas.AddEdge(vertex1, vertex2);
             }
+        }
+
+        private void ReportProgress(long nodesInTree, long totalNodes)
+        {
+            if (progressBar == null)
+            {
+                return;
+            }
+
+            double numerator, denominator;
+            double progress; 
+            
+            numerator = -(double)(nodesInTree * (nodesInTree + 1) * (2 * nodesInTree - totalNodes * 3 + 1));
+            denominator = (double)((totalNodes - 1) * totalNodes * (totalNodes + 1));
+
+            progress = 100 * numerator / denominator;
+
+            progressBar.Dispatcher.InvokeAsync(() =>
+                {
+                    progressBar.Value = progress;
+                }, DispatcherPriority.Background);
         }
     }
 }

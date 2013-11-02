@@ -19,11 +19,14 @@ namespace Laboras21.Controls
         private SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
         private HashSet<DispatcherOperation> drawTasks = new HashSet<DispatcherOperation>();
         private List<CancellationTokenSource> cancellationTokenSources = new List<CancellationTokenSource>();
+        private Task nodeRedrawTask;
         private TransformGroup transform;
         private int xOffset = 0;
         private int yOffset = 0;
         private const int nodeRadius = 50;
         private const int lineWidth = 20;
+
+        public ProgressBar ProgressBar { get; set; } 
 
         public SuperCanvas()
         {
@@ -54,8 +57,6 @@ namespace Laboras21.Controls
 
         public async Task SetCollection(IReadOnlyList<Vertex> vertices)
         {
-            nodes = vertices;
-
             lock (cancellationTokenSources)
             {
                 foreach (var tokenSource in cancellationTokenSources)
@@ -66,18 +67,48 @@ namespace Laboras21.Controls
                 cancellationTokenSources.Clear();
             }
 
-            try
+            // Wait for current drawing operation to end before setting nodes to new value
+            if (nodeRedrawTask != null)
             {
-                var tokenSource = new CancellationTokenSource();
-                lock (cancellationTokenSources)
+                try
                 {
-                    cancellationTokenSources.Add(tokenSource);
+                    await nodeRedrawTask;
+                }
+                catch (OperationCanceledException)
+                {
+                }
+            }
+            nodes = vertices;
+
+            var cancellationTokenSource = new CancellationTokenSource();
+            lock (cancellationTokenSources)
+            {
+                cancellationTokenSources.Add(cancellationTokenSource);
+            }
+
+            nodeRedrawTask = RedrawNodes(cancellationTokenSource.Token);
+            await nodeRedrawTask;
+        }
+
+        public async Task FinishDrawing()
+        {
+            while (drawTasks.Count > 0)
+            {
+                DispatcherOperation task = null;
+                lock (drawTasks)
+                {
+                    var enumerator = drawTasks.GetEnumerator();
+
+                    if (enumerator.MoveNext() != false)
+                    {
+                        task = enumerator.Current;
+                    }                    
                 }
 
-                await RedrawNodes(tokenSource.Token);
-            }
-            catch (OperationCanceledException)
-            {
+                if (task != null)
+                {
+                    await task;
+                }
             }
         }
 
@@ -180,7 +211,7 @@ namespace Laboras21.Controls
 
             try
             {
-                var batchCount = 10;
+                var batchCount = 25;
                 for (int i = 0; batchCount * i < nodes.Count; i++)
                 {
                     BatchAddNodes(i * batchCount, i * batchCount + batchCount, nodeDrawTasks);
@@ -190,9 +221,10 @@ namespace Laboras21.Controls
                     BatchAddNodes(nodes.Count - nodes.Count % batchCount, nodes.Count, nodeDrawTasks);
                 }
 
-                foreach (var operation in nodeDrawTasks)
+                for (int i = 0; i < nodeDrawTasks.Count; i++)
                 {
-                    await operation;
+                    await nodeDrawTasks[i];
+                    ReportProgress(i, nodeDrawTasks.Count);
                     cancellationToken.ThrowIfCancellationRequested();
                 }
             }
@@ -204,6 +236,19 @@ namespace Laboras21.Controls
                 }
                 throw;
             }
+        }
+
+        private void ReportProgress(int nodesDrawn, int totalNodes)
+        {
+            if (ProgressBar == null)
+            {
+                return;
+            }
+
+            Dispatcher.InvokeAsync(() =>
+                {
+                    ProgressBar.Value = 100.0 * (double)nodesDrawn / (double)totalNodes;
+                }, DispatcherPriority.Input);
         }
     }
 }
