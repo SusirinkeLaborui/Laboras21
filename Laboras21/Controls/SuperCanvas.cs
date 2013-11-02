@@ -25,6 +25,29 @@ namespace Laboras21.Controls
         private int yOffset = 0;
         private const int nodeRadius = 50;
         private const int lineWidth = 20;
+        private const int maxChildCount = 200;
+        private Canvas currentCanvas;
+        private Canvas CurrentCanvas
+        {
+            set
+            {
+                currentCanvas = value;
+            }
+            get
+            {
+                if (currentCanvas == null || Children.Count == 0)
+                {
+                    currentCanvas = new Canvas();
+                    Children.Add(currentCanvas);
+                }
+                if (currentCanvas.Children.Count >= maxChildCount)
+                {
+                    currentCanvas = new Canvas();
+                    Children.Add(currentCanvas);
+                }
+                return currentCanvas;
+            }
+        }
 
         public ProgressBar ProgressBar { get; set; } 
 
@@ -53,6 +76,8 @@ namespace Laboras21.Controls
 
             Width = MagicalNumbers.DataWidth + nodeRadius * 2;
             Height = MagicalNumbers.DataHeight + nodeRadius * 2;
+
+            currentCanvas = new Canvas();
         }
 
         /// <summary>
@@ -122,7 +147,7 @@ namespace Laboras21.Controls
         }
 
         /// <summary>
-        /// Adds an edge
+        /// Adds an edge, can be called from wherever
         /// </summary>
         /// <param name="vertex1">start</param>
         /// <param name="vertex2">end</param>
@@ -138,6 +163,7 @@ namespace Laboras21.Controls
             var drawTask = Dispatcher.InvokeAsync(() =>
             {
                 AddEdgeToCanvas(p1, p2);
+
             }, DispatcherPriority.Background);
 
             lock (drawTasks)
@@ -163,7 +189,7 @@ namespace Laboras21.Controls
             l.StrokeThickness = lineWidth;
             l.RenderTransform = transform;
 
-            Children.Add(l);
+            CurrentCanvas.Children.Add(l);
         }
 
         /// <summary>
@@ -216,7 +242,7 @@ namespace Laboras21.Controls
             node.Fill = brush;
             node.RenderTransform = transform;
 
-            Children.Add(node);
+            CurrentCanvas.Children.Add(node);
         }
 
         private void drawTask_Completed(object sender, EventArgs e)
@@ -258,7 +284,7 @@ namespace Laboras21.Controls
                 {
                     BatchAddNodes(added, nodes.Count, nodeDrawTasks);
                 }
-
+                
                 for (int i = 0; i < nodeDrawTasks.Count; i++)
                 {
                     await nodeDrawTasks[i];
