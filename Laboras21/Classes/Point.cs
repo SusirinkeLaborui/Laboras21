@@ -1,6 +1,9 @@
 ﻿using System;
 namespace Laboras21
 {
+    /// <summary>
+    /// Describes one point on Cartesian coordinate system: coordinates x and y.
+    /// </summary>
     public struct Point : IComparable<Point>
     {
         public int x, y;
@@ -19,8 +22,14 @@ namespace Laboras21
             }
             else
             {
-                return x.CompareTo(other.y);
+                return x.CompareTo(other.x);
             }
+        }
+
+        // For debugging purposes
+        public override string ToString()
+        {
+            return "(" + x.ToString() + "; " + y.ToString() + ")";
         }
     }
 }

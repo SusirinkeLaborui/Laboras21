@@ -243,7 +243,7 @@ namespace Laboras21.Controls
             try
             {
                 var batchCount = 10;
-                for (int i = 0; batchCount * i < nodes.Count; i++)
+                for (int i = 0; batchCount * (i + 1) <= nodes.Count; i++)
                 {
                     BatchAddNodes(i * batchCount, i * batchCount + batchCount, nodeDrawTasks);
                 }

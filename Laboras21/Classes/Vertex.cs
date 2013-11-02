@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Laboras21
 {
+    /// <summary>
+    /// Describes one graph vertex - its coordinates and list of its neighbours.
+    /// </summary>
     public class Vertex
     {
         public Point Coordinates { get; set; }
