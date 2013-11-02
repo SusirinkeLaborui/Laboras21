@@ -128,29 +128,16 @@ namespace Laboras21.Controls
         /// <param name="vertex2">end</param>
         public void AddEdge(Vertex vertex1, Vertex vertex2)
         {
-            edges.Add(new Tuple<Point, Point>(vertex1.Coordinates, vertex2.Coordinates));
-            AddEdge(vertex1.Coordinates, vertex2.Coordinates);
-        }
+            var p1 = vertex1.Coordinates;
+            var p2 = vertex2.Coordinates;
+            lock (edges)
+            {
+                edges.Add(new Tuple<Point, Point>(p1, p2));
+            }
 
-        /// <summary>
-        /// Adds an edge to the canvas, can be called from wherever
-        /// </summary>
-        /// <param name="p1">start</param>
-        /// <param name="p2">end</param>
-        private void AddEdge(Point p1, Point p2)
-        {
             var drawTask = Dispatcher.InvokeAsync(() =>
             {
-                Line l = new Line();
-                l.X1 = p1.x;
-                l.X2 = p2.x;
-                l.Y1 = p1.y;
-                l.Y2 = p2.y;
-                l.Stroke = brush;
-                l.StrokeThickness = lineWidth;
-                l.RenderTransform = transform;
-
-                Children.Add(l);
+                AddEdgeToCanvas(p1, p2);
             }, DispatcherPriority.Background);
 
             lock (drawTasks)
@@ -158,6 +145,25 @@ namespace Laboras21.Controls
                 drawTask.Completed += drawTask_Completed;
                 drawTasks.Add(drawTask);
             }
+        }
+
+        /// <summary>
+        /// Adds an edge to the canvas, to be called from the UI thread
+        /// </summary>
+        /// <param name="p1">start</param>
+        /// <param name="p2">end</param>
+        private void AddEdgeToCanvas(Point p1, Point p2)
+        {
+            Line l = new Line();
+            l.X1 = p1.x;
+            l.X2 = p2.x;
+            l.Y1 = p1.y;
+            l.Y2 = p2.y;
+            l.Stroke = brush;
+            l.StrokeThickness = lineWidth;
+            l.RenderTransform = transform;
+
+            Children.Add(l);
         }
 
         /// <summary>
