@@ -141,8 +141,26 @@ namespace Laboras21.Controls
 
                 if (task != null)
                 {
-                    await task;
+                    try
+                    {
+                        await task;
+                    }
+                    catch (OperationCanceledException)
+                    {
+                    }
                 }
+            }
+        }
+
+        public void CancelDrawing()
+        {
+            lock (drawTasks)
+            {
+                foreach (var task in drawTasks)
+                {
+                    task.Abort();
+                }
+                drawTasks.Clear();
             }
         }
 
