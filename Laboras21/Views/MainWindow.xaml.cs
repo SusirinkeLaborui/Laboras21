@@ -65,7 +65,6 @@ namespace Laboras21.Views
         private void ButtonStopComputing_Click(object sender, RoutedEventArgs e)
         {
             treeFinder.CancelSearch();
-            VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
         }
 
         private async void Sing()

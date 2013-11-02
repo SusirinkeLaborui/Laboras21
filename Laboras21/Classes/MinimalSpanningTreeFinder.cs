@@ -122,23 +122,38 @@ namespace Laboras21
             
             while (treePoints.Count < graph.Count)
             {
-                int minimalDistance = GetDistanceSqr(treePoints[0].Coordinates, sparePoints[0].Coordinates);
-                int minimalSparePoint = 0, 
-                    minimalTreePoint = 0;
+                var minimalPairs = new Tuple<int, int>[treePoints.Count];
+                var parallelOptions = new ParallelOptions();
+                parallelOptions.CancellationToken = cancellationToken;
 
-                for (int i = 0; i < treePoints.Count; i++)
+                Parallel.For(0, treePoints.Count, parallelOptions, (i) =>
                 {
-                    for (int j = 0; j < sparePoints.Count; j++)
+                    int minDistance = GetDistanceSqr(treePoints[i].Coordinates, sparePoints[0].Coordinates);
+                    int minPoint = 0;
+                    for (int j = 1; j < sparePoints.Count; j++)
                     {
-                        if (GetDistanceSqr(treePoints[i].Coordinates, sparePoints[j].Coordinates) < minimalDistance)
+                        int distance = GetDistanceSqr(treePoints[i].Coordinates, sparePoints[j].Coordinates);
+                        if (distance < minDistance)
                         {
-                            minimalTreePoint = i;
-                            minimalSparePoint = j;
+                            minPoint = j;
+                            minDistance = distance;
                         }
                     }
 
-                    cancellationToken.ThrowIfCancellationRequested();
+                    minimalPairs[i] = new Tuple<int, int>(minPoint, minDistance);
+                });
+
+                int minimalTreePoint = 0;
+                for (int i = 0; i < treePoints.Count; i++)
+                {
+                    if (minimalPairs[i].Item2 < minimalPairs[minimalTreePoint].Item2)
+                    {
+                        minimalTreePoint = i;
+                    }
                 }
+
+                int minimalSparePoint = minimalPairs[minimalTreePoint].Item1;
+                int minimalDistance = minimalPairs[minimalTreePoint].Item2;
 
                 graph[treePoints[minimalTreePoint].Index].Neighbours.Add(graph[sparePoints[minimalSparePoint].Index]);
                 graph[sparePoints[minimalSparePoint].Index].Neighbours.Add(graph[treePoints[minimalTreePoint].Index]);
