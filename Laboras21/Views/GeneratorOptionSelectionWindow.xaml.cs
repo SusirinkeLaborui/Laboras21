@@ -22,14 +22,14 @@ namespace Laboras21.Views
     /// </summary>
     public partial class GeneratorOptionSelectionWindow : MetroWindow
     {
-        List<Point> graphPoints;
+        List<Vertex> graph;
         bool result = false;
         GeneratorOptionViewModel viewModel;
         public bool? Result { get; private set; }
 
-        public GeneratorOptionSelectionWindow(List<Point> graphPoints)
+        public GeneratorOptionSelectionWindow(List<Vertex> graph)
         {
-            this.graphPoints = graphPoints;
+            this.graph = graph;
 
             InitializeComponent();
 
@@ -74,14 +74,15 @@ namespace Laboras21.Views
                 generator = new NormalRandomNumberGenerator(viewModel.StandardDeviation, viewModel.MinX, viewModel.MaxX, viewModel.MinY, viewModel.MaxY);
             }
 
-            if (graphPoints.Capacity < viewModel.NumberOfPoints)
+            graph.Clear();
+            if (graph.Capacity < viewModel.NumberOfPoints)
             {
-                graphPoints.Capacity = viewModel.NumberOfPoints;
+                graph.Capacity = viewModel.NumberOfPoints;
             }
 
             for (int i = 0; i < viewModel.NumberOfPoints; i++)
             {
-                graphPoints.Add(generator.GeneratePoint());
+                graph.Add(new Vertex(generator.GeneratePoint()));
             }
 
             Result = true;

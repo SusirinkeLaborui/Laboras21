@@ -21,12 +21,14 @@ namespace Laboras21.Views
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        private List<Point> graphPoints = new List<Point>();
+        private List<Vertex> graph = new List<Vertex>();
+        private MinimalSpanningTreeFinder treeFinder;
 
         public MainWindow()
         {
             InitializeComponent();
 
+            treeFinder = new MinimalSpanningTreeFinder(canvas);
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateInput", true);
         }
 
@@ -39,7 +41,7 @@ namespace Laboras21.Views
 
         private void ButtonGenerate_Click(object sender, RoutedEventArgs e)
         {
-            var generatorWindow = new GeneratorOptionSelectionWindow(graphPoints);
+            var generatorWindow = new GeneratorOptionSelectionWindow(graph);
             
             generatorWindow.ShowDialog();
             var dialogResult = generatorWindow.Result;
@@ -47,27 +49,22 @@ namespace Laboras21.Views
             {
                 return;
             }
+            
+            canvas.SetCollection(graph);
 
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
         }
 
-        private void ButtonStartComputing_Click(object sender, RoutedEventArgs e)
+        private async void ButtonStartComputing_Click(object sender, RoutedEventArgs e)
         {
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateComputing", true);
-
-            var graph = new List<Vertex>();
-            graph.Capacity = graphPoints.Capacity;
-
-            foreach (var node in graphPoints)
-            {
-                graph.Add(new Vertex(node));
-            }
-
-            canvas.SetCollection(graph);
+            await treeFinder.FindAsync(graph);
+            VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
         }
 
         private void ButtonStopComputing_Click(object sender, RoutedEventArgs e)
         {
+            treeFinder.CancelSearch();
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
         }
 

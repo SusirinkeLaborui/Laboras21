@@ -16,7 +16,7 @@ namespace Laboras21.Controls
         private List<Tuple<Point, Point>> edges = new List<Tuple<Point,Point>>();
         private IReadOnlyList<Vertex> nodes;
         private SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-        private List<DispatcherOperation> drawTasks = new List<DispatcherOperation>();
+        private HashSet<DispatcherOperation> drawTasks = new HashSet<DispatcherOperation>();
         private TransformGroup transform;
         private double xFactor = 0;//bwahahahahahaha
         private double yFactor = 0;
@@ -65,7 +65,6 @@ namespace Laboras21.Controls
             AddEdge(p1, p2);
         }
 
-
         private bool InBounds(Point p)
         {
             return p.x >= MagicalNumbers.MinX && p.x <= MagicalNumbers.MaxX && p.y >= MagicalNumbers.MinY && p.y <= MagicalNumbers.MaxY;
@@ -73,7 +72,7 @@ namespace Laboras21.Controls
 
         private void AddEdge(Point p1, Point p2)
         {
-            drawTasks.Add(Dispatcher.InvokeAsync(() =>
+            var drawTask = Dispatcher.InvokeAsync(() =>
             {
                 Line l = new Line();
                 l.X1 = p1.x;
@@ -85,12 +84,18 @@ namespace Laboras21.Controls
                 l.RenderTransform = transform;
 
                 Children.Add(l);
-            }, DispatcherPriority.Background));
+            }, DispatcherPriority.Background);
+
+            lock (drawTasks)
+            {
+                drawTask.Completed += drawTask_Completed;
+                drawTasks.Add(drawTask);
+            }
         }
 
         private void AddNode(Point p)
         {
-            drawTasks.Add(Dispatcher.InvokeAsync(() =>
+            var drawTask = Dispatcher.InvokeAsync(() =>
             {
                 if (!InBounds(p))
                     return;
@@ -102,15 +107,33 @@ namespace Laboras21.Controls
                 node.RenderTransform = transform;
 
                 Children.Add(node);
-            }, DispatcherPriority.Background));
-        }
+            }, DispatcherPriority.Background);
 
+            lock (drawTasks)
+            {
+                drawTask.Completed += drawTask_Completed;
+                drawTasks.Add(drawTask);
+            }
+        }
+        
+        private void drawTask_Completed(object sender, EventArgs e)
+        {
+            lock (drawTasks)
+            {
+                drawTasks.Remove(sender as DispatcherOperation);
+            }
+        }
 
         private async Task Redraw()
         {
-            foreach (var t in drawTasks)
-                t.Abort();
-            drawTasks.Clear();
+            lock (drawTasks)
+            {
+                foreach (var t in drawTasks)
+                    t.Abort();
+
+                drawTasks.Clear();
+            }
+
             await Dispatcher.InvokeAsync(() =>
             {
                 Children.Clear();
@@ -124,16 +147,6 @@ namespace Laboras21.Controls
                 foreach (var e in edges)
                     AddEdge(e.Item1, e.Item2);
             }
-
-            try
-            {
-                foreach (var task in drawTasks)
-                    await task;
-            }
-            catch (OperationCanceledException)
-            {
-            }
-            drawTasks.Clear();
         }
     }
 }

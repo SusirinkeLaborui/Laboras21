@@ -10,7 +10,7 @@ namespace Laboras21
     public class MinimalSpanningTreeFinder
     {
         private SuperCanvas canvas;
-        private Task<List<Vertex>> currentFindTask;
+        private Task currentFindTask;
         CancellationTokenSource cancellationTokenSource;
 
         public MinimalSpanningTreeFinder()
@@ -29,54 +29,48 @@ namespace Laboras21
 
         public void CancelSearch()
         {
-            lock (cancellationTokenSource)
+            if (cancellationTokenSource != null)
             {
-                if (cancellationTokenSource != null)
-                {
-                    cancellationTokenSource.Cancel();
-                }
+                cancellationTokenSource.Cancel();
             }
         }
 
-        public async Task<List<Vertex>> FindAsync(IReadOnlyList<Point> points)
+        public async Task FindAsync(IList<Vertex> graph)
         {
             if (currentFindTask != null)
             {
                 throw new InvalidOperationException("Only one find operation may be performed at any single time on a single finder object!");
             }
+            if (graph == null)
+            {
+                throw new ArgumentException("Graph cannot be null!", "graph");
+            }
 
             cancellationTokenSource = new CancellationTokenSource();
 
-            if (points.Count == 0)
+            if (graph.Count == 0)
             {
-                currentFindTask = Task.Run(() =>
-                    {
-                        return new List<Vertex>();
-                    });
+                return;
             }
             else
             {
                 currentFindTask = Task.Run(() =>
                     {
-                        return Find(points, cancellationTokenSource.Token);
+                        Find(graph, cancellationTokenSource.Token);
                     }, cancellationTokenSource.Token);
             }
 
             try
             {
-                return await currentFindTask;
+                await currentFindTask;
             }
             catch (OperationCanceledException)
             {
-                return null;
             }
             finally
             {
-                lock (cancellationTokenSource)
-                {
-                    currentFindTask = null;
-                    cancellationTokenSource = null;
-                }
+                currentFindTask = null;
+                cancellationTokenSource = null;
             }
         }
 
@@ -115,26 +109,17 @@ namespace Laboras21
             }
         }
 
-        private List<Vertex> Find(IReadOnlyList<Point> points, CancellationToken cancellationToken)
+        private void Find(IList<Vertex> graph, CancellationToken cancellationToken)
         {
-            var treePoints = new List<PointInArray>(points.Count);      // Taškai, kurie jau įtraukti į medį
-            var sparePoints = new List<PointInArray>(points.Count);     // Taškai, kurie dar neįtraukti į medį
-            var graph = new List<Vertex>(points.Count);
+            var treePoints = new List<PointInArray>(graph.Count);      // Taškai, kurie jau įtraukti į medį
+            var sparePoints = new List<PointInArray>(graph.Count);     // Taškai, kurie dar neįtraukti į medį
 
-            graph.Add(new Vertex(points[0]));
-            treePoints.Add(new PointInArray(0, points[0]));
+            treePoints.Add(new PointInArray(0, graph[0].Coordinates));            
+            for (int i = 1; i < graph.Count; i++)
+            {
+                sparePoints.Add(new PointInArray(i, graph[i].Coordinates));
+            }
             
-            for (int i = 1; i < points.Count; i++)
-            {
-                sparePoints.Add(new PointInArray(i, points[i]));
-                graph.Add(new Vertex(points[i]));
-            }
-
-            if (canvas != null)
-            {
-                canvas.SetCollection(graph);
-            }
-
             while (treePoints.Count < graph.Count)
             {
                 int minimalDistance = GetDistanceSqr(treePoints[0].Coordinates, sparePoints[0].Coordinates);
@@ -143,7 +128,7 @@ namespace Laboras21
 
                 for (int i = 0; i < treePoints.Count; i++)
                 {
-                    for (int j = 1; j < sparePoints.Count; j++)
+                    for (int j = 0; j < sparePoints.Count; j++)
                     {
                         if (GetDistanceSqr(treePoints[i].Coordinates, sparePoints[j].Coordinates) < minimalDistance)
                         {
@@ -164,8 +149,6 @@ namespace Laboras21
                 sparePoints[minimalSparePoint] = sparePoints[sparePoints.Count - 1];
                 sparePoints.RemoveAt(sparePoints.Count - 1);
             }
-
-            return graph;
         }
 
         private int GetDistanceSqr(Point point1, Point point2)
