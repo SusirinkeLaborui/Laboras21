@@ -55,7 +55,12 @@ namespace Laboras21.Controls
             Height = MagicalNumbers.DataHeight + nodeRadius * 2;
         }
 
-        public async Task SetCollection(IReadOnlyList<Vertex> vertices)
+        /// <summary>
+        /// Replaces the current nodes with vertices provided
+        /// </summary>
+        /// <param name="vertices"></param>
+        /// <returns></returns>
+        public async Task SetCollectionAsync(IReadOnlyList<Vertex> vertices)
         {
             lock (cancellationTokenSources)
             {
@@ -86,11 +91,15 @@ namespace Laboras21.Controls
                 cancellationTokenSources.Add(cancellationTokenSource);
             }
 
-            nodeRedrawTask = RedrawNodes(cancellationTokenSource.Token);
+            nodeRedrawTask = RedrawNodesAsync(cancellationTokenSource.Token);
             await nodeRedrawTask;
         }
 
-        public async Task FinishDrawing()
+        /// <summary>
+        /// Waits for the drawing to finish
+        /// </summary>
+        /// <returns></returns>
+        public async Task FinishDrawingAsync()
         {
             while (drawTasks.Count > 0)
             {
@@ -112,17 +121,22 @@ namespace Laboras21.Controls
             }
         }
 
+        /// <summary>
+        /// Adds an edge
+        /// </summary>
+        /// <param name="vertex1">start</param>
+        /// <param name="vertex2">end</param>
         public void AddEdge(Vertex vertex1, Vertex vertex2)
         {
             edges.Add(new Tuple<Point, Point>(vertex1.Coordinates, vertex2.Coordinates));
             AddEdge(vertex1.Coordinates, vertex2.Coordinates);
         }
 
-        private bool InBounds(Point p)
-        {
-            return p.x >= MagicalNumbers.MinX && p.x <= MagicalNumbers.MaxX && p.y >= MagicalNumbers.MinY && p.y <= MagicalNumbers.MaxY;
-        }
-
+        /// <summary>
+        /// Adds an edge to the canvas, can be called from wherever
+        /// </summary>
+        /// <param name="p1">start</param>
+        /// <param name="p2">end</param>
         private void AddEdge(Point p1, Point p2)
         {
             var drawTask = Dispatcher.InvokeAsync(() =>
@@ -146,6 +160,10 @@ namespace Laboras21.Controls
             }
         }
 
+        /// <summary>
+        /// Adds a node to the canvas, can be called from wherever
+        /// </summary>
+        /// <param name="p"></param>
         private void AddNode(Point p)
         {
             var drawTask = Dispatcher.InvokeAsync(() =>
@@ -160,6 +178,12 @@ namespace Laboras21.Controls
             }
         }
 
+        /// <summary>
+        /// Adds nodes to the canvas, from the nodes list
+        /// </summary>
+        /// <param name="from">index of the first to add</param>
+        /// <param name="to">index after the last to add</param>
+        /// <param name="nodeDrawTasks">a list to be filled with draw tasks</param>
         private void BatchAddNodes(int from, int to, List<DispatcherOperation> nodeDrawTasks)
         {
             var drawTask = Dispatcher.InvokeAsync(() =>
@@ -173,6 +197,10 @@ namespace Laboras21.Controls
             nodeDrawTasks.Add(drawTask);
         }
 
+        /// <summary>
+        /// Does the actual node-related UI stuff, explodes unless called from the UI thread
+        /// </summary>
+        /// <param name="p"></param>
         private void AddNodeToCanvas(Point p)
         {
             var node = new Ellipse();
@@ -193,7 +221,12 @@ namespace Laboras21.Controls
             }
         }
 
-        private async Task RedrawNodes(CancellationToken cancellationToken)
+        /// <summary>
+        /// Removes all nodes, adds new nodes from the node list
+        /// </summary>
+        /// <param name="cancellationToken">token that can be used to cancel this task</param>
+        /// <returns></returns>
+        private async Task RedrawNodesAsync(CancellationToken cancellationToken)
         {
             await Dispatcher.InvokeAsync(() =>
             {
@@ -209,7 +242,7 @@ namespace Laboras21.Controls
 
             try
             {
-                var batchCount = 25;
+                var batchCount = 10;
                 for (int i = 0; batchCount * i < nodes.Count; i++)
                 {
                     BatchAddNodes(i * batchCount, i * batchCount + batchCount, nodeDrawTasks);

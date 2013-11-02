@@ -56,7 +56,7 @@ namespace Laboras21.Views
             try
             {
                 VisualStateManager.GoToElementState(this.LayoutRoot, "StateGenerating", true);
-                await canvas.SetCollection(graph);
+                await canvas.SetCollectionAsync(graph);
                 VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
             }
             catch (OperationCanceledException)
@@ -67,7 +67,7 @@ namespace Laboras21.Views
         
         private async void ButtonStopGenerating_Click(object sender, RoutedEventArgs e)
         {
-            await canvas.SetCollection(null);
+            await canvas.SetCollectionAsync(null);
         }
 
         private async void ButtonStartComputing_Click(object sender, RoutedEventArgs e)
@@ -76,7 +76,7 @@ namespace Laboras21.Views
 
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateComputing", true);
             await treeFinder.FindAsync(graph);
-            await canvas.FinishDrawing();
+            await canvas.FinishDrawingAsync();
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
         }
 
