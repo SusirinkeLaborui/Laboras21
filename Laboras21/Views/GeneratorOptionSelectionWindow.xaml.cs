@@ -27,8 +27,9 @@ namespace Laboras21.Views
         GeneratorOptionViewModel viewModel;
         public bool? Result { get; private set; }
 
-        public GeneratorOptionSelectionWindow(List<Vertex> graph)
+        public GeneratorOptionSelectionWindow(List<Vertex> graph, Window owner)
         {
+            this.Owner = owner;
             this.graph = graph;
 
             InitializeComponent();

@@ -4,7 +4,7 @@
         xmlns:Laboras21="clr-namespace:Laboras21"
         xmlns:ValidationRules="clr-namespace:Laboras21.ValidationRules"
         xmlns:MetroControls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="GeneratorOptionSelectionWindow" Height="337" Width="300" ResizeMode="CanMinimize">
+        Title="GeneratorOptionSelectionWindow" Height="337" Width="300" ResizeMode="CanMinimize" WindowStartupLocation="CenterOwner">
 
     <Window.Resources>
         <ResourceDictionary>

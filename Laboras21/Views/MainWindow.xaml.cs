@@ -42,7 +42,7 @@ namespace Laboras21.Views
         
         private async void ButtonGenerate_Click(object sender, RoutedEventArgs e)
         {
-            var generatorWindow = new GeneratorOptionSelectionWindow(graph);
+            var generatorWindow = new GeneratorOptionSelectionWindow(graph, this);
             
             generatorWindow.ShowDialog();
             var dialogResult = generatorWindow.Result;
