@@ -39,7 +39,7 @@ namespace Laboras21.Views
             Sing();
         }
 
-        private void ButtonGenerate_Click(object sender, RoutedEventArgs e)
+        private async void ButtonGenerate_Click(object sender, RoutedEventArgs e)
         {
             var generatorWindow = new GeneratorOptionSelectionWindow(graph);
             
@@ -50,7 +50,7 @@ namespace Laboras21.Views
                 return;
             }
             
-            canvas.SetCollection(graph);
+            await canvas.SetCollection(graph);
 
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
         }

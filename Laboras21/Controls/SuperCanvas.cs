@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Laboras21.Controls
 {
@@ -17,28 +18,15 @@ namespace Laboras21.Controls
         private IReadOnlyList<Vertex> nodes;
         private SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
         private HashSet<DispatcherOperation> drawTasks = new HashSet<DispatcherOperation>();
+        private List<CancellationTokenSource> cancellationTokenSources = new List<CancellationTokenSource>();
         private TransformGroup transform;
-        private double xFactor = 0;//bwahahahahahaha
-        private double yFactor = 0;
         private int xOffset = 0;
         private int yOffset = 0;
         private const int nodeRadius = 50;
-        private const int lineWidth = 30;
+        private const int lineWidth = 20;
 
         public SuperCanvas()
         {
-            xOffset = (MagicalNumbers.MaxX - MagicalNumbers.MinX) / 2;
-            yOffset = (MagicalNumbers.MaxY - MagicalNumbers.MinY) / 2;
-
-            xFactor = 1000.0 / MagicalNumbers.DataWidth;
-            yFactor = 1000.0 / MagicalNumbers.DataHeight;
-
-            var translate = new TranslateTransform(xOffset, yOffset);
-            var scale = new ScaleTransform(xFactor, yFactor);
-            transform = new TransformGroup();
-            transform.Children.Add(translate);
-            transform.Children.Add(scale);
-
             //testing
 
             /*var temp = new List<Vertex>();
@@ -49,20 +37,54 @@ namespace Laboras21.Controls
             AddEdge(temp[0], temp[1]);*/
         }
 
-        public async void SetCollection(IReadOnlyList<Vertex> vertices)
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+
+            xOffset = -MagicalNumbers.MinX + nodeRadius;
+            yOffset = -MagicalNumbers.MinY + nodeRadius;
+
+            var translate = new TranslateTransform(xOffset, yOffset);
+            transform = new TransformGroup();
+            transform.Children.Add(translate);
+
+            Width = MagicalNumbers.DataWidth + nodeRadius * 2;
+            Height = MagicalNumbers.DataHeight + nodeRadius * 2;
+        }
+
+        public async Task SetCollection(IReadOnlyList<Vertex> vertices)
         {
             nodes = vertices;
-            await Redraw();
+
+            lock (cancellationTokenSources)
+            {
+                foreach (var tokenSource in cancellationTokenSources)
+                {
+                    tokenSource.Cancel();
+                }
+
+                cancellationTokenSources.Clear();
+            }
+
+            try
+            {
+                var tokenSource = new CancellationTokenSource();
+                lock (cancellationTokenSources)
+                {
+                    cancellationTokenSources.Add(tokenSource);
+                }
+
+                await RedrawNodes(tokenSource.Token);
+            }
+            catch (OperationCanceledException)
+            {
+            }
         }
 
         public void AddEdge(Vertex vertex1, Vertex vertex2)
         {
-            if (!InBounds(vertex1.Coordinates) || !InBounds(vertex2.Coordinates))
-                return;
-            Point p1 = vertex1.Coordinates;
-            Point p2 = vertex2.Coordinates;
-            edges.Add(new Tuple<Point, Point>(p1, p2));
-            AddEdge(p1, p2);
+            edges.Add(new Tuple<Point, Point>(vertex1.Coordinates, vertex2.Coordinates));
+            AddEdge(vertex1.Coordinates, vertex2.Coordinates);
         }
 
         private bool InBounds(Point p)
@@ -97,11 +119,9 @@ namespace Laboras21.Controls
         {
             var drawTask = Dispatcher.InvokeAsync(() =>
             {
-                if (!InBounds(p))
-                    return;
                 var node = new Ellipse();
-                node.SetValue(Canvas.LeftProperty, (double)p.x);
-                node.SetValue(Canvas.TopProperty, (double)p.y);
+                node.SetValue(Canvas.LeftProperty, (double)p.x - nodeRadius);
+                node.SetValue(Canvas.TopProperty, (double)p.y - nodeRadius);
                 node.Width = node.Height = nodeRadius * 2;
                 node.Fill = brush;
                 node.RenderTransform = transform;
@@ -115,7 +135,27 @@ namespace Laboras21.Controls
                 drawTasks.Add(drawTask);
             }
         }
-        
+
+        private void BatchAddNodes(int from, int to, List<DispatcherOperation> nodeDrawTasks)
+        {
+            var drawTask = Dispatcher.InvokeAsync(() =>
+            {
+                for (int i = from; i < to; i++)
+                {
+                    var node = new Ellipse();
+                    node.SetValue(Canvas.LeftProperty, (double)nodes[i].Coordinates.x - nodeRadius);
+                    node.SetValue(Canvas.TopProperty, (double)nodes[i].Coordinates.y - nodeRadius);
+                    node.Width = node.Height = nodeRadius * 2;
+                    node.Fill = brush;
+                    node.RenderTransform = transform;
+
+                    Children.Add(node);
+                }
+            }, DispatcherPriority.Background);
+
+            nodeDrawTasks.Add(drawTask);
+        }
+
         private void drawTask_Completed(object sender, EventArgs e)
         {
             lock (drawTasks)
@@ -124,28 +164,45 @@ namespace Laboras21.Controls
             }
         }
 
-        private async Task Redraw()
+        private async Task RedrawNodes(CancellationToken cancellationToken)
         {
-            lock (drawTasks)
-            {
-                foreach (var t in drawTasks)
-                    t.Abort();
-
-                drawTasks.Clear();
-            }
-
             await Dispatcher.InvokeAsync(() =>
             {
                 Children.Clear();
             }).Task.ConfigureAwait(false);
 
-            if (nodes != null)
+            if (nodes == null)
             {
-                foreach (var n in nodes)
-                    AddNode(n.Coordinates);
+                return;
+            }
+            
+            var nodeDrawTasks = new List<DispatcherOperation>();
 
-                foreach (var e in edges)
-                    AddEdge(e.Item1, e.Item2);
+            try
+            {
+                var batchCount = 10;
+                for (int i = 0; batchCount * i < nodes.Count; i++)
+                {
+                    BatchAddNodes(i * batchCount, i * batchCount + batchCount, nodeDrawTasks);
+                }
+                if (nodes.Count % batchCount != 0)
+                {
+                    BatchAddNodes(nodes.Count - nodes.Count % batchCount, nodes.Count, nodeDrawTasks);
+                }
+
+                foreach (var operation in nodeDrawTasks)
+                {
+                    await operation;
+                    cancellationToken.ThrowIfCancellationRequested();
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                foreach (var operation in nodeDrawTasks)
+                {
+                    operation.Abort();
+                }
+                throw;
             }
         }
     }
