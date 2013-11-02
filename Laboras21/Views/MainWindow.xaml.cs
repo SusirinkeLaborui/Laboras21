@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Laboras21.Views
 {
@@ -29,7 +30,12 @@ namespace Laboras21.Views
         {
             InitializeComponent();
 
-            treeFinder = new MinimalSpanningTreeFinder(canvas, progressBar);
+            Action<double> reportProgressCallback = (progress) => progressBar.Dispatcher.InvokeAsync(() =>
+                {
+                    progressBar.Value = progress;
+                }, DispatcherPriority.Background);
+
+            treeFinder = new MinimalSpanningTreeFinder(canvas.AddEdge, reportProgressCallback);
             canvas.ProgressBar = progressBar;
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateInput", true);
         }

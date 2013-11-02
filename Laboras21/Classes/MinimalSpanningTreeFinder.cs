@@ -1,6 +1,8 @@
 ﻿using Laboras21.Controls;
+using Laboras21.Views;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,26 +13,43 @@ namespace Laboras21
 {
     public class MinimalSpanningTreeFinder
     {
-        private SuperCanvas canvas;
-        private Task currentFindTask;
-        CancellationTokenSource cancellationTokenSource;
-        private ProgressBar progressBar;
+        private Action<Vertex, Vertex> drawEdge;
+        private Action<double> reportProgress;
 
+        private Task currentFindTask;
+        private CancellationTokenSource cancellationTokenSource;
+
+        /// <summary>
+        /// Constructs MinimalSpanningTreeFinder object without callbacks.
+        /// </summary>
         public MinimalSpanningTreeFinder()
         {
         }
 
-        public MinimalSpanningTreeFinder(SuperCanvas drawableCanvas, ProgressBar progressBar)
+        /// <summary>
+        /// Constructs MinimalSpanningTreeFinder object.
+        /// </summary>
+        /// <param name="drawEdgeCallback">Callback which is called during minimal spanning tree search when edge is confirmed to be part of minimal spanning tree. Takes two parameters - two points that the edge joins.</param>
+        /// <param name="reportProgressCallback">Callback which is periodically called during minimal spanning tree search to report current progress. Takes one parameter - percentage of completion.</param>
+        public MinimalSpanningTreeFinder(Action<Vertex, Vertex> drawEdgeCallback, Action<double> reportProgressCallback)
         {
-            if (drawableCanvas == null)
+            if (drawEdgeCallback == null)
             {
-                throw new ArgumentException("Canvas was null!", "drawableCanvas");
+                throw new ArgumentException("Draw edge callback was null!", "drawEdgeCallback");
             }
 
-            canvas = drawableCanvas;
-            this.progressBar = progressBar;
+            if (reportProgressCallback == null)
+            {
+                throw new ArgumentException("Report progress callback was null!", "reportProgressCallback");
+            }
+
+            drawEdge = drawEdgeCallback;
+            reportProgress = reportProgressCallback;
         }
 
+        /// <summary>
+        /// Cancels current minimal spanning tree search. If no search is happening, has no effect.
+        /// </summary>
         public void CancelSearch()
         {
             if (cancellationTokenSource != null)
@@ -39,6 +58,11 @@ namespace Laboras21
             }
         }
 
+        /// <summary>
+        /// Asynchronously finds minimal spanning tree in the graph using Prim's algorithm.
+        /// </summary>
+        /// <param name="graph">>Graph, in which minimal spanning tree has to be found.</param>
+        /// <returns>Asynchronous search task.</returns>
         public async Task FindAsync(IList<Vertex> graph)
         {
             if (currentFindTask != null)
@@ -101,109 +125,139 @@ namespace Laboras21
          * 
          */
 
-        private struct PointInArray
+        /// <summary>
+        /// struct Edge describes one graph edge: it holds its length and both points it connects.
+        /// </summary>
+        private struct Edge
         {
-            public int Index { get; private set; }
-            public Point Coordinates { get; private set; }
+            public int Distance { get; private set; }
+            public Point Coordinates1 { get; private set; }
+            public Point Coordinates2 { get; private set; }
 
-            public PointInArray(int index, Point coordinates) : this()
+            public Edge(int distance, Point coordinates1, Point coordinates2) : this()
             {
-                Index = index;
-                Coordinates = coordinates;
+                Distance = distance;
+                Coordinates1 = coordinates1;
+                Coordinates2 = coordinates2;
             }
         }
 
+        /// <summary>
+        /// Finds minimal spanning tree using Prim's algorithm.
+        /// </summary>
+        /// <param name="graph">Graph, in which minimal spanning tree has to be found.</param>
+        /// <param name="cancellationToken">Task cancellation token. If task is cancelled using that token, this function throws OperationCancelledException.</param>
         private void Find(IList<Vertex> graph, CancellationToken cancellationToken)
         {
-            var treePoints = new List<PointInArray>(graph.Count);      // Taškai, kurie jau įtraukti į medį
-            var sparePoints = new List<PointInArray>(graph.Count);     // Taškai, kurie dar neįtraukti į medį
+            var treePoints = new Dictionary<Point, int>();      // Taškai, kurie jau įtraukti į medį
+            var sparePoints = new Dictionary<Point, int>();     // Taškai, kurie dar neįtraukti į medį
 
-            treePoints.Add(new PointInArray(0, graph[0].Coordinates));            
+            treePoints.Add(graph[0].Coordinates, 0);
             for (int i = 1; i < graph.Count; i++)
             {
-                sparePoints.Add(new PointInArray(i, graph[i].Coordinates));
+                sparePoints.Add(graph[i].Coordinates, i);
             }
-            
-            while (treePoints.Count < graph.Count)
-            {
-                var minimalPairs = new Tuple<int, int>[treePoints.Count];
-                var parallelOptions = new ParallelOptions();
-                parallelOptions.CancellationToken = cancellationToken;
 
-                Parallel.For(0, treePoints.Count, parallelOptions, (i) =>
+            var distances = CalculateDistances(graph, cancellationToken);
+            Array.Sort(distances, (item1, item2) =>
                 {
-                    int minDistance = GetDistanceSqr(treePoints[i].Coordinates, sparePoints[0].Coordinates);
-                    int minPoint = 0;
-                    for (int j = 1; j < sparePoints.Count; j++)
-                    {
-                        int distance = GetDistanceSqr(treePoints[i].Coordinates, sparePoints[j].Coordinates);
-                        if (distance < minDistance)
-                        {
-                            minPoint = j;
-                            minDistance = distance;
-                        }
-                    }
-
-                    minimalPairs[i] = new Tuple<int, int>(minPoint, minDistance);
+                    cancellationToken.ThrowIfCancellationRequested();
+                    return item1.Distance.CompareTo(item2.Distance);
                 });
 
-                int minimalTreePoint = 0;
-                for (int i = 0; i < treePoints.Count; i++)
+            for (int i = 0; i < distances.Length && treePoints.Count < graph.Count; i++)
+            {
+                bool containsFirst = treePoints.ContainsKey(distances[i].Coordinates1),
+                     containsSecond = treePoints.ContainsKey(distances[i].Coordinates2);
+
+                if (containsFirst != containsSecond)
                 {
-                    if (minimalPairs[i].Item2 < minimalPairs[minimalTreePoint].Item2)
-                    {
-                        minimalTreePoint = i;
-                    }
+                    var treeCoordinate = containsFirst ? distances[i].Coordinates1 : distances[i].Coordinates2;
+                    var spareCoordinate = containsFirst ? distances[i].Coordinates2 : distances[i].Coordinates1;
+
+                    int treeIndex = treePoints[treeCoordinate];
+                    int spareIndex = sparePoints[spareCoordinate];
+
+                    graph[treeIndex].Neighbours.Add(graph[spareIndex]);
+                    graph[spareIndex].Neighbours.Add(graph[treeIndex]);
+
+                    treePoints.Add(spareCoordinate, spareIndex);
+                    sparePoints.Remove(spareCoordinate);
+
+                    DrawEdge(graph[treeIndex], graph[spareIndex]);
+                    ReportProgress(treePoints.Count, graph.Count);
+
+                    i = -1;
+
+                    cancellationToken.ThrowIfCancellationRequested();
                 }
-
-                int minimalSparePoint = minimalPairs[minimalTreePoint].Item1;
-                int minimalDistance = minimalPairs[minimalTreePoint].Item2;
-
-                graph[treePoints[minimalTreePoint].Index].Neighbours.Add(graph[sparePoints[minimalSparePoint].Index]);
-                graph[sparePoints[minimalSparePoint].Index].Neighbours.Add(graph[treePoints[minimalTreePoint].Index]);
-
-                DrawEdge(graph[treePoints[minimalTreePoint].Index], graph[sparePoints[minimalSparePoint].Index]);
-
-                treePoints.Add(sparePoints[minimalSparePoint]);
-                sparePoints[minimalSparePoint] = sparePoints[sparePoints.Count - 1];
-                sparePoints.RemoveAt(sparePoints.Count - 1);
-
-                ReportProgress(treePoints.Count, graph.Count);
             }
         }
 
+        /// <summary>
+        /// Calculates squared distances between all vertices in the graph.
+        /// </summary>
+        /// <param name="graph">The graph of which distances between vertices has to be calculated.</param>
+        /// <param name="cancellationToken">Task cancellation token. If task is cancelled using that token, this function throws OperationCancelledException.</param>
+        /// <returns>Array of edges, that contain its length squared and both points it connects.</returns>
+        private Edge[] CalculateDistances(IList<Vertex> graph, CancellationToken cancellationToken)
+        {
+            var distances = new Edge[graph.Count * (graph.Count - 1) / 2];
+            var parallelOptions = new ParallelOptions();
+            parallelOptions.CancellationToken = cancellationToken;
+
+            Parallel.For(1, graph.Count, parallelOptions, (u) =>
+                {
+                    int i = (int)u;
+                    int startIndex = (i - 1) * i / 2;
+                    for (int j = 0; j < i; j++)
+                    {
+                        int distance = GetDistanceSqr(graph[i].Coordinates, graph[j].Coordinates);
+                        distances[startIndex + j] = new Edge(distance, graph[i].Coordinates, graph[j].Coordinates);
+                    }
+                });
+
+            return distances;
+        }
+
+        /// <summary>
+        /// Returns distance between two points squared.
+        /// </summary>
+        /// <param name="point1"></param>
+        /// <param name="point2"></param>
+        /// <returns></returns>
         private int GetDistanceSqr(Point point1, Point point2)
         {
             return (point1.x - point2.x) * (point1.x - point2.x) + (point1.y - point2.y) * (point1.y - point2.y);
         }
 
+        /// <summary>
+        /// Draws an edge using a callback that was passed to this object in constructor.
+        /// </summary>
+        /// <param name="vertex1">One of the vertices that the edge connects.</param>
+        /// <param name="vertex2">Another of the vertices that the edge connects.</param>
         private void DrawEdge(Vertex vertex1, Vertex vertex2)
         {
-            if (canvas != null)
+            if (drawEdge != null)
             {
-                canvas.AddEdge(vertex1, vertex2);
+                drawEdge(vertex1, vertex2);
             }
         }
 
+        /// <summary>
+        /// Reports minimal spanning tree search progress to callback that was passed to this object in constructor.
+        /// </summary>
+        /// <param name="nodesInTree">Number of vertices that are currently connected to the tree.</param>
+        /// <param name="totalNodes">Number of vertices in the graph.</param>
         private void ReportProgress(long nodesInTree, long totalNodes)
         {
-            if (progressBar == null)
+            if (reportProgress == null)
             {
                 return;
             }
 
-            double numerator, denominator;
-            double progress; 
-            
-            numerator = -(double)(nodesInTree * (nodesInTree + 1) * (2 * nodesInTree - totalNodes * 3 + 1));
-            denominator = (double)((totalNodes - 1) * totalNodes * (totalNodes + 1));
-
-            progress = 100 * numerator / denominator;
-
-            progressBar.Dispatcher.InvokeAsync(() =>
-                {
-                    progressBar.Value = progress;
-                }, DispatcherPriority.Background);
+            double progress = 100 * (double)nodesInTree / (double)totalNodes;
+            reportProgress(progress);
         }
     }
 }
