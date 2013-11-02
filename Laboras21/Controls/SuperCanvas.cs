@@ -242,14 +242,15 @@ namespace Laboras21.Controls
 
             try
             {
-                var batchCount = 10;
-                for (int i = 0; batchCount * i < nodes.Count; i++)
+                var batchSize = 10;
+                var added = 0;
+                for(; added + batchSize <= nodes.Count; added += batchSize)
                 {
-                    BatchAddNodes(i * batchCount, i * batchCount + batchCount, nodeDrawTasks);
+                    BatchAddNodes(added, added + batchSize, nodeDrawTasks);
                 }
-                if (nodes.Count % batchCount != 0)
+                if (added < nodes.Count)
                 {
-                    BatchAddNodes(nodes.Count - nodes.Count % batchCount, nodes.Count, nodeDrawTasks);
+                    BatchAddNodes(added, nodes.Count, nodeDrawTasks);
                 }
 
                 for (int i = 0; i < nodeDrawTasks.Count; i++)
