@@ -150,14 +150,7 @@ namespace Laboras21.Controls
         {
             var drawTask = Dispatcher.InvokeAsync(() =>
             {
-                var node = new Ellipse();
-                node.SetValue(Canvas.LeftProperty, (double)p.x - nodeRadius);
-                node.SetValue(Canvas.TopProperty, (double)p.y - nodeRadius);
-                node.Width = node.Height = nodeRadius * 2;
-                node.Fill = brush;
-                node.RenderTransform = transform;
-
-                Children.Add(node);
+                AddNodeToCanvas(p);
             }, DispatcherPriority.Background);
 
             lock (drawTasks)
@@ -173,18 +166,23 @@ namespace Laboras21.Controls
             {
                 for (int i = from; i < to; i++)
                 {
-                    var node = new Ellipse();
-                    node.SetValue(Canvas.LeftProperty, (double)nodes[i].Coordinates.x - nodeRadius);
-                    node.SetValue(Canvas.TopProperty, (double)nodes[i].Coordinates.y - nodeRadius);
-                    node.Width = node.Height = nodeRadius * 2;
-                    node.Fill = brush;
-                    node.RenderTransform = transform;
-
-                    Children.Add(node);
+                    AddNodeToCanvas(nodes[i].Coordinates);
                 }
             }, DispatcherPriority.Background);
 
             nodeDrawTasks.Add(drawTask);
+        }
+
+        private void AddNodeToCanvas(Point p)
+        {
+            var node = new Ellipse();
+            node.SetValue(Canvas.LeftProperty, (double)p.x - nodeRadius);
+            node.SetValue(Canvas.TopProperty, (double)p.y - nodeRadius);
+            node.Width = node.Height = nodeRadius * 2;
+            node.Fill = brush;
+            node.RenderTransform = transform;
+
+            Children.Add(node);
         }
 
         private void drawTask_Completed(object sender, EventArgs e)
