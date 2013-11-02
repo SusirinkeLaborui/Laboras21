@@ -28,7 +28,12 @@ namespace Laboras21.Views
         {
             InitializeComponent();
 
-            treeFinder = new MinimalSpanningTreeFinder(canvas, progressBar);
+            Action<double> reportProgressCallback = (progress) => progressBar.Dispatcher.InvokeAsync(() =>
+                {
+                    progressBar.Value = progress;
+                });
+
+            treeFinder = new MinimalSpanningTreeFinder(canvas.AddEdge, reportProgressCallback);
             canvas.ProgressBar = progressBar;
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateInput", true);
         }
