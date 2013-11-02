@@ -25,6 +25,29 @@ namespace Laboras21.Controls
         private int yOffset = 0;
         private const int nodeRadius = 50;
         private const int lineWidth = 20;
+        private const int maxChildCount = 200;
+        private Canvas currentCanvas;
+        private Canvas CurrentCanvas
+        {
+            set
+            {
+                currentCanvas = value;
+            }
+            get
+            {
+                if (currentCanvas == null || Children.Count == 0)
+                {
+                    currentCanvas = new Canvas();
+                    Children.Add(currentCanvas);
+                }
+                if (currentCanvas.Children.Count >= maxChildCount)
+                {
+                    currentCanvas = new Canvas();
+                    Children.Add(currentCanvas);
+                }
+                return currentCanvas;
+            }
+        }
 
         public ProgressBar ProgressBar { get; set; } 
 
@@ -53,6 +76,8 @@ namespace Laboras21.Controls
 
             Width = MagicalNumbers.DataWidth + nodeRadius * 2;
             Height = MagicalNumbers.DataHeight + nodeRadius * 2;
+
+            currentCanvas = new Canvas();
         }
 
         /// <summary>
@@ -122,35 +147,23 @@ namespace Laboras21.Controls
         }
 
         /// <summary>
-        /// Adds an edge
+        /// Adds an edge, can be called from wherever
         /// </summary>
         /// <param name="vertex1">start</param>
         /// <param name="vertex2">end</param>
         public void AddEdge(Vertex vertex1, Vertex vertex2)
         {
-            edges.Add(new Tuple<Point, Point>(vertex1.Coordinates, vertex2.Coordinates));
-            AddEdge(vertex1.Coordinates, vertex2.Coordinates);
-        }
+            var p1 = vertex1.Coordinates;
+            var p2 = vertex2.Coordinates;
+            lock (edges)
+            {
+                edges.Add(new Tuple<Point, Point>(p1, p2));
+            }
 
-        /// <summary>
-        /// Adds an edge to the canvas, can be called from wherever
-        /// </summary>
-        /// <param name="p1">start</param>
-        /// <param name="p2">end</param>
-        private void AddEdge(Point p1, Point p2)
-        {
             var drawTask = Dispatcher.InvokeAsync(() =>
             {
-                Line l = new Line();
-                l.X1 = p1.x;
-                l.X2 = p2.x;
-                l.Y1 = p1.y;
-                l.Y2 = p2.y;
-                l.Stroke = brush;
-                l.StrokeThickness = lineWidth;
-                l.RenderTransform = transform;
+                AddEdgeToCanvas(p1, p2);
 
-                Children.Add(l);
             }, DispatcherPriority.Background);
 
             lock (drawTasks)
@@ -158,6 +171,25 @@ namespace Laboras21.Controls
                 drawTask.Completed += drawTask_Completed;
                 drawTasks.Add(drawTask);
             }
+        }
+
+        /// <summary>
+        /// Adds an edge to the canvas, to be called from the UI thread
+        /// </summary>
+        /// <param name="p1">start</param>
+        /// <param name="p2">end</param>
+        private void AddEdgeToCanvas(Point p1, Point p2)
+        {
+            Line l = new Line();
+            l.X1 = p1.x;
+            l.X2 = p2.x;
+            l.Y1 = p1.y;
+            l.Y2 = p2.y;
+            l.Stroke = brush;
+            l.StrokeThickness = lineWidth;
+            l.RenderTransform = transform;
+
+            CurrentCanvas.Children.Add(l);
         }
 
         /// <summary>
@@ -210,7 +242,7 @@ namespace Laboras21.Controls
             node.Fill = brush;
             node.RenderTransform = transform;
 
-            Children.Add(node);
+            CurrentCanvas.Children.Add(node);
         }
 
         private void drawTask_Completed(object sender, EventArgs e)
@@ -242,16 +274,17 @@ namespace Laboras21.Controls
 
             try
             {
-                var batchCount = 10;
-                for (int i = 0; batchCount * (i + 1) <= nodes.Count; i++)
+                var batchSize = 10;
+                var added = 0;
+                for(; added + batchSize <= nodes.Count; added += batchSize)
                 {
-                    BatchAddNodes(i * batchCount, i * batchCount + batchCount, nodeDrawTasks);
+                    BatchAddNodes(added, added + batchSize, nodeDrawTasks);
                 }
-                if (nodes.Count % batchCount != 0)
+                if (added < nodes.Count)
                 {
-                    BatchAddNodes(nodes.Count - nodes.Count % batchCount, nodes.Count, nodeDrawTasks);
+                    BatchAddNodes(added, nodes.Count, nodeDrawTasks);
                 }
-
+                
                 for (int i = 0; i < nodeDrawTasks.Count; i++)
                 {
                     await nodeDrawTasks[i];
