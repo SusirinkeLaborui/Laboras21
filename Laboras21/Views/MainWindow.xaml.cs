@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,11 +34,34 @@ namespace Laboras21.Views
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateInput", true);
         }
 
-        private void ButtonLoad_Click(object sender, RoutedEventArgs e)
+        private async void ButtonLoad_Click(object sender, RoutedEventArgs e)
         {
+            var openFileDialog = new OpenFileDialog();
+
+            bool? userClickedOK = openFileDialog.ShowDialog();
+
+            if (userClickedOK == true)
+            {
+                
+                VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadingFile", true);
+                try
+                {
+                    graph = await DataProvider.ReadFromFileAsync(openFileDialog.FileName);
+                }
+                catch (BadFileFormatException exc)
+                {
+                    var errorDialog = MessageBox.Show("Corrupted file. " + exc.Message);
+                    VisualStateManager.GoToElementState(this.LayoutRoot, "StateInput", true);
+                }
+                VisualStateManager.GoToElementState(this.LayoutRoot, "StateGenerating", true);
+                await canvas.SetCollectionAsync(graph);
+                VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
+               
+            }
+            
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
 
-            Sing();
+            //Sing();
         }
         
         private async void ButtonGenerate_Click(object sender, RoutedEventArgs e)

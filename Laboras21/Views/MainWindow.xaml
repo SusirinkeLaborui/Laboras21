@@ -87,6 +87,31 @@
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>                    
                 </VisualState>
+                <VisualState x:Name="StateReadingFile">
+                    <Storyboard>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonLoad" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonGenerate" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
+                            <DiscreteObjectKeyFrame Value="Reading graph vertices..." KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="progressBar" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopComputing" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopGenerating" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
                 <VisualState x:Name="StateGenerating">
                     <Storyboard>
                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonLoad" Storyboard.TargetProperty="IsEnabled">

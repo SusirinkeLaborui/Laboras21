@@ -5,40 +5,51 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace Laboras21
 {
     public static class DataProvider
     {
-        public static async Task<List<Point>> ReadFromFile(string filename)
+        public static async Task<List<Vertex>> ReadFromFileAsync(string filename)
         {
-            var file = new StreamReader(filename);
-            var fileContents = await file.ReadToEndAsync();
-            var lines = fileContents.Split('\n');
-            var data = new List<Point>();
 
-            foreach (var line in lines)
+            using (var file = new StreamReader(filename))
             {
-                string[] point = line.Split(' ');
-                if (point.Length != 2)
+                var fileContents = await file.ReadToEndAsync();
+                var lines = fileContents.Split('\n');
+                var data = new List<Vertex>();
+                if (lines.Length - 1 > MagicalNumbers.MaxN)
                 {
-                    throw new BadFileFormatException(line);
+                    throw new BadFileFormatException("File is too long");
                 }
 
-                try
+                for (var i = 0; i < lines.Length - 1; i++)
                 {
-                    int x = Convert.ToInt32(point[0]);
-                    int y = Convert.ToInt32(point[1]);
+                    string[] point = lines[i].Split(' ');
+                    if (point.Length != 2)
+                    {
+                        throw new BadFileFormatException(lines[i]);
+                    }
 
-                    data.Add(new Point(x, y));
+                    try
+                    {
+                        int x = Convert.ToInt32(point[0]);
+                        int y = Convert.ToInt32(point[1]);
+                        if (x > MagicalNumbers.MaxX || x < MagicalNumbers.MinX || y > MagicalNumbers.MaxY || y < MagicalNumbers.MinY)
+                        {
+                            throw new BadFileFormatException(lines[i]);
+                        }
+                        data.Add(new Vertex(new Point(x, y)));
+                    }
+                    catch (Exception e)
+                    {
+                        throw new BadFileFormatException(lines[i], e.Message);
+                    };
                 }
-                catch (Exception e)
-                {                    
-                    throw new BadFileFormatException(line, e.Message);
-                }             
+                return data;
             }
-            
-            return data;
         }
 
         /*
