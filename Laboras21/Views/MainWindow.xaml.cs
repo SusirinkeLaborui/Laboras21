@@ -41,14 +41,12 @@ namespace Laboras21.Views
         }
 
         private async void ButtonLoad_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             var openFileDialog = new OpenFileDialog();
-
             bool? userClickedOK = openFileDialog.ShowDialog();
 
             if (userClickedOK == true)
-            {
-                
+            {                
                 VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadingFile", true);
                 try
                 {
@@ -56,18 +54,15 @@ namespace Laboras21.Views
                 }
                 catch (BadFileFormatException exc)
                 {
-                    var errorDialog = MessageBox.Show("Corrupted file. " + exc.Message);
+                    StyledMessageDialog.Show("The selected file is not valid: " + exc.Message, "Error");
                     VisualStateManager.GoToElementState(this.LayoutRoot, "StateInput", true);
-                }
-                VisualStateManager.GoToElementState(this.LayoutRoot, "StateGenerating", true);
-                await canvas.SetCollectionAsync(graph);
-                VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
-               
-            }
-            
-            VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
 
-            //Sing();
+                    return;
+                }
+
+                await canvas.SetCollectionAsync(graph);
+                VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);               
+            }
         }
         
         private async void ButtonGenerate_Click(object sender, RoutedEventArgs e)

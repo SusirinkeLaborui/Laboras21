@@ -14,7 +14,6 @@ namespace Laboras21
     {
         public static async Task<List<Vertex>> ReadFromFileAsync(string filename)
         {
-
             using (var file = new StreamReader(filename))
             {
                 var fileContents = await file.ReadToEndAsync();
@@ -27,16 +26,16 @@ namespace Laboras21
 
                 for (var i = 0; i < lines.Length - 1; i++)
                 {
-                    string[] point = lines[i].Split(' ');
-                    if (point.Length != 2)
+                    string[] coords = lines[i].Split(' ');
+                    if (coords.Length != 2)
                     {
                         throw new BadFileFormatException(lines[i]);
                     }
 
                     try
                     {
-                        int x = Convert.ToInt32(point[0]);
-                        int y = Convert.ToInt32(point[1]);
+                        int x = Convert.ToInt32(coords[0]);
+                        int y = Convert.ToInt32(coords[1]);
                         if (x > MagicalNumbers.MaxX || x < MagicalNumbers.MinX || y > MagicalNumbers.MaxY || y < MagicalNumbers.MinY)
                         {
                             throw new BadFileFormatException(lines[i]);
@@ -57,7 +56,6 @@ namespace Laboras21
          * kiekviena viršūnei bus skirta viena eilutė
          * ten bus nurodyta viršūnės koordinatės, kaimynių skaičius ir jų koordinatės.
          * Vienos rezultatų eilutės duomenys bus atskiriami tarpu.
-         * 
          */
         public static async void SaveToFile(string filename, List<Vertex> vertices)
         {
@@ -73,7 +71,6 @@ namespace Laboras21
                     foreach (var neighbour in vertex.Neighbours)
                     {
                         fileContent.Append(" {0} {1}", neighbour.Coordinates.x, neighbour.Coordinates.y);
-
                     }
                     fileContent.Append("\n");
 
