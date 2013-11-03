@@ -76,25 +76,14 @@ namespace Laboras21.Views
             {
                 return;
             }
-
-            progressBar.Value = 0;
-            var saveToFileDialogResult = StyledMessageDialog.Show("Save generated results to file?", "Save to file", MessageBoxButton.YesNo);
-            if (saveToFileDialogResult.HasValue && saveToFileDialogResult.Value)
-            {
-                var saveFileDialog = new SaveFileDialog();
-                saveFileDialog.FileName = "untitled.txt";
-                saveFileDialog.Filter = "Text File (*.txt)|*.*";
-                saveFileDialog.Title = "Save as";
-                if (saveFileDialog.ShowDialog() == true)
-                {
-                    DataProvider.SaveDataToFileAsync(saveFileDialog.FileName, graph);
-                }
-            }
             
+            progressBar.Value = 0;
             try
             {
                 VisualStateManager.GoToElementState(this.LayoutRoot, "StateGenerating", true);
-                await canvas.SetCollectionAsync(graph);
+                var generationTask = canvas.SetCollectionAsync(graph);
+                AskToSaveGeneratedData();
+                await generationTask;
                 VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
             }
             catch (OperationCanceledException)
@@ -122,6 +111,35 @@ namespace Laboras21.Views
         {
             treeFinder.CancelSearch();
             canvas.CancelDrawing();
+        }
+
+        private void AskToSaveGeneratedData()
+        {
+            bool showDialog = true;
+            while (showDialog)
+            {
+                var saveToFileDialogResult = StyledMessageDialog.Show("Save generated results to file?", "Save to file", MessageBoxButton.YesNo);
+                if (saveToFileDialogResult.HasValue && saveToFileDialogResult.Value)
+                {
+                    var saveFileDialog = new SaveFileDialog();
+                    saveFileDialog.FileName = "untitled.txt";
+                    saveFileDialog.Filter = "Text File (*.txt)|*.*";
+                    saveFileDialog.Title = "Save as";
+                    if (saveFileDialog.ShowDialog() == true)
+                    {
+                        DataProvider.SaveDataToFileAsync(saveFileDialog.FileName, graph);
+                        showDialog = false;
+                    }
+                    else
+                    {
+                        showDialog = true;
+                    }
+                }
+                else
+                {
+                    showDialog = false;
+                }
+            }
         }
 
         private async void Sing()
