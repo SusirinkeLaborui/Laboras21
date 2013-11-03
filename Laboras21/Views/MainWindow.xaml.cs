@@ -101,7 +101,7 @@ namespace Laboras21.Views
             progressBar.Value = 0;
 
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateComputing", true);
-            await Task.Run(() => canvas.ClearEdgesAsync());
+            await canvas.ClearEdgesAsync();
             await treeFinder.FindAsync(graph);
             await canvas.FinishDrawingAsync();
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
