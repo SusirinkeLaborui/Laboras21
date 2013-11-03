@@ -81,6 +81,14 @@ namespace Laboras21.Controls
         }
 
         /// <summary>
+        /// Clears all edges from the canvas, thread safe
+        /// </summary>
+        public void ClearEdges()
+        {
+
+        }
+
+        /// <summary>
         /// Replaces the current nodes with vertices provided
         /// </summary>
         /// <param name="vertices"></param>
