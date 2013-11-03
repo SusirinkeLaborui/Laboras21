@@ -48,6 +48,7 @@ namespace Laboras21.Controls
                 return currentCanvas;
             }
         }
+        private Canvas edgeCanvas;
 
         public ProgressBar ProgressBar { get; set; } 
 
@@ -78,14 +79,24 @@ namespace Laboras21.Controls
             Height = MagicalNumbers.DataHeight + nodeRadius * 2;
 
             currentCanvas = new Canvas();
+            edgeCanvas = new Canvas();
+            Children.Add(edgeCanvas);
         }
 
         /// <summary>
         /// Clears all edges from the canvas, thread safe
         /// </summary>
-        public void ClearEdges()
+        public async Task ClearEdgesAsync()
         {
-
+            CancelDrawing();
+            lock (edges)
+            {
+                edges.Clear();
+            }
+            await Dispatcher.InvokeAsync(() =>
+                {
+                    edgeCanvas.Children.Clear();
+                });
         }
 
         /// <summary>
@@ -215,7 +226,7 @@ namespace Laboras21.Controls
             l.StrokeThickness = lineWidth;
             l.RenderTransform = transform;
 
-            CurrentCanvas.Children.Add(l);
+            edgeCanvas.Children.Add(l);
         }
 
         /// <summary>
@@ -289,11 +300,18 @@ namespace Laboras21.Controls
             await Dispatcher.InvokeAsync(() =>
             {
                 Children.Clear();
+                edgeCanvas = new Canvas();
+                Children.Add(edgeCanvas);
             }).Task.ConfigureAwait(false);
 
             if (nodes == null)
             {
                 return;
+            }
+
+            lock (edges)
+            {
+                edges.Clear();
             }
             
             var nodeDrawTasks = new List<DispatcherOperation>();
