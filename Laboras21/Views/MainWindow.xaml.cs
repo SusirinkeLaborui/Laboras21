@@ -46,8 +46,7 @@ namespace Laboras21.Views
             bool? userClickedOK = openFileDialog.ShowDialog();
 
             if (userClickedOK == true)
-            {
-             
+            {             
                 VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadingFile", true);
                 try
                 {
@@ -102,6 +101,7 @@ namespace Laboras21.Views
             progressBar.Value = 0;
 
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateComputing", true);
+            await Task.Run(() => canvas.ClearEdges());
             await treeFinder.FindAsync(graph);
             await canvas.FinishDrawingAsync();
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);

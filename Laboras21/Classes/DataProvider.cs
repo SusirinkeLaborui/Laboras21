@@ -26,29 +26,31 @@ namespace Laboras21
 
                 for (var i = 0; i < lines.Length - 1; i++)
                 {
+                    int x, y;
                     string[] coords = lines[i].Split(' ');
                     if (coords.Length != 2)
                     {
                         throw new BadFileFormatException(lines[i]);
                     }
-                    int x, y;
+
                     try
                     {
                         x = Convert.ToInt32(coords[0]);
-                        y = Convert.ToInt32(coords[1]);
-                       
+                        y = Convert.ToInt32(coords[1]);                       
                     }
                     catch (Exception e)
                     {
                         throw new BadFileFormatException(String.Format("Line no. {0} could not be parsed. {1}", i + 1));
-                    };
+                    }
 
                     if (x > MagicalNumbers.MaxX || x < MagicalNumbers.MinX || y > MagicalNumbers.MaxY || y < MagicalNumbers.MinY)
                     {
                         throw new BadFileFormatException(String.Format("Line no. {0} could not be parsed.", i + 1));
                     }
+
                     data.Add(new Vertex(new Point(x, y)));
                 }
+
                 return data;
             }
         }
@@ -82,7 +84,6 @@ namespace Laboras21
                 }
 
                 await fileWriteTask;
-                file.Close();
             }
         }
 
@@ -94,7 +95,6 @@ namespace Laboras21
                 {
                     await file.WriteAsync(String.Format("{0} {1}\n", vertex.Coordinates.x, vertex.Coordinates.y));
                 }
-                file.Close();
             }
         }
     }
