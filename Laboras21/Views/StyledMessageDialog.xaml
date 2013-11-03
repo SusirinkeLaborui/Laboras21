@@ -15,12 +15,44 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
             <RowDefinition Height="60" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Name="messageTextBlock" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Margin="12,15" />
-        <Button Grid.Row="1" Content="OK" Click="Button_Click" Style="{StaticResource MetroAccentButton}" Width="90" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="12,15" />
+        <Button Grid.Row="1" x:Name="buttonOK" Content="OK" Click="ButtonOK_Click" Style="{StaticResource MetroAccentButton}" Width="90" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="12,15" />
+        <Button Grid.Row="1" x:Name="buttonYes" Content="Yes" Click="ButtonYes_Click" Style="{StaticResource MetroAccentButton}" Width="90" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,167,15" />
+        <Button Grid.Row="1" x:Name="buttonNo" Content="No" Click="ButtonNo_Click" Style="{StaticResource MetroAccentButton}" Width="90" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="12,15" />
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState Name="StateOK">
+                    <Storyboard>                        
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonYes" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonNo" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonOK" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState Name="StateYesNo">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonYes" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonNo" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonOK" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </MetroControls:MetroWindow>

@@ -46,7 +46,8 @@ namespace Laboras21.Views
             bool? userClickedOK = openFileDialog.ShowDialog();
 
             if (userClickedOK == true)
-            {                
+            {
+             
                 VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadingFile", true);
                 try
                 {
@@ -77,7 +78,19 @@ namespace Laboras21.Views
             }
 
             progressBar.Value = 0;
-
+            var saveToFileDialogResult = StyledMessageDialog.Show("Save generated results to file?", "Save to file", MessageBoxButton.YesNo);
+            if (saveToFileDialogResult.HasValue && saveToFileDialogResult.Value)
+            {
+                var saveFileDialog = new SaveFileDialog();
+                saveFileDialog.FileName = "untitled.txt";
+                saveFileDialog.Filter = "Text File (*.txt)|*.*";
+                saveFileDialog.Title = "Save as";
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    DataProvider.SaveDataToFileAsync(saveFileDialog.FileName, graph);
+                }
+            }
+            
             try
             {
                 VisualStateManager.GoToElementState(this.LayoutRoot, "StateGenerating", true);

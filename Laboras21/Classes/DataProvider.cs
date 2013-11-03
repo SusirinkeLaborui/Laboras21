@@ -21,7 +21,7 @@ namespace Laboras21
                 var data = new List<Vertex>();
                 if (lines.Length - 1 > MagicalNumbers.MaxN)
                 {
-                    throw new BadFileFormatException("File is too long");
+                    throw new BadFileFormatException("File is too long.");
                 }
 
                 for (var i = 0; i < lines.Length - 1; i++)
@@ -31,21 +31,23 @@ namespace Laboras21
                     {
                         throw new BadFileFormatException(lines[i]);
                     }
-
+                    int x, y;
                     try
                     {
-                        int x = Convert.ToInt32(coords[0]);
-                        int y = Convert.ToInt32(coords[1]);
-                        if (x > MagicalNumbers.MaxX || x < MagicalNumbers.MinX || y > MagicalNumbers.MaxY || y < MagicalNumbers.MinY)
-                        {
-                            throw new BadFileFormatException(lines[i]);
-                        }
-                        data.Add(new Vertex(new Point(x, y)));
+                        x = Convert.ToInt32(coords[0]);
+                        y = Convert.ToInt32(coords[1]);
+                       
                     }
                     catch (Exception e)
                     {
-                        throw new BadFileFormatException(lines[i], e.Message);
+                        throw new BadFileFormatException(String.Format("Line no. {0} could not be parsed. {1}", i + 1));
                     };
+
+                    if (x > MagicalNumbers.MaxX || x < MagicalNumbers.MinX || y > MagicalNumbers.MaxY || y < MagicalNumbers.MinY)
+                    {
+                        throw new BadFileFormatException(String.Format("Line no. {0} could not be parsed.", i + 1));
+                    }
+                    data.Add(new Vertex(new Point(x, y)));
                 }
                 return data;
             }
@@ -57,7 +59,7 @@ namespace Laboras21
          * ten bus nurodyta viršūnės koordinatės, kaimynių skaičius ir jų koordinatės.
          * Vienos rezultatų eilutės duomenys bus atskiriami tarpu.
          */
-        public static async void SaveToFile(string filename, List<Vertex> vertices)
+        public static async void SaveResultsToFile(string filename, List<Vertex> vertices)
         {
             using (var file = new StreamWriter(filename))
             {
@@ -80,6 +82,18 @@ namespace Laboras21
                 }
 
                 await fileWriteTask;
+                file.Close();
+            }
+        }
+
+        public static async void SaveDataToFileAsync(string filename, List<Vertex> vertices)
+        {
+            using (var file = new StreamWriter(filename))
+            {
+                foreach (var vertex in vertices)
+                {
+                    await file.WriteAsync(String.Format("{0} {1}\n", vertex.Coordinates.x, vertex.Coordinates.y));
+                }
                 file.Close();
             }
         }

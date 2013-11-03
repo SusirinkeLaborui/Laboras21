@@ -20,23 +20,46 @@ namespace Laboras21.Views
     /// </summary>
     public partial class StyledMessageDialog : MetroWindow
     {
-        public StyledMessageDialog(string message, string title)
+        public StyledMessageDialog(string message, string title, MessageBoxButton buttons)
         {
             InitializeComponent();
 
             Title = title;
             messageTextBlock.Text = message;
+
+            switch (buttons)
+            {
+                case MessageBoxButton.OK:
+                    VisualStateManager.GoToElementState(this.LayoutRoot, "StateOK", false);
+                    break;
+                case MessageBoxButton.YesNo:
+                    VisualStateManager.GoToElementState(this.LayoutRoot, "StateYesNo", false);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonOK_Click(object sender, RoutedEventArgs e)
         {
+            this.DialogResult = true;
             Close();
         }
-        
-        public static void Show(string message, string title)
+
+        public static bool? Show(string message, string title, MessageBoxButton buttons = MessageBoxButton.OK)
         {
-            var dialog = new StyledMessageDialog(message, title);
-            dialog.ShowDialog();
+            var dialog = new StyledMessageDialog(message, title, buttons);
+            return dialog.ShowDialog();
+        }
+
+        private void ButtonYes_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+        }
+
+        private void ButtonNo_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
         }
     }
 }

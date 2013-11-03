@@ -9,13 +9,9 @@ namespace Laboras21
     class BadFileFormatException : Exception
     {
         public BadFileFormatException(string line)
-            : base("Incorrect line: " + line)
+            : base(line)
         {
         }
 
-        public BadFileFormatException(string line, string additionalError)
-            : base("Incorrect line: " + line + ". Error: " + additionalError)
-        {
-        }
     }
 }
