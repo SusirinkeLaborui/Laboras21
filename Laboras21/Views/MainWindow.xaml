@@ -32,6 +32,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
                 <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
@@ -43,8 +44,9 @@
                 <Button Grid.Column="1" x:Name="buttonGenerate" Style="{StaticResource MetroAccentButton}" Content="Generate data" Click="ButtonGenerate_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
             </Grid>
             <Button Grid.Row="1" x:Name="buttonStartComputing" Style="{StaticResource MetroAccentButton}" Content="Start computing" Click="ButtonStartComputing_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
+            <Button Grid.Row="2" x:Name="buttonSaveResults" Style="{StaticResource MetroAccentButton}" Content="Save results" Click="ButtonSaveResults_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
             
-            <StackPanel Grid.Row="2" VerticalAlignment="Center" Height="200">
+            <StackPanel Grid.Row="3" VerticalAlignment="Center" Height="200">
                 <TextBlock x:Name="operationNameTextBlock" Margin="20,30,20,10" HorizontalAlignment="Center" FontSize="24" TextAlignment="Center" TextWrapping="Wrap"/>
                 <MetroControls:MetroProgressBar x:Name="progressBar" Foreground="#B53351"/>
                 <Grid>
@@ -73,6 +75,9 @@
                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
                             <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
                         </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonSaveResults" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
                             <DiscreteObjectKeyFrame Value="" KeyTime="0"/>
                         </ObjectAnimationUsingKeyFrames>
@@ -96,6 +101,9 @@
                             <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
                         </BooleanAnimationUsingKeyFrames>
                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonSaveResults" Storyboard.TargetProperty="IsEnabled">
                             <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
                         </BooleanAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
@@ -123,6 +131,9 @@
                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
                             <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
                         </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonSaveResults" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
                             <DiscreteObjectKeyFrame Value="Generating graph vertices..." KeyTime="0"/>
                         </ObjectAnimationUsingKeyFrames>
@@ -147,6 +158,9 @@
                         </BooleanAnimationUsingKeyFrames>
                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
                             <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonSaveResults" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
                         </BooleanAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
                             <DiscreteObjectKeyFrame Value="" KeyTime="0"/>
@@ -173,6 +187,9 @@
                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
                             <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
                         </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonSaveResults" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
                             <DiscreteObjectKeyFrame Value="Finding minimal spanning tree..." KeyTime="0"/>
                         </ObjectAnimationUsingKeyFrames>
@@ -181,6 +198,34 @@
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopComputing" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopGenerating" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="StateDoneComputing">
+                    <Storyboard>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonLoad" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonGenerate" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonSaveResults" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
+                            <DiscreteObjectKeyFrame Value="" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="progressBar" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopComputing" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopGenerating" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>

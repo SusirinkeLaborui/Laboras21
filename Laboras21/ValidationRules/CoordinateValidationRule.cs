@@ -28,7 +28,7 @@ namespace Laboras21.ValidationRules
                 else if (value == "y")
                 {
                     min = MagicalNumbers.MinY;
-                    max = MagicalNumbers.MaxX;
+                    max = MagicalNumbers.MaxY;
                 }
                 else
                 {

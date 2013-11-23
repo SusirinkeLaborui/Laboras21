@@ -104,13 +104,18 @@ namespace Laboras21.Views
             await canvas.ClearEdgesAsync();
             await treeFinder.FindAsync(graph);
             await canvas.FinishDrawingAsync();
-            VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
+            VisualStateManager.GoToElementState(this.LayoutRoot, "StateDoneComputing", true);
         }
 
         private void ButtonStopComputing_Click(object sender, RoutedEventArgs e)
         {
             treeFinder.CancelSearch();
             canvas.CancelDrawing();
+        }
+
+        private void ButtonSaveResults_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void AskToSaveGeneratedData()

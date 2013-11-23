@@ -17,8 +17,8 @@ namespace Laboras21.Generators
         {
             this.standardDeviation = standardDeviation;
             random = new Random();
-            offsetX = minX + maxX;
-            offsetY = minY + maxY;
+            offsetX = -minX;
+            offsetY = -minY;
             widthX = maxX - minX;
             widthY = maxY - minY;
             this.minX = minX;
