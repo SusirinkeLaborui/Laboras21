@@ -1,8 +1,10 @@
-﻿using MahApps.Metro.Controls;
+﻿using Laboras21.Controls;
+using MahApps.Metro.Controls;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -23,8 +26,12 @@ namespace Laboras21.Views
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        [DllImport("D3DBackend.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr CreateD3DContext(int width, int height, IntPtr hwnd);
+
         private List<Vertex> graph = new List<Vertex>();
         private MinimalSpanningTreeFinder treeFinder;
+        SuperCanvas canvas = new SuperCanvas();
 
         public MainWindow()
         {
@@ -40,8 +47,25 @@ namespace Laboras21.Views
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateInput", true);
         }
 
+        private void InitD3D()
+        {
+            var D3DWindow = new D3DWindow(500, 500);
+            D3DBorder.Child = D3DWindow;
+            D3DWindow.MessageHook += new HwndSourceHook(ControlMsgFilter);
+
+            CreateD3DContext(1280, 720, D3DWindow.Hwnd);
+        }
+
+        private IntPtr ControlMsgFilter(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            handled = false;
+
+            return IntPtr.Zero;
+        }
+
         private async void ButtonLoad_Click(object sender, RoutedEventArgs e)
-        {            
+        {
+            InitD3D();  
             var openFileDialog = new OpenFileDialog();
             bool? userClickedOK = openFileDialog.ShowDialog();
 

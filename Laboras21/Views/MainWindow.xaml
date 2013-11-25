@@ -55,11 +55,8 @@
                 </Grid>
             </StackPanel>
         </Grid>
-        
-        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="0" >
-            <Viewbox>
-                <Controls:SuperCanvas x:Name="canvas" Width="1000" Height="1000" Background="LightGray" />
-            </Viewbox>
+
+        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="0" x:Name="D3DBorder" Width="500" Height="500">
         </Border>
         
         <VisualStateManager.VisualStateGroups>
