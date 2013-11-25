@@ -95,6 +95,13 @@ namespace Laboras21
             catch (OperationCanceledException)
             {
             }
+            catch (InvalidOperationException ex)
+            {
+                if (!(ex.InnerException is OperationCanceledException))
+                {
+                    throw;
+                }
+            }
             finally
             {
                 currentFindTask = null;

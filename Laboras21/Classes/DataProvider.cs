@@ -38,7 +38,7 @@ namespace Laboras21
                         x = Convert.ToInt32(coords[0]);
                         y = Convert.ToInt32(coords[1]);                       
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         throw new BadFileFormatException(String.Format("Line no. {0} could not be parsed. {1}", i + 1));
                     }
