@@ -88,12 +88,16 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;D3DBACKEND_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>PrecompiledHeader.h</PrecompiledHeaderFile>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalOptions>dxgi.lib d3d11.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -149,9 +153,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ColorInstancedShader.cpp" />
     <ClCompile Include="Constants.cpp" />
     <ClCompile Include="D3D.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Instancer.cpp" />
+    <ClCompile Include="IShader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PrecompiledHeader.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -160,17 +167,37 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="System.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Tools.cpp" />
     <ClCompile Include="Windowing.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseInstancer.h" />
+    <ClInclude Include="ColorInstancedShader.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="D3D.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="PrecompiledHeader.h" />
     <ClInclude Include="System.h" />
+    <ClInclude Include="DrawableEntity.h" />
+    <ClInclude Include="Globals.h" />
+    <ClInclude Include="IInstanceShader.h" />
+    <ClInclude Include="Instancer.h" />
+    <ClInclude Include="IShader.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Tools.h" />
     <ClInclude Include="Windowing.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="ColorInstancedPixel.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="ColorInstancedVertex.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

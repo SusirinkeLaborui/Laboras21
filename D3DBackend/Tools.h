@@ -29,6 +29,33 @@ public:
 
 	static void SetMessageBoxCallback(MessageBoxCallback callback) { messageBoxCallback = callback;	}
 
+
+	template<class T>
+	static void CopyToBuffer(Microsoft::WRL::ComPtr<ID3D11Buffer> buffer, const T &data, Microsoft::WRL::ComPtr<ID3D11DeviceContext> context)
+	{
+		D3D11_MAPPED_SUBRESOURCE resource;
+		context->Map(buffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
+		memcpy(resource.pData, &data, sizeof(T));
+		context->Unmap(buffer.Get(), 0);
+	}
+
+	template<class T>
+	static void Reverse(std::vector<T> &vec)
+	{
+		reverse(vec.begin(), vec.end());
+	}
+
+	static bool ReadFileToArray(wstring file, std::unique_ptr<char> &arr, UINT &size);
+
+	static inline float Vector3Dot(DirectX::XMVECTOR vector1, DirectX::XMVECTOR vector2)
+	{
+#if !WINDOWS_PHONE
+		return DirectX::XMVector3Dot(vector1, vector2).m128_f32[0];
+#else
+		return DirectX::XMVector3Dot(vector1, vector2).n128_f32[0];
+#endif
+	};
+
 	static inline float GetTickCount()
 	{
 		static int dummy = InitPerformanceCounterFrequency();
@@ -49,26 +76,38 @@ struct Point2D
 };
 
 
-#ifndef DEBUG
-#define Assert(x)   if (x != S_OK) \
-					{ \
-						wstringstream stream; \
-						stream << hex << x; \
-						Tools::ShowMessageBox(L"Error number 0x" + stream.str(), __WFILE__ + wstring(L": ") + to_wstring(__LINE__)); \
-						exit(-1); \
-					}
-#elif WINDOWS_PHONE
-#define Assert(x)   if (x != S_OK) \
-					{ \
-						OutputDebugStringW((L"Error! HRESULT: " + to_wstring(x)).c_str()); \
-						OutputDebugStringW((__WFILE__ + wstring(L": ") + to_wstring(__LINE__)).c_str()); \
-						assert(false); \
-					}
+#ifndef _DEBUG
+#define Assert(x) \
+if (x != S_OK) \
+{ \
+	wstringstream stream; \
+	stream << hex << x; \
+	Tools::ShowMessageBox(L"Error number 0x" + stream.str(), __WFILE__ + wstring(L": ") + to_wstring(__LINE__)); \
+	exit(-1); \
+}
 #else
-#define Assert(x)   if (x != S_OK) \
-					{ \
-						OutputDebugStringW((L"Error! HRESULT: " + to_wstring(x)).c_str()); \
-						OutputDebugStringW((__WFILE__ + wstring(L": ") + to_wstring(__LINE__)).c_str()); \
-						DebugBreak(); \
-					}
+#define Assert(x) \
+if (x != S_OK) \
+{ \
+	wstringstream stream; \
+	stream << hex << x; \
+	Tools::ShowMessageBox(L"Error number 0x" + stream.str(), __WFILE__ + wstring(L": ") + to_wstring(__LINE__)); \
+	DebugBreak(); \
+}
+#endif
+
+#ifndef _DEBUG
+#define AssertBool(x, error) \
+if (x != true) \
+{ \
+	Tools::ShowMessageBox(error, __WFILE__ + wstring(L": ") + to_wstring(__LINE__)); \
+	exit(-1); \
+}
+#else
+#define AssertBool(x, error) \
+if (x != true) \
+{ \
+	Tools::ShowMessageBox(error, __WFILE__ + wstring(L": ") + to_wstring(__LINE__)); \
+	DebugBreak(); \
+}
 #endif
