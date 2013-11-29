@@ -2,7 +2,7 @@
 
 #include "Constants.h"
 
-typedef void (*MessageBoxCallback)(const wchar_t* title, const wchar_t* text);
+typedef void (__stdcall *MessageBoxCallback)(const wchar_t* title, const wchar_t* text);
 
 class Tools
 {
