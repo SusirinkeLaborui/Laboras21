@@ -55,6 +55,7 @@ void System::Run()
 			timeSinceLastFps = lastFrameFinished;
 		}
 
+#pragma message("WARNING: Remove when D3D Vsync is implemented!!!")
 		Sleep(20);
 	}
 }
