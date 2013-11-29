@@ -149,6 +149,11 @@ void System::HandleRawInput(long lParam, long wParam)
 	}
 	else if (raw->header.dwType == RIM_TYPEMOUSE && wParam == 0) 
 	{
+		if (raw->data.mouse.usButtonFlags == RI_MOUSE_WHEEL)
+		{
+			input.SetWheelDisplacement((long)(short)raw->data.mouse.usButtonData);
+		}
+
 		input.SetMouseDisplacement(raw->data.mouse.lLastX, raw->data.mouse.lLastY);
 	}
 }
