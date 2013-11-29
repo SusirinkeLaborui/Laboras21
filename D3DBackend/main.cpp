@@ -1,23 +1,26 @@
 #include "PrecompiledHeader.h"
 
 #include "D3D.h"
-
-static shared_ptr<D3D> d3D;
+#include "System.h"
 
 extern "C"
 {
-	__declspec(dllexport) void __cdecl CreateD3DContext(int width, int height, HWND windowHandle)
+	__declspec(dllexport) void SetMessageBoxCallback(MessageBoxCallback callback)
 	{
-		d3D = make_shared<D3D>(width, height, windowHandle);
+		Tools::SetMessageBoxCallback(callback);
+	}
 
-		thread([]()
-		{
-			while (true)
-			{
-				d3D->StartDrawing(1.0f, 0.0f, 0.0f, 1.0f);
-				d3D->SwapBuffers();
-			}
-		}).detach();
-		//return d3D->GetSwapChain().Get();
+	__declspec(dllexport) System* __cdecl CreateD3DContext(int width, int height, HWND parentWindow)
+	{
+		System* system = new System(width, height, parentWindow);		
+		system->RunAsync();
+		return system;
+	}
+
+	__declspec(dllexport) void _cdecl DestroyD3DContext(System*& system)
+	{
+		system->StopRunning();
+		delete system;
+		system = nullptr;
 	}
 }

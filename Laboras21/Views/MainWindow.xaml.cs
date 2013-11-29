@@ -26,9 +26,6 @@ namespace Laboras21.Views
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        [DllImport("D3DBackend.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr CreateD3DContext(int width, int height, IntPtr hwnd);
-
         private List<Vertex> graph = new List<Vertex>();
         private MinimalSpanningTreeFinder treeFinder;
         SuperCanvas canvas = new SuperCanvas();
@@ -49,23 +46,13 @@ namespace Laboras21.Views
 
         private void InitD3D()
         {
-            var D3DWindow = new D3DWindow(500, 500);
-            D3DBorder.Child = D3DWindow;
-            D3DWindow.MessageHook += new HwndSourceHook(ControlMsgFilter);
-
-            CreateD3DContext(1280, 720, D3DWindow.Hwnd);
-        }
-
-        private IntPtr ControlMsgFilter(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
-        {
-            handled = false;
-
-            return IntPtr.Zero;
+            var d3DWindow = new D3DWindow(500, 500);
+            d3DBorder.Child = d3DWindow;
         }
 
         private async void ButtonLoad_Click(object sender, RoutedEventArgs e)
         {
-            InitD3D();  
+            InitD3D();
             var openFileDialog = new OpenFileDialog();
             bool? userClickedOK = openFileDialog.ShowDialog();
 

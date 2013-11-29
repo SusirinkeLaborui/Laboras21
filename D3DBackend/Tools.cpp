@@ -2,7 +2,7 @@
 
 #include "Tools.h"
 
-HWND Tools::windowHandle = nullptr;
+MessageBoxCallback Tools::messageBoxCallback = nullptr;
 long long int Tools::performanceCounterFrequency = 0;
 
 Tools::Tools()
@@ -24,33 +24,15 @@ wstring Tools::GetErrorText(int errorCode)
 
 void Tools::ShowMessageBox(const wstring& title, const string& text)
 {
-#if !WINDOWS_PHONE
 	auto buffer = unique_ptr<wchar_t[]>(new wchar_t[text.length() + 1]);
 	MultiByteToWideChar(CP_THREAD_ACP, 0, text.c_str(), text.length(), buffer.get(), text.length());
 	buffer[text.length()] = 0;
 	ShowMessageBox(title, buffer.get());
-#endif
 }
 
 void Tools::ShowMessageBox(const wstring& title, const wstring& text)
 {
-#if !WINDOWS_PHONE
-	MessageBox(windowHandle, text.c_str(), title.c_str(), MB_OK);
-#endif
-}
-
-void Tools::LogVector(const wstring& text, DirectX::XMVECTOR vector)
-{
-	wstring vectorStr;
-#if !WINDOWS_PHONE
-	vectorStr = L"[" + to_wstring(vector.m128_f32[0]) + L"; " + to_wstring(vector.m128_f32[1]) + L"; " + 
-		to_wstring(vector.m128_f32[2]) + L"; " + to_wstring(vector.m128_f32[3]) + L"]";
-#else
-	vectorStr = L"[" + to_wstring(vector.n128_f32[0]) + L"; " + to_wstring(vector.n128_f32[1]) + L"; " + 
-		to_wstring(vector.n128_f32[2]) + L"; " + to_wstring(vector.n128_f32[3]) + L"]";
-#endif
-
-	OutputDebugString((text + vectorStr + L"\r\n").c_str());
+	messageBoxCallback(title.c_str(), text.c_str());
 }
 
 vector<uint8_t> Tools::ReadFileToVector(wstring path)

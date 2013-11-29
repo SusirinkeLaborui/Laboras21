@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.Controls;
+﻿using Laboras21.Classes;
+using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,14 @@ namespace Laboras21.Views
     /// </summary>
     public partial class StyledMessageDialog : MetroWindow
     {
+        static StyledMessageDialog()
+        {
+            PInvoke.SetMessageBoxCallback((title, text) =>
+                {
+                    Show(text, title);
+                });
+        }
+
         public StyledMessageDialog(string message, string title, MessageBoxButton buttons)
         {
             InitializeComponent();

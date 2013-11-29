@@ -2,13 +2,15 @@
 
 #include "Constants.h"
 
+typedef void (*MessageBoxCallback)(const wchar_t* title, const wchar_t* text);
+
 class Tools
 {
 private:
 	Tools();
 	~Tools();
 
-	static HWND windowHandle;
+	static MessageBoxCallback messageBoxCallback;
 	static long long int performanceCounterFrequency;
 
 	inline static int InitPerformanceCounterFrequency()
@@ -21,53 +23,11 @@ public:
 	static wstring GetErrorText(int errorCode);
 	static void ShowMessageBox(const wstring& title, const string& text);
 	static void ShowMessageBox(const wstring& title, const wstring& text);
-	static void LogVector(const wstring& text, DirectX::XMVECTOR vector);
 
 	static vector<uint8_t> ReadFileToVector(wstring path);
 	static string IntToHex(int number);
 
-	static void SetWindowHandle(HWND window) { windowHandle = window; }
-
-	static inline DirectX::XMFLOAT4 Clamp(DirectX::XMFLOAT4 valueToClamp, float maxValueX = 1.0f, float maxValueY = 1.0f, float maxValueZ = 1.0f)
-	{
-		if (valueToClamp.x > maxValueX)
-		{
-			valueToClamp.x = maxValueX;
-		}
-		else if (valueToClamp.x < 0)
-		{
-			valueToClamp.x = 0;
-		}
-
-		if (valueToClamp.y > maxValueY)
-		{
-			valueToClamp.y = maxValueY;
-		}
-		else if (valueToClamp.y < 0)
-		{
-			valueToClamp.y = 0;
-		}
-
-		if (valueToClamp.z > maxValueZ)
-		{
-			valueToClamp.z = maxValueZ;
-		}
-		else if (valueToClamp.z < 0)
-		{
-			valueToClamp.z = 0;
-		}
-
-		return valueToClamp;
-	}
-
-	static inline float Vector3Dot(DirectX::XMVECTOR vector1, DirectX::XMVECTOR vector2)
-	{
-#if !WINDOWS_PHONE
-		return DirectX::XMVector3Dot(vector1, vector2).m128_f32[0];
-#else
-		return DirectX::XMVector3Dot(vector1, vector2).n128_f32[0];
-#endif
-	};
+	static void SetMessageBoxCallback(MessageBoxCallback callback) { messageBoxCallback = callback;	}
 
 	static inline float GetTickCount()
 	{
