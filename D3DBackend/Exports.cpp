@@ -39,7 +39,7 @@ extern "C"
 		systemInstance->DrawNodes(nodeList, nodeCount);
 	}
 
-    __declspec(dllexport) void __stdcall DrawEdge(System* systemInstance, Point nodeA, Point nodeB)
+    __declspec(dllexport) void __stdcall DrawSingleEdge(System* systemInstance, Point nodeA, Point nodeB)
 	{
 		AssertBool(systemInstance != nullptr, L"System instance can't be null!");
 		systemInstance->DrawEdge(nodeA, nodeB);

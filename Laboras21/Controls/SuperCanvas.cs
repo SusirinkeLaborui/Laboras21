@@ -112,7 +112,7 @@ namespace Laboras21.Controls
 
             await Task.Run(() =>
             {
-                PInvoke.DrawEdge(d3DWindowHandle, p1, p2);
+                PInvoke.DrawSingleEdge(d3DWindowHandle, p1, p2);
             });
         }
     }
