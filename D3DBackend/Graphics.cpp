@@ -25,6 +25,7 @@ void Graphics::Render()
 	RenderParams params;
 	params.view = camera.GetViewMatrix();
 	params.projection = d3D.GetOrthoMatrix();
+	params.context = d3D.GetDeviceContext();
 
 	nodes.Render(params);
 
