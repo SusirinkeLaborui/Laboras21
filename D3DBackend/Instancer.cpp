@@ -3,7 +3,7 @@
 
 
 Instancer::Instancer(SimpleModel &model, ColorInstancedShader &shader, size_t maxObjectCount)
-:BaseInstancer(model, shader, maxObjectCount), accessing(false)
+:BaseInstancer(model, shader, maxObjectCount)
 {
 }
 
