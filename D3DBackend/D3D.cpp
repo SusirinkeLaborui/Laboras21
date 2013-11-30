@@ -24,10 +24,7 @@ void D3D::Initialize()
 				 denominator = 1;
 	ComPtr<ID3D11Texture2D> backBufferPtr;
 	ComPtr<IDXGIAdapter> adapter;
-	D3D11_TEXTURE2D_DESC depthBufferDesc;
 	D3D11_DEPTH_STENCIL_DESC depthStencilDesc;
-	D3D11_DEPTH_STENCIL_DESC disabledDepthStencilDesc;
-	D3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc;
 	D3D11_RASTERIZER_DESC rasterDesc;
 	D3D11_BLEND_DESC blendStateDescription;
 
@@ -169,37 +166,9 @@ void D3D::Initialize()
 	result = D3D11CreateDeviceAndSwapChain(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, deviceFlags, &featureLevel, 1, 
 					       D3D11_SDK_VERSION, &swapChainDesc, &swapChain, &device, nullptr, &deviceContext);
 	Assert(result);
+	
+	SetupRenderTargetView();
 
-	// Get the pointer to the back buffer.
-	result = swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), &backBufferPtr);
-	Assert(result);
-
-	// Create the render target view with the back buffer pointer.
-	result = device->CreateRenderTargetView(backBufferPtr.Get(), NULL, &renderTargetView);
-	Assert(result);
-
-	// Initialize the description of the depth buffer.
-	ZeroMemory(&depthBufferDesc, sizeof(depthBufferDesc));
-
-	// Set up the description of the depth buffer.
-	depthBufferDesc.Width = windowWidth;
-	depthBufferDesc.Height = windowHeight;
-
-	depthBufferDesc.MipLevels = 1;
-	depthBufferDesc.ArraySize = 1;
-	depthBufferDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-	depthBufferDesc.SampleDesc.Count = 1;
-	depthBufferDesc.SampleDesc.Quality = 0;
-	depthBufferDesc.Usage = D3D11_USAGE_DEFAULT;
-	depthBufferDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
-	depthBufferDesc.CPUAccessFlags = 0;
-	depthBufferDesc.MiscFlags = 0;
-
-	// Create the texture for the depth buffer using the filled out description.
-	result = device->CreateTexture2D(&depthBufferDesc, NULL, &depthStencilBuffer);
-	Assert(result);
-
-	// Initialize the description of the stencil state.
 	ZeroMemory(&depthStencilDesc, sizeof(depthStencilDesc));
 
 	// Set up the description of the stencil state.
@@ -226,50 +195,9 @@ void D3D::Initialize()
 	// Create the depth stencil state.
 	result = device->CreateDepthStencilState(&depthStencilDesc, &depthStencilState);
 	Assert(result);
-
-	ZeroMemory(&disabledDepthStencilDesc, sizeof(disabledDepthStencilDesc));
-
-	// Now create a second depth stencil state which turns off the Z buffer for 2D rendering.  The only difference is 
-	// that DepthEnable is set to false, all other parameters are the same as the other depth stencil state.
-	disabledDepthStencilDesc.DepthEnable = false;
-	disabledDepthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
-	disabledDepthStencilDesc.DepthFunc = D3D11_COMPARISON_LESS;
-
-	disabledDepthStencilDesc.StencilEnable = true;
-	disabledDepthStencilDesc.StencilReadMask = 0xFF;
-	disabledDepthStencilDesc.StencilWriteMask = 0xFF;
-
-	disabledDepthStencilDesc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
-	disabledDepthStencilDesc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_INCR;
-	disabledDepthStencilDesc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
-	disabledDepthStencilDesc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
-
-	disabledDepthStencilDesc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
-	disabledDepthStencilDesc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_DECR;
-	disabledDepthStencilDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
-	disabledDepthStencilDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
-
-	// Create the state using the device.
-	result = device->CreateDepthStencilState(&disabledDepthStencilDesc, &disabledDepthStencilState);
-	Assert(result);
-
+	
 	// Set the depth stencil state.
 	deviceContext->OMSetDepthStencilState(depthStencilState.Get(), 1);
-
-	// Initailze the depth stencil view.
-	ZeroMemory(&depthStencilViewDesc, sizeof(depthStencilViewDesc));
-
-	// Set up the depth stencil view description.
-	depthStencilViewDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-	depthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
-	depthStencilViewDesc.Texture2D.MipSlice = 0;
-
-	// Create the depth stencil view.
-	result = device->CreateDepthStencilView(depthStencilBuffer.Get(), &depthStencilViewDesc, &depthStencilView);
-	Assert(result);
-
-	// Bind the render target view and depth stencil buffer to the output render pipeline.
-	deviceContext->OMSetRenderTargets(1, renderTargetView.GetAddressOf(), depthStencilView.Get());
 
 	// Setup the raster description which will determine how and what polygons will be drawn.
 	rasterDesc.FillMode = Constants::D3DFillMode;
@@ -323,6 +251,55 @@ void D3D::Initialize()
 	SetupViewport();
 }
 
+void D3D::SetupRenderTargetView()
+{
+	HRESULT result;
+	D3D11_TEXTURE2D_DESC depthBufferDesc;
+	D3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc;
+	ComPtr<ID3D11Texture2D> backBufferPtr;
+
+	// Get the pointer to the back buffer.
+	result = swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), &backBufferPtr);
+	Assert(result);
+
+	// Create the render target view with the back buffer pointer.
+	result = device->CreateRenderTargetView(backBufferPtr.Get(), NULL, &renderTargetView);
+	Assert(result);
+
+	ZeroMemory(&depthBufferDesc, sizeof(depthBufferDesc));
+
+	// Set up the description of the depth buffer.
+	depthBufferDesc.Width = windowWidth;
+	depthBufferDesc.Height = windowHeight;
+
+	depthBufferDesc.MipLevels = 1;
+	depthBufferDesc.ArraySize = 1;
+	depthBufferDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+	depthBufferDesc.SampleDesc.Count = 1;
+	depthBufferDesc.SampleDesc.Quality = 0;
+	depthBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+	depthBufferDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+	depthBufferDesc.CPUAccessFlags = 0;
+	depthBufferDesc.MiscFlags = 0;
+
+	// Create the texture for the depth buffer using the filled out description.
+	result = device->CreateTexture2D(&depthBufferDesc, NULL, &depthStencilBuffer);
+	Assert(result);
+	
+	ZeroMemory(&depthStencilViewDesc, sizeof(depthStencilViewDesc));
+
+	// Set up the depth stencil view description.
+	depthStencilViewDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+	depthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+	depthStencilViewDesc.Texture2D.MipSlice = 0;
+
+	// Create the depth stencil view.
+	result = device->CreateDepthStencilView(depthStencilBuffer.Get(), &depthStencilViewDesc, &depthStencilView);
+	Assert(result);
+
+	SetBackBufferRenderTarget();
+}
+
 void D3D::SetupViewport()
 {
 	viewport.Width = static_cast<float>(windowWidth);
@@ -338,12 +315,12 @@ void D3D::SetupViewport()
 	projectionMatrix = DirectX::XMMatrixPerspectiveFovRH(currentFoV, aspectRatio, Constants::ScreenNear, Constants::ScreenDepth);
 	orthoMatrix = DirectX::XMMatrixOrthographicRH(static_cast<float>(windowWidth), static_cast<float>(windowHeight), 
 		Constants::ScreenNear, Constants::ScreenDepth);
+	
 }
 
 void D3D::ResizeContext(int newWidth, int newHeight)
 {
 	HRESULT result;
-	ComPtr<ID3D11Texture2D> backBufferPtr;
 
 	// Release all references to current backbuffer renderTargetView, as it will get recreated.
 	deviceContext->OMSetRenderTargets(0, nullptr, nullptr);
@@ -352,17 +329,10 @@ void D3D::ResizeContext(int newWidth, int newHeight)
     result = swapChain->ResizeBuffers(1, newWidth, newHeight, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
     Assert(result);
 
-	// Recreate back buffer renderTarget
-	result = swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), &backBufferPtr);
-	Assert(result);
-
-	result = device->CreateRenderTargetView(backBufferPtr.Get(), NULL, &renderTargetView);
-	Assert(result);
-
 	windowWidth = newWidth;
 	windowHeight = newHeight;
 	
-	SetBackBufferRenderTarget();
+	SetupRenderTargetView();
 	SetupViewport();
 }
 

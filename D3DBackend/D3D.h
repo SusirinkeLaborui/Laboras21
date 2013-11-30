@@ -11,7 +11,6 @@ private:
 	ComPtr<ID3D11RenderTargetView> renderTargetView;
 	ComPtr<ID3D11Texture2D> depthStencilBuffer;
 	ComPtr<ID3D11DepthStencilState> depthStencilState;
-	ComPtr<ID3D11DepthStencilState> disabledDepthStencilState;
 	ComPtr<ID3D11DepthStencilView> depthStencilView;
 	ComPtr<ID3D11RasterizerState> rasterState;
 	ComPtr<ID3D11BlendState> alphaBlendingState;
@@ -30,6 +29,7 @@ private:
 	float currentFoV;
 
 	void Initialize();
+	void SetupRenderTargetView();
 	void SetupViewport();
 
 public:
@@ -52,9 +52,6 @@ public:
 	float GetAspectRatio() const { return aspectRatio; }
 
 	void ChangeFoV(float value);
-
-	void TurnZBufferOn() { deviceContext->OMSetDepthStencilState(depthStencilState.Get(), 1); }
-	void TurnZBufferOff() { deviceContext->OMSetDepthStencilState(disabledDepthStencilState.Get(), 1); }
 
 	ComPtr<ID3D11DepthStencilView> GetDepthStencilView() const { return depthStencilView; }
 	void SetBackBufferRenderTarget() { deviceContext->OMSetRenderTargets(1, renderTargetView.GetAddressOf(), depthStencilView.Get()); }
