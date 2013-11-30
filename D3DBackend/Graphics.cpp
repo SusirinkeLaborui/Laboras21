@@ -8,6 +8,8 @@ Graphics::Graphics(int windowWidth, int windowHeight, HWND windowHandle) :
 	edges(RM::Get().GetModel(RM::Models::MODEL_SQUARE), RM::Get().GetShader(), 10000)
 {
 	RM::Get().InitShaders(d3D.GetDevice());
+	edges.Init(d3D.GetDevice());
+	nodes.Init(d3D.GetDevice());
 	camera.Forward(-100.0f);
 }
 
@@ -24,7 +26,7 @@ void Graphics::Render()
 	params.view = camera.GetViewMatrix();
 	params.projection = d3D.GetOrthoMatrix();
 
-	//nodes.Render(params);
+	nodes.Render(params);
 
 	d3D.SwapBuffers();
 }

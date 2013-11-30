@@ -88,7 +88,7 @@ void BaseInstancer<vt, sh, it>::InitBuffers(ComPtr<ID3D11Device> device)
 	instanceBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
 	instanceBufferDesc.ByteWidth = static_cast<UINT>(sizeof(it) * maxInstanceCount);
 	instanceBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-	instanceBufferDesc.CPUAccessFlags = D3D10_CPU_ACCESS_WRITE;
+	instanceBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
 	Assert(device->CreateBuffer(&instanceBufferDesc, NULL, &instanceBuffer));
 
