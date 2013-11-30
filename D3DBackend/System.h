@@ -26,7 +26,7 @@ private:
 
 	void Run();
 public:
-	System(int windowWidth, int windowHeight, HWND parentWindow);
+	System(int windowWidth, int windowHeight, DirectX::XMFLOAT4 backgroundColor, HWND parentWindow);
 	~System();
 
 	long int MessageHandler(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam);

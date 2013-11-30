@@ -14,8 +14,10 @@ private:
 	Instancer nodes;
 	Instancer edges;
 	Camera camera;
+
+	DirectX::XMFLOAT4 backgroundColor;
 public:
-	Graphics(int windowWidth, int windowHeight, HWND windowHandle);
+	Graphics(int windowWidth, int windowHeight, DirectX::XMFLOAT4 backgroundColor, HWND windowHandle);
 	~Graphics();
 
 	void Render();

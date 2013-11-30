@@ -3,10 +3,10 @@
 #include "System.h"
 #include "Tools.h"
 
-System::System(int windowWidth, int windowHeight, HWND parentWindow) :
+System::System(int windowWidth, int windowHeight, DirectX::XMFLOAT4 backgroundColor, HWND parentWindow) :
 	running(false), 
 	windowing(windowWidth, windowHeight, parentWindow, this),
-	graphics(windowWidth, windowHeight, windowing.GetWindowHandle())
+	graphics(windowWidth, windowHeight, backgroundColor, windowing.GetWindowHandle())
 {
 	RAWINPUTDEVICE Rid[2];
         

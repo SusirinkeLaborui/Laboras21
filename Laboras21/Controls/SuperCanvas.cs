@@ -4,7 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Interop;
+using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace Laboras21.Controls
 {
@@ -24,29 +28,49 @@ namespace Laboras21.Controls
 
             AddEdge(temp[0], temp[1]);*/
 
-            Visibility = System.Windows.Visibility.Visible;
             Loaded += (sender, e) => { InitD3D(); };
         }
         
         private async void InitD3D()
         {
-            int width = (int)ActualWidth,
-                height = (int)ActualHeight;
-
-            Visibility = System.Windows.Visibility.Collapsed;
             await Task.Delay(500);  // Wait for metro animation to finish, otherwise window spawns at wrong position.
 
-            Visibility = System.Windows.Visibility.Visible;
-            Resize(null, null);
-            d3DWindowHandle = PInvoke.CreateD3DContext(width, height, hwndHost);
+            Visibility = Visibility.Visible;
+
+            // Wait for next frame, as actual width and height are zeroes because it's invisible
+            await Dispatcher.InvokeAsync(() =>
+            {
+                Resize(null, null);
+            }, DispatcherPriority.Render);
+
+            var backgroundColor = (FindBackgroundColor(this) as SolidColorBrush).Color;
+
+            d3DWindowHandle = PInvoke.CreateD3DContext((int)ActualWidth, (int)ActualHeight,
+                backgroundColor.R, backgroundColor.G, backgroundColor.B, hwndHost);
+
+            PInvoke.RunD3DContextAsync(d3DWindowHandle);
+        }
+
+        protected Brush FindBackgroundColor(FrameworkElement element)
+        {
+            var control = element as Control;
+            if (control == null)
+            {
+                return FindBackgroundColor(element.Parent as FrameworkElement);
+            }
+            else
+            {
+                return control.Background;
+            }
         }
 
         protected override HandleRef BuildWindowCore(HandleRef hwndParent)
         {
-            hwndHost = PInvoke.CreateWindowEx(0, "static", "", PInvoke.WS_CHILD, 0, 0, (int)ActualWidth, (int)ActualHeight,
-                hwndParent.Handle, (IntPtr)PInvoke.HOST_ID, IntPtr.Zero, 0);
+            var backgroundColor = (FindBackgroundColor(this) as SolidColorBrush).Color;
+            hwndHost = PInvoke.CreateColoredWindow(hwndParent.Handle, backgroundColor.R, backgroundColor.G, backgroundColor.B);
 
             SizeChanged += Resize;
+            Visibility = Visibility.Collapsed;
 
             return new HandleRef(this, hwndHost);
         }
@@ -111,9 +135,9 @@ namespace Laboras21.Controls
             var p2 = vertex2.Coordinates;
 
             await Task.Run(() =>
-            {
-                PInvoke.DrawSingleEdge(d3DWindowHandle, p1, p2);
-            });
+                {
+                    PInvoke.DrawSingleEdge(d3DWindowHandle, p1, p2);
+                });
         }
     }
 }

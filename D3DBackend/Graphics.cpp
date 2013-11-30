@@ -2,8 +2,9 @@
 #include "Graphics.h"
 #include "ResourceManager.h"
 
-Graphics::Graphics(int windowWidth, int windowHeight, HWND windowHandle) :
+Graphics::Graphics(int windowWidth, int windowHeight, DirectX::XMFLOAT4 backgroundColor, HWND windowHandle) :
 	d3D(windowWidth, windowHeight, windowHandle),
+	backgroundColor(backgroundColor),
 	nodes(RM::Get().GetModel(RM::Models::MODEL_CIRCLE), RM::Get().GetShader(), 10000),
 	edges(RM::Get().GetModel(RM::Models::MODEL_SQUARE), RM::Get().GetShader(), 10000)
 {
@@ -20,7 +21,7 @@ Graphics::~Graphics()
 
 void Graphics::Render()
 {
-	d3D.StartDrawing(1.0f, 0.0f, 0.0f, 1.0f);
+	d3D.StartDrawing(backgroundColor.x, backgroundColor.y, backgroundColor.z, backgroundColor.w);
 
 	RenderParams params;
 	params.view = camera.GetViewMatrix();
