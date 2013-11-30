@@ -15,14 +15,6 @@ void Camera::RenderMain()
 	}
 }
 
-XMMATRIX Camera::GetReflectedViewMatrix(const XMMATRIX &reflect, const XMMATRIX &zeroReflect)
-{
-	XMVECTOR up = XMVector3Transform(XMLoadFloat3(&this->up), zeroReflect);
-	XMVECTOR forward = XMVector3Transform(XMLoadFloat3(&this->forward), zeroReflect);
-	XMVECTOR pos = XMVector3Transform(XMLoadFloat3(&this->pos), reflect);
-	return XMMatrixLookToLH(pos, forward, up);
-}
-
 void Camera::Yaw(float angle)
 {
 	XMMATRIX matrix = XMMatrixRotationAxis(XMLoadFloat3(&up), angle);

@@ -19,7 +19,6 @@ public:
 	DirectX::XMFLOAT3 GetPosition() const { return pos; }
 
 	const DirectX::XMMATRIX GetViewMatrix(){ RenderMain(); return XMLoadFloat4x4(&viewMatrix); }
-	DirectX::XMMATRIX GetReflectedViewMatrix(const DirectX::XMMATRIX &reflect, const DirectX::XMMATRIX &zeroReflect);
 
 private:
 	void RenderMain();

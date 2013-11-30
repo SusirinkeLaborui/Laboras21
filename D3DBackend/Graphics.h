@@ -4,6 +4,7 @@
 #include "Model.h"
 #include "Light.h"
 #include "Instancer.h"
+#include "Camera.h"
 
 class Graphics
 {
@@ -12,7 +13,7 @@ private:
 
 	Instancer nodes;
 	Instancer edges;
-
+	Camera camera;
 public:
 	Graphics(int windowWidth, int windowHeight, HWND windowHandle);
 	~Graphics();
