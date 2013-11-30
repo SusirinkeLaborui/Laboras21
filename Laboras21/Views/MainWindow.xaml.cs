@@ -40,19 +40,9 @@ namespace Laboras21.Views
                     progressBar.Value = progress;
                 }, DispatcherPriority.Background);
 
-            treeFinder = new MinimalSpanningTreeFinder(canvas.AddEdge, reportProgressCallback);
-            canvas.ProgressBar = progressBar;
-
-            Loaded += (sender, e) => { InitD3D(); };
+            treeFinder = new MinimalSpanningTreeFinder(canvas.AddEdgeAsync, reportProgressCallback);
 
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateInput", true);
-        }
-
-        private async void InitD3D()
-        {
-            await Task.Delay(500);  // Wait for metro animation to finish, otherwise window spawns at wrong position.
-            var d3DWindow = new D3DWindow(LayoutRoot.ActualWidth - 300, LayoutRoot.ActualHeight);
-            LayoutRoot.Children.Add(d3DWindow);
         }
 
         private async void ButtonLoad_Click(object sender, RoutedEventArgs e)
@@ -118,14 +108,12 @@ namespace Laboras21.Views
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateComputing", true);
             await canvas.ClearEdgesAsync();
             await treeFinder.FindAsync(graph);
-            await canvas.FinishDrawingAsync();
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateDoneComputing", true);
         }
 
         private void ButtonStopComputing_Click(object sender, RoutedEventArgs e)
         {
             treeFinder.CancelSearch();
-            canvas.CancelDrawing();
         }
 
         private void ButtonSaveResults_Click(object sender, RoutedEventArgs e)

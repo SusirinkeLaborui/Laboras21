@@ -38,6 +38,14 @@ namespace Laboras21.Classes
         internal static extern bool DestroyWindow(IntPtr hwnd);
 
 
+        [DllImport("user32.dll")]
+        internal static extern bool MoveWindow(IntPtr handle, int x, int y, int width, int height, bool redraw);
+
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool ShowWindow(IntPtr hWnd, uint nCmdShow);
+
         #endregion
 
         #region D3DBackend
@@ -60,6 +68,26 @@ namespace Laboras21.Classes
 
         [DllImport("D3DBackend.dll")]
         internal static extern void ResizeWindow(IntPtr systemInstance, int newWidth, int newHeight);
+
+        
+        [DllImport("D3DBackend.dll")]
+        internal static extern void DrawNode(IntPtr systemInstance, Point node);
+
+
+        [DllImport("D3DBackend.dll")]
+        internal static extern void DrawNodes(IntPtr systemInstance, [MarshalAs(UnmanagedType.LPArray)] Point[] nodeList, int nodeCount);
+
+        
+        [DllImport("D3DBackend.dll")]
+        internal static extern void DrawEdge(IntPtr systemInstance, Point nodeA, Point nodeB);
+        
+
+        [DllImport("D3DBackend.dll")]
+        internal static extern void ClearNodes(IntPtr systemInstance);
+
+
+        [DllImport("D3DBackend.dll")]
+        internal static extern void ClearEdges(IntPtr systemInstance);
 
         #endregion
     }

@@ -120,7 +120,6 @@
     </ApplicationDefinition>
     <Compile Include="Classes\BadFileFormatException.cs" />
     <Compile Include="Classes\PInvoke.cs" />
-    <Compile Include="Controls\D3DWindow.cs" />
     <Compile Include="ValidationRules\CoordinateValidationRule.cs" />
     <Compile Include="Generators\NormalRandomNumberGenerator.cs" />
     <Compile Include="Classes\DataProvider.cs" />
