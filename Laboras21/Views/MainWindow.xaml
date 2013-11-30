@@ -55,9 +55,6 @@
                 </Grid>
             </StackPanel>
         </Grid>
-
-        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="3" x:Name="d3DBorder" Width="500" Height="500">
-        </Border>
         
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="CustomStates">
