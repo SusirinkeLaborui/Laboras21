@@ -13,7 +13,7 @@ struct Model
 	Model(){}
 	Model(Model &&other);
 	Model &operator=(Model &&other);
-
+private:
 	Model(Model&);
 	Model &operator=(Model&);
 };
