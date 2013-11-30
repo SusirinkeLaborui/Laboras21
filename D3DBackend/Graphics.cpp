@@ -24,7 +24,7 @@ void Graphics::Render()
 
 	RenderParams params;
 	params.view = camera.GetViewMatrix();
-	params.projection = d3D.GetOrthoMatrix();
+	params.projection = d3D.GetProjectionMatrix();
 	params.context = d3D.GetDeviceContext();
 
 	nodes.Render(params);
@@ -34,8 +34,9 @@ void Graphics::Render()
 
 void Graphics::AddNode(Point point)
 {
+	XMMATRIX scale = XMMatrixScaling(200.0f, 200.0f, 200.0f);
 	XMMATRIX move = XMMatrixTranslation(static_cast<float>(point.x), static_cast<float>(point.y), 0.0f);
 	XMFLOAT4X4 world;
-	XMStoreFloat4x4(&world, XMMatrixTranspose(move));
+	XMStoreFloat4x4(&world, XMMatrixTranspose(scale * move));
 	nodes.Add(world);
 }
