@@ -1,0 +1,38 @@
+#pragma once
+#include "PrecompiledHeader.h"
+
+#ifndef NULL
+	#define NULL 0
+#endif
+
+template <typename T>
+using ComVector = std::vector<Microsoft::WRL::ComPtr<T>>;
+
+struct InstancedMatrixType
+{
+	DirectX::XMFLOAT4X4 view;
+	DirectX::XMFLOAT4X4 projection;
+};
+
+struct VertexType
+{
+	DirectX::XMFLOAT3 position;
+	DirectX::XMFLOAT4 color;
+};
+
+__declspec(align(16)) struct RenderParams
+{
+	DirectX::XMMATRIX reflecMatrix;
+	DirectX::XMMATRIX view;
+	DirectX::XMMATRIX projection;
+	DirectX::XMFLOAT3 lightPos;
+	float brightness;
+	DirectX::XMFLOAT4 diffuseColor;
+	__declspec(align(16)) Microsoft::WRL::ComPtr<ID3D11DeviceContext> context;
+};
+
+struct BufferInfo
+{
+	unsigned int offset;
+	unsigned int stride;
+};
