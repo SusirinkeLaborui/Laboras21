@@ -2,8 +2,8 @@
 #include "Instancer.h"
 
 
-Instancer::Instancer(SimpleModel &model, ColorInstancedShader &shader, size_t maxObjectCount)
-:BaseInstancer(model, shader, maxObjectCount)
+Instancer::Instancer(SimpleModel &model, ColorInstancedShader &shader, size_t maxObjectCount, ComPtr<ID3D11Device> device)
+:BaseInstancer(model, shader, maxObjectCount, device)
 {
 }
 

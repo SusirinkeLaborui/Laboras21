@@ -23,10 +23,9 @@ protected:
 	const size_t maxInstanceCount;
 	size_t instanceCount;
 public:
-	BaseInstancer(Model<vt> &model, sh &shader, size_t maxObjectCount, XMFLOAT3 pos = XMFLOAT3());
+	BaseInstancer(Model<vt> &model, sh &shader, size_t maxObjectCount, ComPtr<ID3D11Device> device);
 	virtual ~BaseInstancer(void){}
-	
-	void Init(ComPtr<ID3D11Device> device);
+
 	void Render(const RenderParams& params);
 
 protected:
@@ -36,13 +35,8 @@ protected:
 };
 
 template<class vt, class sh, class it>
-BaseInstancer<vt, sh, it>::BaseInstancer(Model<vt> &model, sh &shader, size_t maxObjectCount, XMFLOAT3 pos)
+BaseInstancer<vt, sh, it>::BaseInstancer(Model<vt> &model, sh &shader, size_t maxObjectCount, ComPtr<ID3D11Device> device)
 :model(model), shader(shader), instanceCount(0), maxInstanceCount(maxObjectCount)
-{
-}
-
-template<class vt, class sh, class it>
-void BaseInstancer<vt, sh, it>::Init(ComPtr<ID3D11Device> device)
 {
 	InitBuffers(device);
 }

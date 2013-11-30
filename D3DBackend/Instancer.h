@@ -7,7 +7,7 @@ class Instancer : public BaseInstancer<VertexType, ColorInstancedShader, XMFLOAT
 	condition_variable access;
 	volatile bool accessing;
 public:
-	Instancer(SimpleModel &model, ColorInstancedShader &shader, size_t maxObjectCount);
+	Instancer(SimpleModel &model, ColorInstancedShader &shader, size_t maxObjectCount, ComPtr<ID3D11Device> device);
 	~Instancer();
 
 	void Add(XMFLOAT4X4);
