@@ -33,6 +33,7 @@ namespace Laboras21.Views
         public MainWindow()
         {
             InitializeComponent();
+            AllowsTransparency = false;     // Fixes win32 window being invisible
 
             Action<double> reportProgressCallback = (progress) => progressBar.Dispatcher.InvokeAsync(() =>
                 {
