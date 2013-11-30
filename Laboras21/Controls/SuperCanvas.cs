@@ -110,32 +110,10 @@ namespace Laboras21.Controls
             var p1 = vertex1.Coordinates;
             var p2 = vertex2.Coordinates;
 
-            await AddEdgeToCanvas(p1, p2);
-        }
-
-        /// <summary>
-        /// Adds an edge to the canvas, can be called form wherever
-        /// </summary>
-        /// <param name="p1">start</param>
-        /// <param name="p2">end</param>
-        private async Task AddEdgeToCanvas(Point p1, Point p2)
-        {
             await Task.Run(() =>
-                {
-                    PInvoke.DrawEdge(d3DWindowHandle, p1, p2);
-                });
-        }
-
-        /// <summary>
-        /// Adds a node to the canvas, can be called from wherever
-        /// </summary>
-        /// <param name="p"></param>
-        private async void AddNode(Point p)
-        {
-            await Task.Run(() =>
-                {
-                    PInvoke.DrawNode(d3DWindowHandle, p);
-                });
+            {
+                PInvoke.DrawEdge(d3DWindowHandle, p1, p2);
+            });
         }
     }
 }

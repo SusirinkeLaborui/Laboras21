@@ -34,9 +34,15 @@ public:
 	void RunAsync();
 	void StopRunning();
 
-	Input& GetInputObject() { return input; }
+	Input& GetInputObject() { return input; }	
+	
 	void ResizeWindow(int newWidth, int newHeight);
 	
+    void DrawNodes(const Point* nodeList, int nodeCount);
+    void DrawEdge(const Point& nodeA, const Point& nodeB);
+	void ClearNodes();
+	void ClearEdges();
+
 	void* operator new(size_t size);
 	void operator delete(void* p);
 };

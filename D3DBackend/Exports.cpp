@@ -32,4 +32,28 @@ extern "C"
 		AssertBool(systemInstance != nullptr, L"System instance can't be null!");
 		systemInstance->ResizeWindow(newWidth, newHeight);
 	}
+
+    __declspec(dllexport) void __stdcall DrawNodes(System* systemInstance, Point* nodeList, int nodeCount)
+	{
+		AssertBool(systemInstance != nullptr, L"System instance can't be null!");
+		systemInstance->DrawNodes(nodeList, nodeCount);
+	}
+
+    __declspec(dllexport) void __stdcall DrawEdge(System* systemInstance, Point nodeA, Point nodeB)
+	{
+		AssertBool(systemInstance != nullptr, L"System instance can't be null!");
+		systemInstance->DrawEdge(nodeA, nodeB);
+	}
+        
+    __declspec(dllexport) void __stdcall ClearNodes(System* systemInstance)
+	{
+		AssertBool(systemInstance != nullptr, L"System instance can't be null!");
+		systemInstance->ClearNodes();
+	}
+
+    __declspec(dllexport) void __stdcall ClearEdges(System* systemInstance)
+	{
+		AssertBool(systemInstance != nullptr, L"System instance can't be null!");
+		systemInstance->ClearEdges();
+	}
 }

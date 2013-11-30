@@ -71,10 +71,6 @@ namespace Laboras21.Classes
 
         
         [DllImport("D3DBackend.dll")]
-        internal static extern void DrawNode(IntPtr systemInstance, Point node);
-
-
-        [DllImport("D3DBackend.dll")]
         internal static extern void DrawNodes(IntPtr systemInstance, [MarshalAs(UnmanagedType.LPArray)] Point[] nodeList, int nodeCount);
 
         

@@ -165,6 +165,29 @@ void System::ResizeWindow(int newWidth, int newHeight)
 	graphics.ResizeD3DContext(newWidth, newHeight);
 }
 
+void System::DrawNodes(const Point* nodeList, int nodeCount)
+{
+	unique_lock<mutex> lock(drawMutex);
+}
+
+void System::DrawEdge(const Point& nodeA, const Point& nodeB)
+{
+	unique_lock<mutex> lock(drawMutex);
+
+}
+
+void System::ClearNodes()
+{
+	unique_lock<mutex> lock(drawMutex);
+
+}
+
+void System::ClearEdges()
+{
+	unique_lock<mutex> lock(drawMutex);
+
+}
+
 void* System::operator new(size_t size)
 {
 	void* ptr = _aligned_malloc(size, 16);
