@@ -5,6 +5,12 @@
 	#define NULL 0
 #endif
 
+struct Point
+{
+	int x;
+	int y;
+};
+
 struct InstancedMatrixType
 {
 	DirectX::XMFLOAT4X4 view;

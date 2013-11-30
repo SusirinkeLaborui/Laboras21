@@ -21,3 +21,11 @@ void Graphics::Render()
 
 	d3D.SwapBuffers();
 }
+
+void Graphics::AddNode(Point point)
+{
+	XMMATRIX move = XMMatrixTranslation(static_cast<float>(point.x), static_cast<float>(point.y), 0.0f);
+	XMFLOAT4X4 world;
+	XMStoreFloat4x4(&world, XMMatrixTranspose(move));
+	nodes.Add(world);
+}
