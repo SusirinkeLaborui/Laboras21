@@ -155,3 +155,21 @@ void System::HandleRawInput(long lParam, long wParam)
 		input.SetMouseDisplacement(raw->data.mouse.lLastX, raw->data.mouse.lLastY);
 	}
 }
+
+void* System::operator new(size_t size)
+{
+	void* ptr = _aligned_malloc(size, 16);
+
+	if (ptr == nullptr)
+	{
+		throw bad_alloc();
+	}
+
+	return ptr;
+}
+
+void System::operator delete(void* p)
+{
+	auto ptr = static_cast<System*>(p);
+	_aligned_free(p);
+}

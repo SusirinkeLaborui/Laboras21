@@ -34,4 +34,7 @@ public:
 	void StopRunning();
 
 	Input& GetInputObject() { return input; }
+	
+	void* operator new(size_t size);
+	void operator delete(void* p);
 };
