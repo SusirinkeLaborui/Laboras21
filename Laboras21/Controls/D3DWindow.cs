@@ -15,7 +15,7 @@ namespace Laboras21.Controls
         IntPtr d3DWindowHandle;
         int hostHeight, hostWidth;
 
-        public D3DWindow(double height, double width)
+        public D3DWindow(double width, double height)
         {
             hostHeight = (int)height;
             hostWidth = (int)width;
