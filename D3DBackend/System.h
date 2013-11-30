@@ -22,6 +22,7 @@ private:
 	void HandleRawInput(long lParam, long wParam);
 
 	thread asyncRunner;
+	mutex drawMutex;
 
 	void Run();
 public:
@@ -34,6 +35,7 @@ public:
 	void StopRunning();
 
 	Input& GetInputObject() { return input; }
+	void ResizeWindow(int newWidth, int newHeight);
 	
 	void* operator new(size_t size);
 	void operator delete(void* p);

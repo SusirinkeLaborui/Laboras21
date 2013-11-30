@@ -40,7 +40,7 @@ void System::Run()
 
 	while (running)
 	{
-		//ProcessWindowsMessages();
+		ProcessWindowsMessages();
 		ProcessOneFrame();
 
 		secondsSinceLastFrame = Tools::GetTickCount() - lastFrameFinished;
@@ -93,8 +93,9 @@ void System::ProcessWindowsMessages()
 
 void System::ProcessOneFrame()
 {
-	CheckInputState();
+	unique_lock<mutex> lock(drawMutex);
 
+	CheckInputState();
 	graphics.Render();
 }
 
@@ -154,6 +155,14 @@ void System::HandleRawInput(long lParam, long wParam)
 
 		input.SetMouseDisplacement(raw->data.mouse.lLastX, raw->data.mouse.lLastY);
 	}
+}
+
+void System::ResizeWindow(int newWidth, int newHeight)
+{
+	unique_lock<mutex> lock(drawMutex);
+
+	MoveWindow(windowing.GetWindowHandle(), 0, 0, newWidth, newHeight, TRUE);
+	graphics.ResizeD3DContext(newWidth, newHeight);
 }
 
 void* System::operator new(size_t size)

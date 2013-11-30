@@ -43,8 +43,7 @@ namespace Laboras21.Controls
 
         private void Resize(object sender, System.Windows.SizeChangedEventArgs e)
         {
-            
-
+            PInvoke.ResizeWindow(d3DWindowHandle, (int)e.NewSize.Width, (int)e.NewSize.Height);
         }
     }
 }

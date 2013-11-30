@@ -30,6 +30,8 @@ private:
 	float currentFoV;
 
 	void Initialize();
+	void SetupViewport();
+
 public:
 	D3D(int windowWidth, int windowHeight, HWND windowHandle);
 	~D3D();
@@ -40,6 +42,8 @@ public:
 	ComPtr<ID3D11Device> GetDevice() const { return device; }
 	ComPtr<ID3D11DeviceContext> GetDeviceContext() const { return deviceContext; }
 	ComPtr<IDXGISwapChain> GetSwapChain() const { return swapChain; }
+
+	void ResizeContext(int newWidth, int newHeight);
 
 	const DirectX::XMMATRIX& GetProjectionMatrix() const { return projectionMatrix; }
 	const DirectX::XMMATRIX& GetOrthoMatrix() const { return orthoMatrix; }

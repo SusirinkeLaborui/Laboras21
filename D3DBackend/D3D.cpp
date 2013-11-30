@@ -320,21 +320,50 @@ void D3D::Initialize()
 	// Turn on the alpha blending.
 	deviceContext->OMSetBlendState(alphaBlendingState.Get(), blendFactor, 0xffffffff);
 
-	// Setup the viewport for rendering.
-	viewport.Width = (float)windowWidth;
-	viewport.Height = (float)windowHeight;
+	SetupViewport();
+}
+
+void D3D::SetupViewport()
+{
+	viewport.Width = static_cast<float>(windowWidth);
+	viewport.Height = static_cast<float>(windowHeight);
 	viewport.MinDepth = 0.0f;
 	viewport.MaxDepth = 1.0f;
 	viewport.TopLeftX = 0.0f;
 	viewport.TopLeftY = 0.0f;
 
-	// Setup the projection matrix.
-	aspectRatio = (float)windowWidth / (float)windowHeight;
+	aspectRatio = static_cast<float>(windowWidth) / static_cast<float>(windowHeight);
 	currentFoV = DirectX::XM_PI * Constants::FieldOfView / 180.0f;
 
 	projectionMatrix = DirectX::XMMatrixPerspectiveFovRH(currentFoV, aspectRatio, Constants::ScreenNear, Constants::ScreenDepth);
+	orthoMatrix = DirectX::XMMatrixOrthographicRH(static_cast<float>(windowWidth), static_cast<float>(windowHeight), 
+		Constants::ScreenNear, Constants::ScreenDepth);
+}
 
-	orthoMatrix = DirectX::XMMatrixOrthographicRH((float)windowWidth, (float)windowHeight, Constants::ScreenNear, Constants::ScreenDepth);
+void D3D::ResizeContext(int newWidth, int newHeight)
+{
+	HRESULT result;
+	ComPtr<ID3D11Texture2D> backBufferPtr;
+
+	// Release all references to current backbuffer renderTargetView, as it will get recreated.
+	deviceContext->OMSetRenderTargets(0, nullptr, nullptr);
+	renderTargetView = nullptr;
+
+    result = swapChain->ResizeBuffers(1, newWidth, newHeight, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
+    Assert(result);
+
+	// Recreate back buffer renderTarget
+	result = swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), &backBufferPtr);
+	Assert(result);
+
+	result = device->CreateRenderTargetView(backBufferPtr.Get(), NULL, &renderTargetView);
+	Assert(result);
+
+	windowWidth = newWidth;
+	windowHeight = newHeight;
+	
+	SetBackBufferRenderTarget();
+	SetupViewport();
 }
 
 void D3D::StartDrawing(float red, float green, float blue, float alpha)

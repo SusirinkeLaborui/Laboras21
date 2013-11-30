@@ -30,5 +30,6 @@ extern "C"
 	__declspec(dllexport) void __stdcall ResizeWindow(System* systemInstance, int newWidth, int newHeight)
 	{
 		AssertBool(systemInstance != nullptr, L"System instance can't be null!");
+		systemInstance->ResizeWindow(newWidth, newHeight);
 	}
 }
