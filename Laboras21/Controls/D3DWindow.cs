@@ -28,14 +28,23 @@ namespace Laboras21.Controls
                 hwndParent.Handle, (IntPtr)PInvoke.HOST_ID, IntPtr.Zero, 0);
 
             d3DWindowHandle = PInvoke.CreateD3DContext(hostWidth, hostHeight, hwndHost);
+            SizeChanged += Resize;
 
             return new HandleRef(this, hwndHost);
         }
 
         protected override void DestroyWindowCore(HandleRef hwnd)
         {
+            SizeChanged -= Resize;
+
             PInvoke.DestroyD3DContext(ref d3DWindowHandle);
             PInvoke.DestroyWindow(hwnd.Handle);
+        }
+
+        private void Resize(object sender, System.Windows.SizeChangedEventArgs e)
+        {
+            
+
         }
     }
 }
