@@ -30,7 +30,7 @@ public:
 	~ResourceManager(void){}
 
 	void InitShaders(Microsoft::WRL::ComPtr<ID3D11Device>);
-	SimpleModel &GetModel(int model){ return models[i]; }
+	SimpleModel &GetModel(int model){ return models[model]; }
 	static ResourceManager &Get(){ return *handle; }
 
 	ColorInstancedShader &GetShader(){ return shader; }

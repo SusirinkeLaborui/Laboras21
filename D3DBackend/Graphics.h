@@ -7,17 +7,12 @@
 class Graphics
 {
 private:
-	D3D d3D;
-	
-	Light light;
-
-	//Model nodeModel;
-	//Model edgeModel;	
+	D3D d3D;	
 
 public:
 	Graphics(int windowWidth, int windowHeight, HWND windowHandle);
 	~Graphics();
 
-	void Render(vector<InstanceData> nodeData, vector<InstanceData> edgeData);
+	void Render();
 };
 

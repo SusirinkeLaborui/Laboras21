@@ -36,6 +36,23 @@ public:
 
 		return (float)timer / (float)performanceCounterFrequency;
 	}
+
+	template<class T>
+	static void Reverse(std::vector<T> &vec)
+	{
+		reverse(vec.begin(), vec.end());
+	}
+
+	static bool ReadFileToArray(wstring file, std::unique_ptr<char> &arr, UINT &size);
+
+	template<class T>
+	static void CopyToBuffer(Microsoft::WRL::ComPtr<ID3D11Buffer> buffer, const T &data, Microsoft::WRL::ComPtr<ID3D11DeviceContext> context)
+	{
+		D3D11_MAPPED_SUBRESOURCE resource;
+		context->Map(buffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
+		memcpy(resource.pData, &data, sizeof(T));
+		context->Unmap(buffer.Get(), 0);
+	}
 };
 
 struct Point2D
@@ -62,4 +79,20 @@ struct Point2D
 						OutputDebugStringW((__WFILE__ + wstring(L": ") + to_wstring(__LINE__)).c_str()); \
 						DebugBreak(); \
 					}
+#endif
+
+#ifndef _DEBUG
+#define AssertBool(x, error) \
+if (x != true) \
+{ \
+	Tools::ShowMessageBox(error, __WFILE__ + wstring(L": ") + to_wstring(__LINE__)); \
+	exit(-1); \
+	}
+#else
+#define AssertBool(x, error) \
+if (x != true) \
+{ \
+	Tools::ShowMessageBox(error, __WFILE__ + wstring(L": ") + to_wstring(__LINE__)); \
+	DebugBreak(); \
+	}
 #endif

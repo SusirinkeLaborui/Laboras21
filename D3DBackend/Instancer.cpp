@@ -39,4 +39,5 @@ bool Instancer::Update(ComPtr<ID3D11DeviceContext> context)
 
 	accessing = false;
 	access.notify_one();
+	return instanceCount > 0;
 }

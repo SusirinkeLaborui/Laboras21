@@ -162,7 +162,6 @@
     <ClCompile Include="Instancer.cpp" />
     <ClCompile Include="IShader.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Model.cpp" />
     <ClCompile Include="PrecompiledHeader.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -185,7 +184,6 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="PrecompiledHeader.h" />
     <ClInclude Include="System.h" />
-    <ClInclude Include="DrawableEntity.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="IInstanceShader.h" />
     <ClInclude Include="Instancer.h" />

@@ -95,7 +95,7 @@ void System::ProcessOneFrame()
 {
 	CheckInputState();
 
-	graphics.Render(vector<InstanceData>(), vector<InstanceData>());
+	graphics.Render();
 }
 
 void System::CheckInputState()

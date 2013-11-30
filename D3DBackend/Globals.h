@@ -18,6 +18,8 @@ struct VertexType
 {
 	DirectX::XMFLOAT3 position;
 	DirectX::XMFLOAT4 color;
+
+	VertexType(float x, float y, float z) :position(x, y, z), color(1.0f, 0.0f, 0.0f, 1.0f){}
 };
 
 __declspec(align(16)) struct RenderParams
