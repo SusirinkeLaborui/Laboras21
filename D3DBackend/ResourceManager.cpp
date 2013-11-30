@@ -8,6 +8,8 @@ ResourceManager::ResourceManager(void)
 :shader(L"ColorInstancedVertex.cso", L"ColorPixel.cso")
 {
 	handle = this;
+	models.push_back(GetModelFromOBJ("Resources\\Node.obj"));
+	models.push_back(GetModelFromOBJ("Resources\\Edge.obj"));
 }
 
 SimpleModel ResourceManager::GetModelFromOBJ(string filename, bool invert)
