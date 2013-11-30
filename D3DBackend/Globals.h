@@ -5,9 +5,6 @@
 	#define NULL 0
 #endif
 
-template <typename T>
-using ComVector = std::vector<Microsoft::WRL::ComPtr<T>>;
-
 struct InstancedMatrixType
 {
 	DirectX::XMFLOAT4X4 view;

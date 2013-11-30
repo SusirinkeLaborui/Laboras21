@@ -14,8 +14,8 @@ struct Model
 	Model(Model &&other);
 	Model &operator=(Model &&other);
 
-	Model(Model&) = delete;
-	Model &operator=(Model&) = delete;
+	Model(Model&);
+	Model &operator=(Model&);
 };
 
 typedef Model<VertexType> SimpleModel;

@@ -20,8 +20,8 @@ class ResourceManager
 	static vector<FaceVertex> GetVerticesFromFace(string &line);
 	static FaceVertex GetVertexFromString(string &vertex);
 
-	ResourceManager(const ResourceManager&) = delete;
-	ResourceManager &operator=(const ResourceManager&) = delete;
+	ResourceManager(const ResourceManager&);
+	ResourceManager &operator=(const ResourceManager&);
 	static ResourceManager *handle;
 
 	static SimpleModel GetModelFromOBJ(string filename, bool invert = false);

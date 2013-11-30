@@ -11,8 +11,8 @@ class IShader
 {
 public:
 	IShader(wstring vs, wstring ps){ this->vs = vs; this->ps = ps; }
-	IShader(IShader&) = delete;
-	IShader &operator=(IShader&) = delete;
+	IShader(IShader&);
+	IShader &operator=(IShader&);
 	virtual ~IShader(){}
 	virtual void Init(ComPtr<ID3D11Device> device);
 	virtual void RenderShader(ComPtr<ID3D11DeviceContext> context, size_t indexCount){context->DrawIndexed((UINT)indexCount, 0, 0);}
