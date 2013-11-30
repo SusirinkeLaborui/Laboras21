@@ -19,6 +19,10 @@ void Graphics::Render()
 {
 	d3D.StartDrawing(1.0f, 0.0f, 0.0f, 1.0f);
 
+	RenderParams params;
+
+	//nodes.Render(params);
+
 	d3D.SwapBuffers();
 }
 

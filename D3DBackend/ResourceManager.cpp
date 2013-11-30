@@ -5,7 +5,7 @@ using namespace Microsoft::WRL;
 ResourceManager *ResourceManager::handle;
 
 ResourceManager::ResourceManager(void)
-:shader(L"ColorInstancedVertex.cso", L"ColorPixel.cso")
+:shader(L"ColorInstancedVertex.cso", L"ColorInstancedPixel.cso")
 {
 	handle = this;
 	models.push_back(GetModelFromOBJ("Resources\\Node.obj"));

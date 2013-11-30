@@ -3,11 +3,13 @@
 #include "Input.h"
 #include "Graphics.h"
 #include "Windowing.h"
+#include "ResourceManager.h"
 
 class System
 {
 private:
 	Windowing windowing;
+	ResourceManager manager;
 	Input input;
 	Graphics graphics;
 

@@ -181,6 +181,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ColorInstancedShader.cpp" />
     <ClCompile Include="Constants.cpp" />
     <ClCompile Include="D3D.cpp" />
@@ -203,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseInstancer.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="ColorInstancedShader.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="D3D.h" />

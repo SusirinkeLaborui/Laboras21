@@ -31,7 +31,6 @@ __declspec(align(16)) struct RenderParams
 	DirectX::XMMATRIX view;
 	DirectX::XMMATRIX projection;
 	DirectX::XMFLOAT3 lightPos;
-	float brightness;
 	DirectX::XMFLOAT4 diffuseColor;
 	__declspec(align(16)) Microsoft::WRL::ComPtr<ID3D11DeviceContext> context;
 };
