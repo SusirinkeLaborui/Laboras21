@@ -1,5 +1,8 @@
 #include "PrecompiledHeader.h"
+
 #include "D3D.h"
+#include "Tools.h"
+#include "Constants.h"
 
 D3D::D3D(int windowWidth, int windowHeight, HWND windowHandle) :
 	windowHandle(windowHandle),
@@ -60,6 +63,10 @@ void D3D::Initialize()
 		
 			if (result == S_OK)
 			{
+				// Fallback value
+				numerator = displayModeList[0].RefreshRate.Numerator;
+				denominator = displayModeList[0].RefreshRate.Denominator;
+
 				// Now go through all the display modes and find the one that matches the screen width and height.
 				// When a match is found store the numerator and denominator of the refresh rate for that monitor.
 				for_each (displayModeList.get(), displayModeList.get() + numModes, [&numerator, &denominator, this](const DXGI_MODE_DESC& mode)
@@ -149,14 +156,12 @@ void D3D::Initialize()
 	// Set the usage of the back buffer.
 	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 
-	// Don't set the advanced flags.
 	swapChainDesc.Flags = 0;
 
-	// Set the feature level to DirectX 11.	
 	D3D_FEATURE_LEVEL featureLevel = Constants::D3DFeatureLevel;
 	auto deviceFlags = 0u;
 	
-#if DEBUG
+#if _DEBUG
 	deviceFlags |= D3D11_CREATE_DEVICE_DEBUG;		// Fails on Windows 8.1 if 8.1 SDK is not installed
 #endif
 

@@ -32,7 +32,10 @@ void Tools::ShowMessageBox(const wstring& title, const string& text)
 
 void Tools::ShowMessageBox(const wstring& title, const wstring& text)
 {
-	messageBoxCallback(title.c_str(), text.c_str());
+	if (messageBoxCallback != nullptr)
+	{
+		messageBoxCallback(title.c_str(), text.c_str());
+	}
 }
 
 vector<uint8_t> Tools::ReadFileToVector(wstring path)

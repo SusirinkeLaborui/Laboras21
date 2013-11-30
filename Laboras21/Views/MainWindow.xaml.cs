@@ -46,7 +46,7 @@ namespace Laboras21.Views
 
         private void InitD3D()
         {
-            var d3DWindow = new D3DWindow(500, 500);
+            var d3DWindow = new D3DWindow(d3DBorder.ActualWidth, ActualHeight);
             d3DBorder.Child = d3DWindow;
         }
 

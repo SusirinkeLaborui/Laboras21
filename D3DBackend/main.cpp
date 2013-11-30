@@ -2,6 +2,7 @@
 
 #include "D3D.h"
 #include "System.h"
+#include "Tools.h"
 
 extern "C"
 {
@@ -12,7 +13,7 @@ extern "C"
 
 	__declspec(dllexport) System* __cdecl CreateD3DContext(int width, int height, HWND parentWindow)
 	{
-		System* system = new System(width, height, parentWindow);		
+		System* system = new System(width, height, parentWindow);
 		system->RunAsync();
 		return system;
 	}

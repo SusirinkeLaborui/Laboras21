@@ -11,11 +11,7 @@ Constants::~Constants()
 }
 
 const wstring Constants::ApplicationName = L"Laboras21";
-#if !WINDOWS_PHONE
-const bool Constants::VSyncEnabled = false;
-#else
-const bool Constants::VSyncEnabled = true;	
-#endif
+const bool Constants::VSyncEnabled = true;
 
 const float Constants::ScreenDepth = 5000.0f;
 const float Constants::ScreenNear = 0.1f;

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Tools.h"
-
 class D3D
 {
 private:

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "PrecompiledHeader.h"
-
 class System;
 class Windowing
 {

@@ -24,8 +24,8 @@ namespace Laboras21.Controls
         protected override HandleRef BuildWindowCore(HandleRef hwndParent)
         {
             hwndHost = IntPtr.Zero;
-            hwndHost = PInvoke.CreateWindowEx(0, "static", "", PInvoke.WS_CHILD | PInvoke.WS_VISIBLE, 0, 0, hostWidth, hostHeight, 
-                hwndParent.Handle, IntPtr.Zero, IntPtr.Zero, 0);
+            hwndHost = PInvoke.CreateWindowEx(0, "static", "", PInvoke.WS_CHILD | PInvoke.WS_VISIBLE, 0, 0, hostWidth, hostHeight,
+                hwndParent.Handle, (IntPtr)PInvoke.HOST_ID, IntPtr.Zero, 0);
 
             d3DWindowHandle = PInvoke.CreateD3DContext(hostWidth, hostHeight, hwndHost);
 

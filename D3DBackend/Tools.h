@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Constants.h"
-
 typedef void (__stdcall *MessageBoxCallback)(const wchar_t* title, const wchar_t* text);
 
 class Tools
@@ -49,20 +47,13 @@ struct Point2D
 };
 
 
-#ifndef DEBUG
+#ifndef _DEBUG
 #define Assert(x)   if (x != S_OK) \
 					{ \
 						wstringstream stream; \
 						stream << hex << x; \
 						Tools::ShowMessageBox(L"Error number 0x" + stream.str(), __WFILE__ + wstring(L": ") + to_wstring(__LINE__)); \
 						exit(-1); \
-					}
-#elif WINDOWS_PHONE
-#define Assert(x)   if (x != S_OK) \
-					{ \
-						OutputDebugStringW((L"Error! HRESULT: " + to_wstring(x)).c_str()); \
-						OutputDebugStringW((__WFILE__ + wstring(L": ") + to_wstring(__LINE__)).c_str()); \
-						assert(false); \
 					}
 #else
 #define Assert(x)   if (x != S_OK) \

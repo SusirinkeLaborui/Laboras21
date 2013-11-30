@@ -1,11 +1,12 @@
 #include "PrecompiledHeader.h"
 
 #include "System.h"
+#include "Tools.h"
 
 System::System(int windowWidth, int windowHeight, HWND parentWindow) :
 	running(false), 
-	windowing(windowWidth, windowHeight, parentWindow, this)
-	//graphics(windowWidth, windowHeight, fullscreen, windowing.GetWindowHandle())
+	windowing(windowWidth, windowHeight, parentWindow, this),
+	graphics(windowWidth, windowHeight, windowing.GetWindowHandle())
 {
 	RAWINPUTDEVICE Rid[2];
         
@@ -54,9 +55,6 @@ void System::Run()
 			frames = 0;
 			timeSinceLastFps = lastFrameFinished;
 		}
-
-#pragma message("WARNING: Remove when D3D Vsync is implemented!!!")
-		Sleep(20);
 	}
 }
 
@@ -97,7 +95,7 @@ void System::ProcessOneFrame()
 {
 	CheckInputState();
 
-	//graphics.Render();
+	graphics.Render(vector<InstanceData>(), vector<InstanceData>());
 }
 
 void System::CheckInputState()

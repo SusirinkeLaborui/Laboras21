@@ -1,7 +1,9 @@
 #include "PrecompiledHeader.h"
+
 #include "Windowing.h"
 #include "System.h"
-
+#include "Tools.h"
+#include "Constants.h"
 
 static long int CALLBACK HandleMessage(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam);
 static System* SystemInstance;
@@ -33,7 +35,7 @@ Windowing::Windowing(int windowWidth, int windowHeight, HWND parentWindow, Syste
 	posX = (GetSystemMetrics(SM_CXSCREEN) - windowWidth) / 2;
 	posY = (GetSystemMetrics(SM_CYSCREEN) - windowHeight) / 2;
 
-	windowHandle = CreateWindowEx(0, windowInfo.lpszClassName, L"Ultra Canvas", WS_CHILD, 
+	windowHandle = CreateWindowEx(0, windowInfo.lpszClassName, L"Ultra Canvas", WS_CHILD | WS_VISIBLE, 
 		0, 0, windowWidth, windowHeight, parentWindow, nullptr, programInstance, nullptr);
 
 	if (windowHandle == nullptr)
@@ -44,11 +46,11 @@ Windowing::Windowing(int windowWidth, int windowHeight, HWND parentWindow, Syste
 	}
 
 	// Bring the window up on the screen and set it as main focus.
-	ShowWindow(windowHandle, SW_SHOW);
+	//ShowWindow(windowHandle, SW_SHOW);
 	//SetForegroundWindow(windowHandle);
 	//SetFocus(windowHandle);
 
-	ShowCursor(Constants::ShowCursor);
+	//ShowCursor(Constants::ShowCursor);
 }
 
 Windowing::~Windowing()

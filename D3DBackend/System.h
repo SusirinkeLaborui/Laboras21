@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Input.h"
-//#include "Graphics.h"
+#include "Graphics.h"
 #include "Windowing.h"
 
 class System
@@ -9,7 +9,7 @@ class System
 private:
 	Windowing windowing;
 	Input input;
-	//Graphics graphics;
+	Graphics graphics;
 
 	bool running;
 	float secondsSinceLastFrame;

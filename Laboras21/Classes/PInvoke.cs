@@ -14,7 +14,11 @@ namespace Laboras21.Classes
 
         internal const int WS_CHILD = 0x40000000,
                            WS_VISIBLE = 0x10000000,
-                           HOST_ID = 0x00000002;
+                           LBS_NOTIFY = 0x00000001,
+                           HOST_ID = 0x00000002,
+                           LISTBOX_ID = 0x00000001,
+                           WS_VSCROLL = 0x00200000,
+                           WS_BORDER = 0x00800000;
 
 
         [DllImport("user32.dll", EntryPoint = "CreateWindowEx", CharSet = CharSet.Unicode)]

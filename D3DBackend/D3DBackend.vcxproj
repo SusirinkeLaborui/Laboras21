@@ -151,8 +151,11 @@
   <ItemGroup>
     <ClCompile Include="Constants.cpp" />
     <ClCompile Include="D3D.cpp" />
+    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="PrecompiledHeader.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -166,7 +169,10 @@
   <ItemGroup>
     <ClInclude Include="Constants.h" />
     <ClInclude Include="D3D.h" />
+    <ClInclude Include="Graphics.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="PrecompiledHeader.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="Tools.h" />
