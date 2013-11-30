@@ -48,8 +48,9 @@ namespace Laboras21.Views
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateInput", true);
         }
 
-        private void InitD3D()
+        private async void InitD3D()
         {
+            await Task.Delay(500);  // Wait for metro animation to finish, otherwise window spawns at wrong position.
             var d3DWindow = new D3DWindow(LayoutRoot.ActualWidth - 300, LayoutRoot.ActualHeight);
             LayoutRoot.Children.Add(d3DWindow);
         }
