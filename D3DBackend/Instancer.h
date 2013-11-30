@@ -4,8 +4,6 @@ class Instancer : public BaseInstancer<VertexType, ColorInstancedShader, XMFLOAT
 {
 	vector<XMFLOAT4X4> data;
 	mutex mtx;
-	condition_variable access;
-	volatile bool accessing;
 public:
 	Instancer(SimpleModel &model, ColorInstancedShader &shader, size_t maxObjectCount);
 	~Instancer();
