@@ -42,6 +42,9 @@ namespace Laboras21.Views
 
             treeFinder = new MinimalSpanningTreeFinder(canvas.AddEdge, reportProgressCallback);
             canvas.ProgressBar = progressBar;
+
+            Loaded += (sender, e) => { InitD3D(); };
+
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateInput", true);
         }
 
@@ -53,7 +56,6 @@ namespace Laboras21.Views
 
         private async void ButtonLoad_Click(object sender, RoutedEventArgs e)
         {
-            InitD3D();
             var openFileDialog = new OpenFileDialog();
             bool? userClickedOK = openFileDialog.ShowDialog();
 
