@@ -85,14 +85,14 @@ struct Point2D
 #define AssertBool(x, error) \
 if (x != true) \
 { \
-	Tools::ShowMessageBox(error, __WFILE__ + wstring(L": ") + to_wstring(__LINE__)); \
+	Tools::ShowMessageBox(L"Error", error + wstring(L"\r\n") + __WFILE__ + wstring(L": ") + to_wstring(__LINE__)); \
 	exit(-1); \
 	}
 #else
 #define AssertBool(x, error) \
 if (x != true) \
 { \
-	Tools::ShowMessageBox(error, __WFILE__ + wstring(L": ") + to_wstring(__LINE__)); \
+	Tools::ShowMessageBox(L"Error", error + wstring(L"\r\n") + __WFILE__ + wstring(L": ") + to_wstring(__LINE__)); \
 	DebugBreak(); \
 	}
 #endif

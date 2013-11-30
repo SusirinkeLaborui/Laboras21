@@ -46,17 +46,20 @@ namespace Laboras21.Classes
         internal delegate void MessageBoxCallback([MarshalAs(UnmanagedType.LPWStr)] string title, [MarshalAs(UnmanagedType.LPWStr)] string text);
 
 
-        [DllImport("D3DBackend.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("D3DBackend.dll")]
         internal static extern void SetMessageBoxCallback(MessageBoxCallback callback);
 
 
-        [DllImport("D3DBackend.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("D3DBackend.dll")]
         internal static extern IntPtr CreateD3DContext(int width, int height, IntPtr hwnd);
 
         
-        [DllImport("D3DBackend.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("D3DBackend.dll")]
         internal static extern void DestroyD3DContext(ref IntPtr d3DBackendHandle);
 
+
+        [DllImport("D3DBackend.dll")]
+        internal static extern void ResizeWindow(IntPtr systemInstance, int newWidth, int newHeight);
 
         #endregion
     }

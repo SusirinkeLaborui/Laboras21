@@ -6,22 +6,29 @@
 
 extern "C"
 {
-	__declspec(dllexport) void SetMessageBoxCallback(MessageBoxCallback callback)
+	__declspec(dllexport) void __stdcall SetMessageBoxCallback(MessageBoxCallback callback)
 	{
 		Tools::SetMessageBoxCallback(callback);
 	}
 
-	__declspec(dllexport) System* __cdecl CreateD3DContext(int width, int height, HWND parentWindow)
+	__declspec(dllexport) System* __stdcall CreateD3DContext(int width, int height, HWND parentWindow)
 	{
-		System* system = new System(width, height, parentWindow);
-		system->RunAsync();
-		return system;
+		auto systemInstance = new System(width, height, parentWindow);
+		systemInstance->RunAsync();
+		return systemInstance;
 	}
 
-	__declspec(dllexport) void _cdecl DestroyD3DContext(System*& system)
+	__declspec(dllexport) void __stdcall DestroyD3DContext(System*& systemInstance)
 	{
-		system->StopRunning();
-		delete system;
-		system = nullptr;
+		AssertBool(systemInstance != nullptr, L"System instance can't be null!");
+
+		systemInstance->StopRunning();
+		delete systemInstance;
+		systemInstance = nullptr;
+	}
+
+	__declspec(dllexport) void __stdcall ResizeWindow(System* systemInstance, int newWidth, int newHeight)
+	{
+		AssertBool(systemInstance != nullptr, L"System instance can't be null!");
 	}
 }
