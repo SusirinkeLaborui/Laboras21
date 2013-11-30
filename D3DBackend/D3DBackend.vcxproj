@@ -190,7 +190,7 @@
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="Instancer.cpp" />
     <ClCompile Include="IShader.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Exports.cpp" />
     <ClCompile Include="PrecompiledHeader.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
