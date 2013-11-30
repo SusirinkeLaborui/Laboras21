@@ -15,7 +15,7 @@ public:
 	virtual ~BaseInstancer(void){}
 
 protected:
-	size_t maxInstanceCount;
+	const size_t maxInstanceCount;
 	size_t instanceCount;
 
 	ComPtr<ID3D11Buffer> instanceBuffer;
@@ -32,9 +32,8 @@ protected:
 
 template<class vt, class sh, class it>
 BaseInstancer<vt, sh, it>::BaseInstancer(Model<vt> &model, sh &shader, size_t maxObjectCount, XMFLOAT3 pos)
-:DrawableEntity(pos, model, shader), instanceCount(0)
+:DrawableEntity(pos, model, shader), instanceCount(0), maxInstanceCount(maxObjectCount)
 {
-	this->maxInstanceCount = maxObjectCount;
 }
 
 template<class vt, class sh, class it>

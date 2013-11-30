@@ -12,4 +12,5 @@ public:
 
 	void Add(XMFLOAT4X4);
 	bool Update(ComPtr<ID3D11DeviceContext> context);
+	void Clear(){ instanceCount = 0; }
 };
