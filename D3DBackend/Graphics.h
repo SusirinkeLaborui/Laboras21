@@ -3,7 +3,7 @@
 #include "D3D.h"
 #include "Model.h"
 #include "Light.h"
-#include "Instancer.h"
+#include "BaseInstancer.h"
 #include "Camera.h"
 
 class Graphics

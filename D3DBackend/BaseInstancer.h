@@ -22,6 +22,9 @@ protected:
 
 	const size_t maxInstanceCount;
 	size_t instanceCount;
+
+	mutex mtx;
+	vector<it> queue;
 public:
 	BaseInstancer(Model<vt> &model, sh &shader, size_t maxObjectCount);
 	virtual ~BaseInstancer(void){}
@@ -29,11 +32,16 @@ public:
 	void Init(ComPtr<ID3D11Device> device);
 	void Render(const RenderParams& params);
 
+	void Add(it item);
+	void Add(vector<it> items);
+	void Clear();
 protected:
 	void InitBuffers(ComPtr<ID3D11Device> device);
 	void SetBuffers(ComPtr<ID3D11DeviceContext> context);
-	virtual bool Update(ComPtr<ID3D11DeviceContext> context) = 0;
+	bool Update(ComPtr<ID3D11DeviceContext> context);
 };
+
+typedef BaseInstancer<VertexType, ColorInstancedShader, XMFLOAT4X4> Instancer;
 
 template<class vt, class sh, class it>
 BaseInstancer<vt, sh, it>::BaseInstancer(Model<vt> &model, sh &shader, size_t maxObjectCount)
@@ -113,4 +121,50 @@ void BaseInstancer<vt, sh, it>::SetBuffers(ComPtr<ID3D11DeviceContext> context)
 	context->IASetVertexBuffers(0, 1, vertexBuffer.GetAddressOf(), &vertexInfo.stride, &vertexInfo.offset);
 	context->IASetVertexBuffers(1, 1, instanceBuffer.GetAddressOf(), &instanceInfo.stride, &instanceInfo.offset);
 	context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);	
+}
+
+template<class vt, class sh, class it>
+void BaseInstancer<vt, sh, it>::Add(it item)
+{
+	unique_lock<mutex> lock(mtx);
+
+	queue.push_back(item);
+}
+
+template<class vt, class sh, class it>
+void BaseInstancer<vt, sh, it>::Add(vector<it> items)
+{
+	unique_lock<mutex> lock(mtx);
+
+	Tools::VectorAppend(queue, items);
+}
+
+template<class vt, class sh, class it>
+bool BaseInstancer<vt, sh, it>::Update(ComPtr<ID3D11DeviceContext> context)
+{
+	unique_lock<mutex> lock(mtx);
+
+	size_t count = queue.size();
+	if (instanceCount + count > maxInstanceCount)
+		count = maxInstanceCount - instanceCount;
+	if (count > 0)
+	{
+		D3D11_MAPPED_SUBRESOURCE resource;
+		context->Map(instanceBuffer.Get(), 0, D3D11_MAP_WRITE_NO_OVERWRITE, 0, &resource);
+		auto ptr = static_cast<it*>(resource.pData);
+		memcpy(ptr + instanceCount, queue.data(), sizeof(it) * count);
+		context->Unmap(instanceBuffer.Get(), 0);
+		instanceCount += count;
+		queue.clear();
+	}
+	return instanceCount > 0;
+}
+
+template<class vt, class sh, class it>
+void BaseInstancer<vt, sh, it>::Clear()
+{
+	unique_lock<mutex> lock(mtx);
+
+	instanceCount = 0;
+	queue.clear();
 }

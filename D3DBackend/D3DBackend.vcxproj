@@ -188,7 +188,6 @@
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Light.cpp" />
-    <ClCompile Include="Instancer.cpp" />
     <ClCompile Include="IShader.cpp" />
     <ClCompile Include="Exports.cpp" />
     <ClCompile Include="PrecompiledHeader.cpp">
@@ -216,7 +215,6 @@
     <ClInclude Include="System.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="IInstanceShader.h" />
-    <ClInclude Include="Instancer.h" />
     <ClInclude Include="IShader.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Tools.h" />
