@@ -185,11 +185,13 @@
     <ClCompile Include="ColorInstancedShader.cpp" />
     <ClCompile Include="Constants.cpp" />
     <ClCompile Include="D3D.cpp" />
+    <ClCompile Include="Edges.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="IShader.cpp" />
     <ClCompile Include="Exports.cpp" />
+    <ClCompile Include="Nodes.cpp" />
     <ClCompile Include="PrecompiledHeader.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -207,10 +209,12 @@
     <ClInclude Include="ColorInstancedShader.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="D3D.h" />
+    <ClInclude Include="Edges.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="Nodes.h" />
     <ClInclude Include="PrecompiledHeader.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="Globals.h" />

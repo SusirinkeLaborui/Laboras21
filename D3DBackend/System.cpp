@@ -168,6 +168,7 @@ void System::ResizeWindow(int newWidth, int newHeight)
 void System::DrawNodes(const Point* nodeList, int nodeCount)
 {
 	unique_lock<mutex> lock(drawMutex);
+	graphics.GetNodes().Add(nodeList, nodeCount);
 }
 
 void System::DrawEdge(const Point& nodeA, const Point& nodeB)
@@ -179,13 +180,13 @@ void System::DrawEdge(const Point& nodeA, const Point& nodeB)
 void System::ClearNodes()
 {
 	unique_lock<mutex> lock(drawMutex);
-
+	graphics.GetNodes().Clear();
 }
 
 void System::ClearEdges()
 {
 	unique_lock<mutex> lock(drawMutex);
-
+	graphics.GetEdges().Clear();
 }
 
 void* System::operator new(size_t size)

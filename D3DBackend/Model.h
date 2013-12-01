@@ -18,7 +18,7 @@ private:
 	Model &operator=(Model&);
 };
 
-typedef Model<VertexType> SimpleModel;
+typedef Model<VertexType> ColorModel;
 
 template<class T>
 Model<T>::Model(Model &&other)

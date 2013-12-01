@@ -12,9 +12,9 @@ ResourceManager::ResourceManager(void)
 	models.push_back(GetModelFromOBJ("Resources\\Edge.obj"));
 }
 
-SimpleModel ResourceManager::GetModelFromOBJ(string filename, bool invert)
+ColorModel ResourceManager::GetModelFromOBJ(string filename, bool invert)
 {
-	SimpleModel model;
+	ColorModel model;
 	ifstream in(filename, ios::binary);
 	string input;
 	float x, y, z;

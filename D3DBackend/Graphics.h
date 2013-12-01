@@ -3,7 +3,8 @@
 #include "D3D.h"
 #include "Model.h"
 #include "Light.h"
-#include "BaseInstancer.h"
+#include "Edges.h"
+#include "Nodes.h"
 #include "Camera.h"
 
 class Graphics
@@ -11,8 +12,8 @@ class Graphics
 private:
 	D3D d3D;	
 
-	Instancer nodes;
-	Instancer edges;
+	Nodes nodes;
+	Edges edges;
 	Camera camera;
 
 	DirectX::XMFLOAT4 backgroundColor;
@@ -21,9 +22,9 @@ public:
 	~Graphics();
 
 	void Render();
-	void AddNode(Point point);
-	void AddNodes(vector<Point> points);
 	void ResizeD3DContext(int newWidth, int newHeight) { d3D.ResizeContext(newWidth, newHeight); }
-	static XMFLOAT4X4 GetNodeMatrix(Point point);
+
+	Nodes &GetNodes(){ return nodes; }
+	Edges &GetEdges(){ return edges; }
 };
 

@@ -14,7 +14,7 @@ class ResourceManager
 		int tex;
 		int vertex;
 	};
-	vector<SimpleModel> models;
+	vector<ColorModel> models;
 	ColorInstancedShader shader;
 
 	static vector<FaceVertex> GetVerticesFromFace(string &line);
@@ -24,13 +24,13 @@ class ResourceManager
 	ResourceManager &operator=(const ResourceManager&);
 	static ResourceManager *handle;
 
-	static SimpleModel GetModelFromOBJ(string filename, bool invert = false);
+	static ColorModel GetModelFromOBJ(string filename, bool invert = false);
 public:
 	ResourceManager(void);
 	~ResourceManager(void){}
 
 	void InitShaders(Microsoft::WRL::ComPtr<ID3D11Device>);
-	SimpleModel &GetModel(int model){ return models[model]; }
+	ColorModel &GetModel(int model){ return models[model]; }
 	static ResourceManager &Get(){ return *handle; }
 
 	ColorInstancedShader &GetShader(){ return shader; }

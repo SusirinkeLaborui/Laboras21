@@ -12,8 +12,6 @@ Graphics::Graphics(int windowWidth, int windowHeight, DirectX::XMFLOAT4 backgrou
 	edges.Init(d3D.GetDevice());
 	nodes.Init(d3D.GetDevice());
 	camera.Forward(15.0f);
-	AddNode(Point(0, 0));
-	AddNode(Point(5, 0));
 }
 
 Graphics::~Graphics()
@@ -33,26 +31,4 @@ void Graphics::Render()
 	nodes.Render(params);
 
 	d3D.SwapBuffers();
-}
-
-void Graphics::AddNode(Point point)
-{
-	nodes.Add(GetNodeMatrix(point));
-}
-
-void Graphics::AddNodes(vector<Point> points)
-{
-	vector<XMFLOAT4X4> matrices;
-	for (auto &point : points)
-		matrices.push_back(GetNodeMatrix(point));
-	nodes.Add(matrices);
-}
-
-XMFLOAT4X4 Graphics::GetNodeMatrix(Point point)
-{
-	XMMATRIX scale = XMMatrixScaling(1.0f, 1.0f, 1.0f);
-	XMMATRIX move = XMMatrixTranslation(static_cast<float>(point.x), static_cast<float>(point.y), 0.0f);
-	XMFLOAT4X4 world;
-	XMStoreFloat4x4(&world, XMMatrixTranspose(scale * move));
-	return world;
 }
