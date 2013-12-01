@@ -40,7 +40,8 @@ void D3D::Initialize()
 	if (result == S_OK)
 	{
 		ComPtr<IDXGIOutput> adapterOutput;
-		unsigned int numModes, stringLength;
+		unsigned int numModes;
+		size_t stringLength;
 		unique_ptr<DXGI_MODE_DESC[]> displayModeList;
 		DXGI_ADAPTER_DESC adapterDesc;
 

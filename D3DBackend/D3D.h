@@ -16,7 +16,7 @@ private:
 	ComPtr<ID3D11BlendState> alphaBlendingState;
 	D3D11_VIEWPORT viewport;
 
-	int videoCardMemory;
+	size_t videoCardMemory;
 	string videoCardDescription;
 	float aspectRatio;
 
@@ -48,7 +48,7 @@ public:
 	const DirectX::XMMATRIX& GetProjectionMatrix() const { return projectionMatrix; }
 	const DirectX::XMMATRIX& GetOrthoMatrix() const { return orthoMatrix; }
 	
-	void GetVideoCardInfo(string& cardName, int& cardMemory) const { cardName = videoCardDescription; cardMemory = videoCardMemory; }
+	void GetVideoCardInfo(string& cardName, size_t& cardMemory) const { cardName = videoCardDescription; cardMemory = videoCardMemory; }
 	float GetAspectRatio() const { return aspectRatio; }
 
 	void ChangeFoV(float value);

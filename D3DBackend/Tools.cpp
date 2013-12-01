@@ -25,7 +25,7 @@ wstring Tools::GetErrorText(int errorCode)
 void Tools::ShowMessageBox(const wstring& title, const string& text)
 {
 	auto buffer = unique_ptr<wchar_t[]>(new wchar_t[text.length() + 1]);
-	MultiByteToWideChar(CP_THREAD_ACP, 0, text.c_str(), text.length(), buffer.get(), text.length());
+	MultiByteToWideChar(CP_THREAD_ACP, 0, text.c_str(), static_cast<int>(text.length()), buffer.get(), static_cast<int>(text.length()));
 	buffer[text.length()] = 0;
 	ShowMessageBox(title, buffer.get());
 }

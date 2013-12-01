@@ -79,7 +79,7 @@ extern "C"
 		{
 			if (uMsg == WM_INPUT)
 			{
-				inputCallback(wParam, lParam);
+				inputCallback(static_cast<long>(wParam), static_cast<long>(lParam));
 			}
 
 			return DefWindowProc(hwnd, uMsg, wParam, lParam);
