@@ -2,7 +2,7 @@
 #include "Camera.h"
 using namespace DirectX;
 
-Camera::Camera() : up(0.0f, 1.0f, 0.0f), pos(0.0f, 0.0f, 0.0f), forward(0.0f, 0.0f, 1.0f), right(1.0f, 0.0f, 0.0f), modified(true)
+Camera::Camera() : up(0.0f, 1.0f, 0.0f), pos(0.0f, 0.0f, 0.0f), forward(0.0f, 0.0f, -1.0f), right(1.0f, 0.0f, 0.0f), modified(true)
 {
 }
 
@@ -11,7 +11,7 @@ void Camera::RenderMain()
 	if (modified)
 	{
 		modified = false;
-		XMStoreFloat4x4(&viewMatrix, XMMatrixLookToLH(XMLoadFloat3(&pos), XMLoadFloat3(&forward), XMLoadFloat3(&up)));
+		XMStoreFloat4x4(&viewMatrix, XMMatrixLookToRH(XMLoadFloat3(&pos), XMLoadFloat3(&forward), XMLoadFloat3(&up)));
 	}
 }
 
