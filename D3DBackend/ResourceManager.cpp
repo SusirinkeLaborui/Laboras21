@@ -16,6 +16,12 @@ ColorModel ResourceManager::GetModelFromOBJ(string filename, bool invert)
 {
 	ColorModel model;
 	ifstream in(filename, ios::binary);
+	if (!in.is_open())
+	{
+		Tools::ShowMessageBox(L"Error", "Couldn't open file \"" + filename + "\"!");
+		exit(-1);
+	}
+
 	string input;
 	float x, y, z;
 
