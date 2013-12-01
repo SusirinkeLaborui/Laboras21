@@ -25,4 +25,4 @@ const size_t Constants::NodeLimit = 20002;
 const size_t Constants::EdgeLimit = Constants::NodeLimit - 1;
 
 const float Constants::EdgeWidth = 40.0f;
-const float Constants::NodeWidth = 20.0f;
+const float Constants::NodeSize = 20.0f;

@@ -21,6 +21,6 @@ public:
 	static const size_t EdgeLimit;
 
 	static const float EdgeWidth;
-	static const float NodeWidth;
+	static const float NodeSize;
 };
 
