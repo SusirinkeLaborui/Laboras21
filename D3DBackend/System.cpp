@@ -78,10 +78,34 @@ void System::ProcessOneFrame()
 
 void System::CheckInputState()
 {
-	auto wheelDisplacement = input.HandleWheelDisplacement();
-	auto& camera = graphics.GetCamera();
+	unique_lock<mutex> lock(inputMutex);
 	
-	camera.Forward(camera.GetPosition().z * wheelDisplacement - camera.GetPosition().z);
+	auto& camera = graphics.GetCamera();
+	auto cameraPos = camera.GetPosition();
+	cameraPos.z = fabs(cameraPos.z);
+
+	// Pan
+	if (input.IsKeyDown('W'))
+	{
+		camera.Up(cameraPos.z * secondsSinceLastFrame);
+	}
+	if (input.IsKeyDown('S'))
+	{
+		camera.Up(-cameraPos.z * secondsSinceLastFrame);
+	}
+	if (input.IsKeyDown('A'))
+	{
+		camera.Right(-cameraPos.z * secondsSinceLastFrame);
+	}
+	if (input.IsKeyDown('D'))
+	{
+		camera.Right(cameraPos.z * secondsSinceLastFrame);
+	}
+
+	// Zoom
+	auto wheelDisplacement = input.HandleWheelDisplacement();
+	
+	camera.Forward(cameraPos.z * wheelDisplacement - cameraPos.z);
 }
 
 void System::HandleRawInput(long lParam, long wParam)
@@ -93,6 +117,7 @@ void System::HandleRawInput(long lParam, long wParam)
 	GetRawInputData((HRAWINPUT)lParam, RID_INPUT, buffer.get(), &dataSize, sizeof(RAWINPUTHEADER));
 
 	RAWINPUT* raw = (RAWINPUT*)buffer.get();
+	unique_lock<mutex> lock(inputMutex);
 
 	if (raw->header.dwType == RIM_TYPEKEYBOARD) 
 	{

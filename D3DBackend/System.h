@@ -21,6 +21,7 @@ private:
 
 	thread asyncRunner;
 	mutex drawMutex;
+	mutex inputMutex;
 
 	void Run();
 public:
