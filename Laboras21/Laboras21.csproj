@@ -152,7 +152,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Point.cs" />
-    <Compile Include="Controls\SuperCanvas.cs" />
+    <Compile Include="Controls\UberCanvas.cs" />
     <Compile Include="ValidationRules\DoubleValidationRule.cs" />
     <Compile Include="ViewModels\GeneratorOptionViewModel.cs" />
     <Compile Include="ValidationRules\PositiveIntValidationRule.cs" />

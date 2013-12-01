@@ -12,12 +12,12 @@ using System.Windows.Threading;
 
 namespace Laboras21.Controls
 {
-    public class SuperCanvas : HwndHost
+    public class UberCanvas : HwndHost
     {
         private IntPtr hwndHost;
         private IntPtr d3DWindowHandle;
 
-        public SuperCanvas()
+        public UberCanvas()
         {
             //testing
 
