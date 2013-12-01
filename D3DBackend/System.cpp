@@ -5,7 +5,7 @@
 
 System::System(int windowWidth, int windowHeight, DirectX::XMFLOAT4 backgroundColor, HWND parentWindow) :
 	running(false), 
-	windowing(windowWidth, windowHeight, parentWindow, this),
+	windowing(windowWidth, windowHeight, parentWindow),
 	graphics(windowWidth, windowHeight, backgroundColor, windowing.GetWindowHandle())
 {
 	RAWINPUTDEVICE Rid[2];
@@ -13,12 +13,12 @@ System::System(int windowWidth, int windowHeight, DirectX::XMFLOAT4 backgroundCo
 	Rid[0].usUsagePage = 0x01;				// magic numbers
 	Rid[0].usUsage = 0x02;					// magically means mouse
 	Rid[0].dwFlags = RIDEV_INPUTSINK;
-	Rid[0].hwndTarget = windowing.GetWindowHandle();
+	Rid[0].hwndTarget = parentWindow;
 
 	Rid[1].usUsagePage = 0x01;				// magic numbers
 	Rid[1].usUsage = 0x06;					// magically means keyboard
 	Rid[1].dwFlags = RIDEV_INPUTSINK;
-	Rid[1].hwndTarget = windowing.GetWindowHandle();
+	Rid[1].hwndTarget = parentWindow;
 
 	if (!RegisterRawInputDevices(Rid, 2, sizeof(Rid[0])))
 	{
@@ -40,7 +40,6 @@ void System::Run()
 
 	while (running)
 	{
-		ProcessWindowsMessages();
 		ProcessOneFrame();
 
 		secondsSinceLastFrame = Tools::GetTickCount() - lastFrameFinished;
@@ -69,28 +68,6 @@ void System::StopRunning()
 	asyncRunner.join();
 }
 
-void System::ProcessWindowsMessages()
-{
-	static MSG msg;
-
-	ZeroMemory(&msg, sizeof(MSG));
-
-	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-	{
-		DispatchMessage(&msg);
-		
-		if (msg.message == WM_QUIT)
-		{
-			running = false;
-		}
-
-		if (msg.message == WM_INPUT)
-		{
-			HandleRawInput(msg.lParam, msg.wParam);
-		}
-	}
-}
-
 void System::ProcessOneFrame()
 {
 	unique_lock<mutex> lock(drawMutex);
@@ -101,28 +78,10 @@ void System::ProcessOneFrame()
 
 void System::CheckInputState()
 {
-
-}
-
-long int System::MessageHandler(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam)
-{
-	if (message == 127)
-	{
-		return DefWindowProc(windowHandle, message, wParam, lParam);
-	}
-
-	switch (message)
-	{
-		case WM_CLOSE:
-		case WM_DESTROY:
-		case WM_QUIT:
-			running = false;
-			return 0;
-			break;
-		default:
-			return DefWindowProc(windowHandle, message, wParam, lParam);
-			break;
-	}
+	auto wheelDisplacement = input.HandleWheelDisplacement();
+	auto& camera = graphics.GetCamera();
+	
+	camera.Forward(camera.GetPosition().z * wheelDisplacement - camera.GetPosition().z);
 }
 
 void System::HandleRawInput(long lParam, long wParam)

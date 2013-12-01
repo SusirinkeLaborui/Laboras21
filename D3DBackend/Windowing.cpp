@@ -5,13 +5,10 @@
 #include "Tools.h"
 #include "Constants.h"
 
-static System* SystemInstance;
-
-Windowing::Windowing(int windowWidth, int windowHeight, HWND parentWindow, System* systemInstance)
+Windowing::Windowing(int windowWidth, int windowHeight, HWND parentWindow)
 {
 	WNDCLASSEX windowInfo;
 
-	SystemInstance = systemInstance;
 	auto programInstance = GetModuleHandle(NULL);
 
 	ZeroMemory(&windowInfo, sizeof(WNDCLASSEX));
@@ -27,7 +24,7 @@ Windowing::Windowing(int windowWidth, int windowHeight, HWND parentWindow, Syste
 	
 	windowInfo.lpfnWndProc = [](HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam)
 	{
-		return SystemInstance->MessageHandler(windowHandle, message, wParam, lParam);
+		return DefWindowProc(windowHandle, message, wParam, lParam);
 	};
 
 

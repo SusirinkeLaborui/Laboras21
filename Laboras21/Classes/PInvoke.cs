@@ -26,6 +26,7 @@ namespace Laboras21.Classes
 
 
         internal delegate void MessageBoxCallback([MarshalAs(UnmanagedType.LPWStr)] string title, [MarshalAs(UnmanagedType.LPWStr)] string text);
+        internal delegate void RawInputCallback(int wParam, int lParam);
 
 
         [DllImport("D3DBackend.dll")]
@@ -65,7 +66,12 @@ namespace Laboras21.Classes
 
 
         [DllImport("D3DBackend.dll")]
-        internal static extern IntPtr CreateColoredWindow(IntPtr parent, int r, int g, int b);
+        internal static extern IntPtr CreateColoredWindow(IntPtr parent, int r, int g, int b, RawInputCallback rawInputCallback);
+
+
+        [DllImport("D3DBackend.dll")]
+        internal static extern void HandleRawInput(IntPtr systemInstance, int wParam, int lParam);
+
 
         #endregion
     }

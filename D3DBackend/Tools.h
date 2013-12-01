@@ -1,6 +1,7 @@
 #pragma once
 
 typedef void (__stdcall *MessageBoxCallback)(const wchar_t* title, const wchar_t* text);
+typedef void (__stdcall *RawInputCallback)(long wParam, long lParam);
 
 class Tools
 {

@@ -24,7 +24,9 @@ public:
 	void Render();
 	void ResizeD3DContext(int newWidth, int newHeight) { d3D.ResizeContext(newWidth, newHeight); }
 
-	Nodes &GetNodes(){ return nodes; }
-	Edges &GetEdges(){ return edges; }
+	Nodes& GetNodes() { return nodes; }
+	Edges& GetEdges() { return edges; }
+
+	Camera& GetCamera() { return camera; }
 };
 

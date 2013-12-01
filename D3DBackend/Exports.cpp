@@ -4,6 +4,8 @@
 #include "Tools.h"
 #include "Constants.h"
 
+static RawInputCallback inputCallback;
+
 extern "C"
 {
 	__declspec(dllexport) void __stdcall SetMessageBoxCallback(MessageBoxCallback callback)
@@ -62,7 +64,7 @@ extern "C"
 		systemInstance->ClearEdges();
 	}
 
-	__declspec(dllexport) HWND __stdcall CreateColoredWindow(HWND parent, int r, int g, int b)
+	__declspec(dllexport) HWND __stdcall CreateColoredWindow(HWND parent, int r, int g, int b, RawInputCallback rawInputCallback)
 	{	
 		WNDCLASSEX windowInfo;
 
@@ -71,8 +73,14 @@ extern "C"
 		ZeroMemory(&windowInfo, sizeof(WNDCLASSEX));
 		windowInfo.style = CS_HREDRAW | CS_VREDRAW | CS_PARENTDC;
 		
+		inputCallback = rawInputCallback;
 		windowInfo.lpfnWndProc = [](HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) -> LRESULT
 		{
+			if (uMsg == WM_INPUT)
+			{
+				inputCallback(wParam, lParam);
+			}
+
 			return DefWindowProc(hwnd, uMsg, wParam, lParam);
 		};
 
@@ -92,5 +100,11 @@ extern "C"
 		AssertBool(windowHandle != nullptr, L"Window creation failed!");
 
 		return windowHandle;
+	}
+	
+	__declspec(dllexport) void __stdcall HandleRawInput(System* systemInstance, long wParam, long lParam)
+	{
+		AssertBool(systemInstance != nullptr, L"System instance can't be null!");
+		systemInstance->HandleRawInput(lParam, wParam);
 	}
 }

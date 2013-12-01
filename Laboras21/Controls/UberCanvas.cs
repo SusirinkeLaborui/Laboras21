@@ -16,19 +16,19 @@ namespace Laboras21.Controls
     {
         private IntPtr hwndHost;
         private IntPtr d3DWindowHandle;
+        private PInvoke.RawInputCallback inputCallback;
 
         public UberCanvas()
         {
-            //testing
-
-            /*var temp = new List<Vertex>();
-            temp.Add(new Vertex(new Point(0, 0)));
-            temp.Add(new Vertex(new Point(7000, 5000)));
-            SetCollection(temp);
-
-            AddEdge(temp[0], temp[1]);*/
-
             Loaded += (sender, e) => { InitD3D(); };
+
+            inputCallback = (wParam, lParam) =>
+                {
+                    if (d3DWindowHandle != null)
+                    {
+                        PInvoke.HandleRawInput(d3DWindowHandle, wParam, lParam);
+                    }
+                };
         }
         
         private async void InitD3D()
@@ -67,7 +67,7 @@ namespace Laboras21.Controls
         protected override HandleRef BuildWindowCore(HandleRef hwndParent)
         {
             var backgroundColor = (FindBackgroundColor(this) as SolidColorBrush).Color;
-            hwndHost = PInvoke.CreateColoredWindow(hwndParent.Handle, backgroundColor.R, backgroundColor.G, backgroundColor.B);
+            hwndHost = PInvoke.CreateColoredWindow(hwndParent.Handle, backgroundColor.R, backgroundColor.G, backgroundColor.B, inputCallback);
 
             SizeChanged += Resize;
             Visibility = Visibility.Collapsed;

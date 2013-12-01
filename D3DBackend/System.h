@@ -16,10 +16,8 @@ private:
 	bool running;
 	float secondsSinceLastFrame;
 
-	void ProcessWindowsMessages();
 	void ProcessOneFrame();
 	void CheckInputState();
-	void HandleRawInput(long lParam, long wParam);
 
 	thread asyncRunner;
 	mutex drawMutex;
@@ -29,7 +27,7 @@ public:
 	System(int windowWidth, int windowHeight, DirectX::XMFLOAT4 backgroundColor, HWND parentWindow);
 	~System();
 
-	long int MessageHandler(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam);
+	void HandleRawInput(long lParam, long wParam);
 
 	void RunAsync();
 	void StopRunning();

@@ -8,7 +8,7 @@ private:
 	HINSTANCE programInstance;
 
 public:
-	Windowing(int windowWidth, int windowHeight, HWND parentWindow, System* systemInstance);
+	Windowing(int windowWidth, int windowHeight, HWND parentWindow);
 	~Windowing();
 
 	HWND GetWindowHandle() { return windowHandle; }
