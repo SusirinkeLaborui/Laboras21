@@ -40,7 +40,7 @@ namespace Laboras21
                     }
                     catch (Exception)
                     {
-                        throw new BadFileFormatException(String.Format("Line no. {0} could not be parsed. {1}", i + 1));
+                        throw new BadFileFormatException(String.Format("Line no. {0} could not be parsed.", i + 1));
                     }
 
                     if (x > MagicalNumbers.MaxX || x < MagicalNumbers.MinX || y > MagicalNumbers.MaxY || y < MagicalNumbers.MinY)
