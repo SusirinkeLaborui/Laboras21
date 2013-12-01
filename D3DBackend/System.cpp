@@ -158,7 +158,7 @@ void System::DrawNodes(const Point* nodeList, int nodeCount)
 void System::DrawEdge(const Point& nodeA, const Point& nodeB)
 {
 	unique_lock<mutex> lock(drawMutex);
-
+	graphics.GetEdges().Add(nodeA, nodeB);
 }
 
 void System::ClearNodes()

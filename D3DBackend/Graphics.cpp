@@ -30,6 +30,7 @@ void Graphics::Render()
 	params.context = d3D.GetDeviceContext();
 
 	nodes.Render(params);
+	edges.Render(params);
 
 	d3D.SwapBuffers();
 }
