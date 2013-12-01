@@ -26,3 +26,6 @@ const bool Constants::AverageNormals = true;
 const bool Constants::OptimizeModel = true;
 
 const bool Constants::ShowCursor = true;
+
+const size_t Constants::NodeLimit = 20002;
+const size_t Constants::EdgeLimit = Constants::NodeLimit - 1;

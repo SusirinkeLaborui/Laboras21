@@ -22,5 +22,8 @@ public:
 	static const bool OptimizeModel;
 
 	static const bool ShowCursor;
+
+	static const size_t NodeLimit;
+	static const size_t EdgeLimit;
 };
 
