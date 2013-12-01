@@ -4,7 +4,7 @@ using namespace Microsoft::WRL;
 
 ResourceManager *ResourceManager::handle;
 
-ResourceManager::ResourceManager(void)
+ResourceManager::ResourceManager()
 :shader(L"ColorInstancedVertex.cso", L"ColorInstancedPixel.cso")
 {
 	handle = this;

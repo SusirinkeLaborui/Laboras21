@@ -26,7 +26,7 @@ protected:
 	vector<it> queue;
 public:
 	BaseInstancer(Model<vt> &model, sh &shader, size_t maxObjectCount);
-	virtual ~BaseInstancer(void){}
+	virtual ~BaseInstancer() {}
 	
 	void Init(ComPtr<ID3D11Device> device);
 	void Render(const RenderParams& params);

@@ -26,8 +26,8 @@ class ResourceManager
 
 	static ColorModel GetModelFromOBJ(string filename, bool invert = false);
 public:
-	ResourceManager(void);
-	~ResourceManager(void){}
+	ResourceManager();
+	~ResourceManager() {}
 
 	void InitShaders(Microsoft::WRL::ComPtr<ID3D11Device>);
 	ColorModel &GetModel(int model){ return models[model]; }

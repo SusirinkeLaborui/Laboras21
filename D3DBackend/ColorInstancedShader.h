@@ -11,7 +11,7 @@ class ColorInstancedShader : public IInstanceShader
 {
 public:
 	ColorInstancedShader(wstring vs, wstring ps) :IInstanceShader(vs, ps){}
-	~ColorInstancedShader(void){}
+	~ColorInstancedShader() {}
 
 protected:
 	virtual vector<D3D11_INPUT_ELEMENT_DESC> GetInputLayout();
