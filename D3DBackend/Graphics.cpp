@@ -1,12 +1,13 @@
 #include "PrecompiledHeader.h"
 #include "Graphics.h"
 #include "ResourceManager.h"
+#include "Constants.h"
 
 Graphics::Graphics(int windowWidth, int windowHeight, DirectX::XMFLOAT4 backgroundColor, HWND windowHandle) :
 	d3D(windowWidth, windowHeight, windowHandle),
 	backgroundColor(backgroundColor),
-	nodes(RM::Get().GetModel(RM::Models::MODEL_CIRCLE), RM::Get().GetShader(), 10000),
-	edges(RM::Get().GetModel(RM::Models::MODEL_SQUARE), RM::Get().GetShader(), 10000)
+	nodes(RM::Get().GetModel(RM::Models::MODEL_CIRCLE), RM::Get().GetShader(), Constants::NodeLimit),
+	edges(RM::Get().GetModel(RM::Models::MODEL_SQUARE), RM::Get().GetShader(), Constants::EdgeLimit)
 {
 	RM::Get().InitShaders(d3D.GetDevice());
 	edges.Init(d3D.GetDevice());
