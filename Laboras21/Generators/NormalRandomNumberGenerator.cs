@@ -12,15 +12,12 @@ namespace Laboras21.Generators
         private Random random;
         private int minX, maxX, minY, maxY;
         private int offsetX, offsetY;
-        private int widthX, widthY;
         public NormalRandomNumberGenerator(double standardDeviation, int minX, int maxX, int minY, int maxY)
         {
             this.standardDeviation = standardDeviation;
             random = new Random();
-            offsetX = -minX;
-            offsetY = -minY;
-            widthX = maxX - minX;
-            widthY = maxY - minY;
+            offsetX = (maxX + minX) / 2;
+            offsetY = (maxY + minY) / 2;
             this.minX = minX;
             this.maxX = maxX;
             this.minY = minY;
@@ -44,10 +41,10 @@ namespace Laboras21.Generators
 
                 double d = Math.Sqrt(-2.0 * Math.Log(r) / r);
 
-                x *= d * standardDeviation + offsetX;
-                y *= d * standardDeviation + offsetY;
+                x = x * d * standardDeviation + offsetX;
+                y = y * d * standardDeviation + offsetY;
 
-            } while (x > maxX || x < minY || y > maxY || y < minY);
+            } while (x > maxX && x < minY && y > maxY && y < minY);
 
             return new Point((int)x, (int)y);
         }
