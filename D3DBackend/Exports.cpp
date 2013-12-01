@@ -90,7 +90,7 @@ extern "C"
 
 		auto windowHandle = CreateWindowEx(0, windowInfo.lpszClassName, L"", WS_CHILD, 0, 0, 0, 0, parent, nullptr, programInstance, nullptr);
 		AssertBool(windowHandle != nullptr, L"Window creation failed!");
-		ShowWindow(windowHandle, SW_HIDE);
+
 		return windowHandle;
 	}
 }
