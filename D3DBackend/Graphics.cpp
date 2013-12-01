@@ -37,9 +37,22 @@ void Graphics::Render()
 
 void Graphics::AddNode(Point point)
 {
+	nodes.Add(GetNodeMatrix(point));
+}
+
+void Graphics::AddNodes(vector<Point> points)
+{
+	vector<XMFLOAT4X4> matrices;
+	for (auto &point : points)
+		matrices.push_back(GetNodeMatrix(point));
+	nodes.Add(matrices);
+}
+
+XMFLOAT4X4 Graphics::GetNodeMatrix(Point point)
+{
 	XMMATRIX scale = XMMatrixScaling(1.0f, 1.0f, 1.0f);
 	XMMATRIX move = XMMatrixTranslation(static_cast<float>(point.x), static_cast<float>(point.y), 0.0f);
 	XMFLOAT4X4 world;
 	XMStoreFloat4x4(&world, XMMatrixTranspose(scale * move));
-	nodes.Add(world);
+	return world;
 }

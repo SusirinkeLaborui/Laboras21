@@ -22,6 +22,8 @@ public:
 
 	void Render();
 	void AddNode(Point point);
+	void AddNodes(vector<Point> points);
 	void ResizeD3DContext(int newWidth, int newHeight) { d3D.ResizeContext(newWidth, newHeight); }
+	static XMFLOAT4X4 GetNodeMatrix(Point point);
 };
 
