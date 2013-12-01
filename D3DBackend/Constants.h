@@ -17,10 +17,6 @@ public:
 	static const D3D11_CULL_MODE D3DCullMode;
 	static const D3D11_FILL_MODE D3DFillMode;
 
-	static const bool RecalculateNormals;
-	static const bool AverageNormals;
-	static const bool OptimizeModel;
-
-	static const bool ShowCursor;
+	static const float NodeSize;
 };
 

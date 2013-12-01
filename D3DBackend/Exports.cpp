@@ -22,6 +22,7 @@ extern "C"
     
 	__declspec(dllexport) void __stdcall RunD3DContextAsync(System* systemInstance)
 	{
+		AssertBool(systemInstance != nullptr, L"System instance can't be null!");
 		systemInstance->RunAsync();
 	}
 
