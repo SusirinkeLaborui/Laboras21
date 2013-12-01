@@ -28,7 +28,6 @@ namespace Laboras21.Views
     {
         private List<Vertex> graph = new List<Vertex>();
         private MinimalSpanningTreeFinder treeFinder;
-        SuperCanvas canvas = new SuperCanvas();
 
         public MainWindow()
         {

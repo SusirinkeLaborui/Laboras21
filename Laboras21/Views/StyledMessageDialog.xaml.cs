@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Laboras21.Views
 {
@@ -23,10 +24,6 @@ namespace Laboras21.Views
     {
         static StyledMessageDialog()
         {
-            PInvoke.SetMessageBoxCallback((title, text) =>
-                {
-                    Show(text, title);
-                });
         }
 
         public StyledMessageDialog(string message, string title, MessageBoxButton buttons)

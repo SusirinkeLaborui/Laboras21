@@ -29,7 +29,7 @@
             <ColumnDefinition Width="300" />
         </Grid.ColumnDefinitions>
         
-        <Controls:SuperCanvas Grid.Column="0" />
+        <Controls:SuperCanvas Grid.Column="0" x:Name="canvas" />
         
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
