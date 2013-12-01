@@ -43,6 +43,12 @@ public:
 		reverse(vec.begin(), vec.end());
 	}
 
+	template<class T>
+	static void VectorAppend(std::vector<T> &dest, const std::vector<T> &source)
+	{
+		dest.insert(dest.end(), source.begin(), source.end());
+	}
+
 	static bool ReadFileToArray(wstring file, std::unique_ptr<char> &arr, UINT &size);
 
 	template<class T>
