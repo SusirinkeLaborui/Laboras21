@@ -25,8 +25,8 @@ void Graphics::Render()
 	d3D.StartDrawing(backgroundColor.x, backgroundColor.y, backgroundColor.z, backgroundColor.w);
 
 	RenderParams params;
-	params.view = camera.GetViewMatrix();
-	params.projection = d3D.GetProjectionMatrix();
+	params.view = XMMatrixTranspose(camera.GetViewMatrix());
+	params.projection = XMMatrixTranspose(d3D.GetProjectionMatrix());
 	params.context = d3D.GetDeviceContext();
 
 	nodes.Render(params);

@@ -18,8 +18,8 @@ public:
 	virtual void SetShaderParametersInstanced(const RenderParams &params)
 	{
 		InstancedMatrixType matrices;
-		XMStoreFloat4x4(&matrices.view, XMMatrixTranspose(params.view));
-		XMStoreFloat4x4(&matrices.projection, XMMatrixTranspose(params.projection));
+		XMStoreFloat4x4(&matrices.view, params.view);
+		XMStoreFloat4x4(&matrices.projection, params.projection);
 		Tools::CopyToBuffer(matrixBuffer, matrices, params.context);
 
 		params.context->VSSetConstantBuffers(0, 1, matrixBuffer.GetAddressOf());
