@@ -24,7 +24,7 @@ namespace Test_framework
         }
 
         [TestMethod]
-        public void MeasureTreeLenghtTest()
+        public void MeasureTreeLengthTest()
         {
             var finder = new MinimalSpanningTreeFinder();
             finder.FindAsync(graph).Wait();
