@@ -8,19 +8,15 @@ ResourceManager::ResourceManager()
 :shader(L"ColorInstancedVertex.cso", L"ColorInstancedPixel.cso")
 {
 	handle = this;
-	models.push_back(GetModelFromOBJ("Resources\\Node.obj"));
-	models.push_back(GetModelFromOBJ("Resources\\Edge.obj"));
+	models.push_back(GetModelFromOBJ(L"Resources\\Node.obj"));
+	models.push_back(GetModelFromOBJ(L"Resources\\Edge.obj"));
 }
 
-ColorModel ResourceManager::GetModelFromOBJ(string filename, bool invert)
+ColorModel ResourceManager::GetModelFromOBJ(wstring filename)
 {
 	ColorModel model;
 	ifstream in(filename, ios::binary);
-	if (!in.is_open())
-	{
-		Tools::ShowMessageBox(L"Error", "Couldn't open file \"" + filename + "\"!");
-		exit(-1);
-	}
+	AssertBool(in.is_open(), L"Couldn't open file " + filename);
 
 	string input;
 	float x, y, z;
@@ -45,10 +41,7 @@ ColorModel ResourceManager::GetModelFromOBJ(string filename, bool invert)
 			string blob;
 			getline(in, blob, '\n');
 			auto vertices = GetVerticesFromFace(blob);
-			if (!invert)
-			{
-				Tools::Reverse(vertices);
-			}
+			Tools::Reverse(vertices);
 			for (auto &vertex : vertices)
 			{
 				model.indices.push_back(vertex.vertex);

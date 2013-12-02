@@ -24,7 +24,7 @@ class ResourceManager
 	ResourceManager &operator=(const ResourceManager&);
 	static ResourceManager *handle;
 
-	static ColorModel GetModelFromOBJ(string filename, bool invert = false);
+	static ColorModel GetModelFromOBJ(wstring filename);
 public:
 	ResourceManager();
 	~ResourceManager() {}
