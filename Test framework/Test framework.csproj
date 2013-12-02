@@ -70,6 +70,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DataProviderTest.cs" />
+    <Compile Include="MinimalSpanningTreeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
