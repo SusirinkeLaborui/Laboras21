@@ -80,9 +80,17 @@ namespace Laboras21.Views
             {
                 graph.Capacity = viewModel.NumberOfPoints;
             }
-
+            var PointSet = new HashSet<Point>();
+            
             for (int i = 0; i < viewModel.NumberOfPoints; i++)
             {
+                Point p;
+                do
+                {
+                    p = generator.GeneratePoint();
+                } while (PointSet.Contains(p));
+                PointSet.Add(p);
+
                 graph.Add(new Vertex(generator.GeneratePoint()));
             }
 
@@ -120,6 +128,13 @@ namespace Laboras21.Views
                 return result;
             }
 
+            int fieldSize = (viewModel.MaxY - viewModel.MinY) * (viewModel.MaxX - viewModel.MinX);
+            result &= fieldSize > viewModel.NumberOfPoints;
+            if (!result)
+            {
+                StyledMessageDialog.Show("Area is too small for given number of points!", "Error");
+                return result;
+            }
             return result;
         }
 
