@@ -85,7 +85,7 @@ namespace Laboras21.Views
             {
                 VisualStateManager.GoToElementState(this.LayoutRoot, "StateGenerating", true);
                 var generationTask = canvas.SetCollectionAsync(graph);
-                AskToSaveGeneratedData();
+                await AskToSaveGeneratedData();
                 await generationTask;
                 VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
             }
@@ -120,7 +120,7 @@ namespace Laboras21.Views
 
         }
 
-        private void AskToSaveGeneratedData()
+        private async Task AskToSaveGeneratedData()
         {
             bool showDialog = true;
             while (showDialog)
@@ -134,7 +134,7 @@ namespace Laboras21.Views
                     saveFileDialog.Title = "Save as";
                     if (saveFileDialog.ShowDialog() == true)
                     {
-                        DataProvider.SaveDataToFileAsync(saveFileDialog.FileName, graph);
+                        await DataProvider.SaveDataToFileAsync(saveFileDialog.FileName, graph);
                         showDialog = false;
                     }
                     else

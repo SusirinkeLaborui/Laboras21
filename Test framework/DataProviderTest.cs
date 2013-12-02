@@ -9,10 +9,10 @@ namespace Test_framework
     [TestClass]
     public class DataProviderTest
     {
-        string ReadingFile;
-        string WritingFile;
-        List<Vertex> Data;
-        List<Vertex> Tree;
+        public string ReadingFile;
+        public string WritingFile;
+        public List<Vertex> Data;
+        public List<Vertex> Tree;
 
         public DataProviderTest()
         {
@@ -47,7 +47,7 @@ namespace Test_framework
         [TestMethod]
         public void TestSaveDataToFileAsync()
         {
-            DataProvider.SaveDataToFileAsync(WritingFile, Data);
+            DataProvider.SaveDataToFileAsync(WritingFile, Data).Wait();
             
             using (StreamReader file = new StreamReader(WritingFile))
             {
@@ -76,7 +76,7 @@ namespace Test_framework
         [TestMethod]
         public void TestSaveResultsToFile()
         {
-            DataProvider.SaveResultsToFile(WritingFile, Tree);
+            DataProvider.SaveResultsToFile(WritingFile, Tree).Wait();
 
             using (StreamReader file = new StreamReader(WritingFile))
             {
