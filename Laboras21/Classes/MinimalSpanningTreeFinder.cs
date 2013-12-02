@@ -269,29 +269,16 @@ namespace Laboras21
 
         public double MeasureTreeLength(IList<Vertex> Tree)
         {
-            List<Edge> TreeEdges = new List<Edge>();
+            double length = 0;
             foreach (var vertex in Tree)
             {
                 foreach (var neighbour in vertex.Neighbours)
                 {
-                    Edge e = new Edge(0, vertex.Coordinates, neighbour.Coordinates);
-                    // If this edge or reversed edge is not in NotMeasured List add to it
-                    if (!TreeEdges.Any(x => x.Coordinates1.x == e.Coordinates1.x && x.Coordinates1.y == e.Coordinates1.y
-                        && x.Coordinates2.x == e.Coordinates2.x && x.Coordinates2.y == e.Coordinates2.y ||
-                         x.Coordinates2.x == e.Coordinates1.x && x.Coordinates2.y == e.Coordinates1.y
-                        && x.Coordinates1.x == e.Coordinates2.x && x.Coordinates1.y == e.Coordinates2.y))
-                    {
-                        TreeEdges.Add(e);
-                    }
+                    length += Math.Sqrt(GetDistanceSqr(vertex.Coordinates, neighbour.Coordinates));
                 }
             }
 
-            double length = 0;
-            foreach (var edge in TreeEdges)
-            {
-                length += Math.Sqrt(GetDistanceSqr(edge.Coordinates1, edge.Coordinates2));
-            }
-            return length;
+            return length/2.0;
         }
     }
 }
