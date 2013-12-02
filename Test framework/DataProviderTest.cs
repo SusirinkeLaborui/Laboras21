@@ -9,12 +9,13 @@ namespace Test_framework
     [TestClass]
     public class DataProviderTest
     {
-        public string ReadingFile;
-        public string WritingFile;
-        public List<Vertex> Data;
-        public List<Vertex> Tree;
+        public static string ReadingFile;
+        public static string WritingFile;
+        public static List<Vertex> Data;
+        public static List<Vertex> Tree;
 
-        public DataProviderTest()
+        [ClassInitialize]
+        public static void InitializeTest(TestContext t)
         {
             ReadingFile = System.IO.Path.GetTempFileName();
             WritingFile = System.IO.Path.GetTempFileName();
@@ -88,6 +89,7 @@ namespace Test_framework
                     {
                         expectedLine += String.Format(" {0} {1}", neighbour.Coordinates.x, neighbour.Coordinates.y);
                     }
+                    Assert.AreEqual(line, expectedLine);
                 }
             }
         }
