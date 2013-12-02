@@ -14,6 +14,7 @@ namespace Laboras21
     {
         public static async Task<List<Vertex>> ReadFromFileAsync(string filename)
         {
+            var PointSet = new HashSet<Point>();
             using (var file = new StreamReader(filename))
             {
                 var fileContents = await file.ReadToEndAsync();
@@ -48,7 +49,13 @@ namespace Laboras21
                         throw new BadFileFormatException(String.Format("Line no. {0} could not be parsed.", i + 1));
                     }
 
-                    data.Add(new Vertex(new Point(x, y)));
+                    Point p = new Point(x, y);
+                    if (PointSet.Contains(p))
+                    {
+                        throw new BadFileFormatException("Points are not unique");
+                    }
+                    PointSet.Add(p);
+                    data.Add(new Vertex(p));
                 }
 
                 return data;
