@@ -17,10 +17,18 @@ namespace Laboras21.Controls
         private IntPtr hwndHost;
         private IntPtr d3DWindowHandle;
         private PInvoke.RawInputCallback inputCallback;
+        private double pixelScale = 1.0;
 
         public UberCanvas()
         {
-            Loaded += (sender, e) => { InitD3D(); };
+            Loaded += (sender, e) =>
+            {
+                var source = PresentationSource.FromVisual(this);
+                var m = source.CompositionTarget.TransformToDevice;
+                pixelScale = m.M11;
+
+                InitD3D();
+            };
 
             inputCallback = (wParam, lParam) =>
                 {
@@ -30,7 +38,12 @@ namespace Laboras21.Controls
                     }
                 };
         }
-        
+
+        private int ScalePixel(int size)
+        {
+            return (int)(size * pixelScale);
+        }
+
         private async void InitD3D()
         {
             await Task.Delay(500);  // Wait for metro animation to finish, otherwise window spawns at wrong position.
@@ -45,7 +58,7 @@ namespace Laboras21.Controls
 
             var backgroundColor = (FindBackgroundColor(this) as SolidColorBrush).Color;
 
-            d3DWindowHandle = PInvoke.CreateD3DContext((int)ActualWidth, (int)ActualHeight,
+            d3DWindowHandle = PInvoke.CreateD3DContext(ScalePixel((int)ActualWidth), ScalePixel((int)ActualHeight),
                 backgroundColor.R, backgroundColor.G, backgroundColor.B, hwndHost);
 
             PInvoke.RunD3DContextAsync(d3DWindowHandle);
@@ -89,11 +102,11 @@ namespace Laboras21.Controls
 
         private void Resize(object sender, System.Windows.SizeChangedEventArgs e)
         {
-            PInvoke.MoveWindow(hwndHost, 0, 0, (int)ActualWidth, (int)ActualHeight, true);
+            PInvoke.MoveWindow(hwndHost, 0, 0, ScalePixel((int)ActualWidth), ScalePixel((int)ActualHeight), true);
 
             if (d3DWindowHandle != IntPtr.Zero)
             {
-                PInvoke.ResizeWindow(d3DWindowHandle, (int)e.NewSize.Width, (int)e.NewSize.Height);
+                PInvoke.ResizeWindow(d3DWindowHandle, ScalePixel((int)e.NewSize.Width), ScalePixel((int)e.NewSize.Height));
             }
         }
 
@@ -123,7 +136,9 @@ namespace Laboras21.Controls
                     PInvoke.DrawNodes(d3DWindowHandle, vertices.Select(x => x.Coordinates).ToArray<Point>(), vertices.Count);
                 });            
         }
-        
+
+        private Queue<Point> drawEdgeQueue = new Queue<Point>();
+
         /// <summary>
         /// Adds an edge, can be called from wherever
         /// </summary>
@@ -134,9 +149,31 @@ namespace Laboras21.Controls
             var p1 = vertex1.Coordinates;
             var p2 = vertex2.Coordinates;
 
+            lock (drawEdgeQueue)
+            {
+                drawEdgeQueue.Enqueue(p1);
+                drawEdgeQueue.Enqueue(p2);
+            }
+
+            if (drawEdgeQueue.Count >= 100)
+            {
+                await FinishDrawingAsync();
+            }
+        }
+
+        public async Task FinishDrawingAsync()
+        {
+            Point[] points;
+
+            lock (drawEdgeQueue)
+            {
+                points = drawEdgeQueue.ToArray<Point>();
+                drawEdgeQueue.Clear();
+            }
+
             await Task.Run(() =>
                 {
-                    PInvoke.DrawSingleEdge(d3DWindowHandle, p1, p2);
+                    PInvoke.DrawManyEdges(d3DWindowHandle, points, points.Length / 2);
                 });
         }
     }

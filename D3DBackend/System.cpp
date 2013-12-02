@@ -161,6 +161,12 @@ void System::DrawEdge(const Point& nodeA, const Point& nodeB)
 	graphics.GetEdges().Add(nodeA, nodeB);
 }
 
+void System::DrawEdges(pair<Point, Point>* nodes, int count)
+{
+	unique_lock<mutex> lock(drawMutex);
+	graphics.GetEdges().AddBatch(nodes, count);
+}
+
 void System::ClearNodes()
 {
 	unique_lock<mutex> lock(drawMutex);

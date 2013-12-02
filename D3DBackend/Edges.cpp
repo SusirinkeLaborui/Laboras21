@@ -7,6 +7,16 @@ void Edges::Add(Point a, Point b)
 	BaseInstancer::Add(GetEdgeMatrix(a, b));
 }
 
+
+void Edges::AddBatch(pair<Point, Point>* points, int count)
+{
+	for (int i = 0; i < count; i++)
+	{
+		Add(points[i].first, points[i].second);
+	}
+}
+
+
 XMFLOAT4X4 Edges::GetEdgeMatrix(Point a, Point b)
 {
 	if (a.x < b.x)

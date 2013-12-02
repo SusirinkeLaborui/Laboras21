@@ -107,6 +107,7 @@ namespace Laboras21.Views
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateComputing", true);
             await canvas.ClearEdgesAsync();
             await treeFinder.FindAsync(graph);
+            await canvas.FinishDrawingAsync();
             VisualStateManager.GoToElementState(this.LayoutRoot, "StateDoneComputing", true);
         }
 

@@ -52,6 +52,12 @@ extern "C"
 		AssertBool(systemInstance != nullptr, L"System instance can't be null!");
 		systemInstance->DrawEdge(nodeA, nodeB);
 	}
+
+	_declspec(dllexport) void __stdcall DrawManyEdges(System* systemInstance, pair<Point, Point>* nodes, int count)
+	{
+		AssertBool(systemInstance != nullptr, L"System instance can't be null!");
+		systemInstance->DrawEdges(nodes, count);
+	}
         
     __declspec(dllexport) void __stdcall ClearNodes(System* systemInstance)
 	{

@@ -39,6 +39,7 @@ public:
 	
     void DrawNodes(const Point* nodeList, int nodeCount);
     void DrawEdge(const Point& nodeA, const Point& nodeB);
+	void DrawEdges(pair<Point, Point>* nodes, int count);
 	void ClearNodes();
 	void ClearEdges();
 
