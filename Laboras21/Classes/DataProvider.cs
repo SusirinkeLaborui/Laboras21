@@ -74,7 +74,7 @@ namespace Laboras21
 
                     foreach (var neighbour in vertex.Neighbours)
                     {
-                        fileContent.Append(" {0} {1}", neighbour.Coordinates.x, neighbour.Coordinates.y);
+                        fileContent.AppendFormat(" {0} {1}", neighbour.Coordinates.x, neighbour.Coordinates.y);
                     }
                     fileContent.Append("\n");
 
