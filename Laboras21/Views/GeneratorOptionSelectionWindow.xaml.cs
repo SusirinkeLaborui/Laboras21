@@ -1,4 +1,5 @@
-﻿using Laboras21.Generators;
+﻿using Laboras21.Classes;
+using Laboras21.Generators;
 using Laboras21.ViewModels;
 using MahApps.Metro.Controls;
 using System;
@@ -56,6 +57,16 @@ namespace Laboras21.Views
         {
             IRandomNumberGenerator generator;
 
+            int scale = viewModel.VertexAreaRadius;
+            int nodeSize = (int) PInvoke.GetNodeSize() * 4;
+            scale = (scale == 0) ? 1 : scale * nodeSize;
+            
+            int minX = viewModel.MinX / scale;
+            int maxX = viewModel.MaxX / scale;
+            int minY = viewModel.MinY / scale;
+            int maxY = viewModel.MaxY / scale;
+            double standardDeviation = viewModel.StandardDeviation / scale;
+
             if (!ValidateCommonDistributionVariables())
             {
                 return;
@@ -63,7 +74,7 @@ namespace Laboras21.Views
 
             if (distributionComboBox.SelectedIndex == 0)
             {
-                generator = new UniformRandomNumberGenerator(viewModel.MinX, viewModel.MaxX, viewModel.MinY, viewModel.MaxY);
+                generator = new UniformRandomNumberGenerator(minX, maxX, minY, maxY);
             }
             else
             {
@@ -71,8 +82,8 @@ namespace Laboras21.Views
                 {
                     return;
                 }
-
-                generator = new NormalRandomNumberGenerator(viewModel.StandardDeviation, viewModel.MinX, viewModel.MaxX, viewModel.MinY, viewModel.MaxY);
+            
+                generator = new NormalRandomNumberGenerator(standardDeviation, minX, maxX, minY, maxY);
             }
 
             graph.Clear();
@@ -92,6 +103,15 @@ namespace Laboras21.Views
                 PointSet.Add(p);
 
                 graph.Add(new Vertex(p));
+            }
+
+            int maxDelta = scale / 4;
+            int minDelta = - scale / 4;
+            var rng = new Random();
+            foreach (var v in graph)
+            {
+                var old = v.Coordinates;
+                v.Coordinates = new Point(old.x * scale + rng.Next(minDelta, maxDelta), old.y * scale + rng.Next(minDelta, maxDelta));
             }
 
             Result = true;
@@ -128,13 +148,21 @@ namespace Laboras21.Views
                 return result;
             }
 
+            int scale = viewModel.VertexAreaRadius;
+            int nodeSize = (int)PInvoke.GetNodeSize();
+            scale = (scale == 0) ? 1 : scale * nodeSize * 4;
+
             int fieldSize = (viewModel.MaxY - viewModel.MinY) * (viewModel.MaxX - viewModel.MinX);
+            fieldSize = fieldSize / (scale * scale);
+
             result &= fieldSize > viewModel.NumberOfPoints;
             if (!result)
             {
                 StyledMessageDialog.Show("Area is too small for given number of points!", "Error");
                 return result;
             }
+
+
             return result;
         }
 

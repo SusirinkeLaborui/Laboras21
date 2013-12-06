@@ -114,4 +114,9 @@ extern "C"
 		AssertBool(systemInstance != nullptr, L"System instance can't be null!");
 		systemInstance->HandleRawInput(lParam, wParam);
 	}
+
+	__declspec(dllexport) float __stdcall GetNodeSize()
+	{
+		return Constants::NodeSize;
+	}
 }

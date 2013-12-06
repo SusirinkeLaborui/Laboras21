@@ -76,6 +76,8 @@ namespace Laboras21.Classes
         [DllImport("D3DBackend.dll")]
         internal static extern void HandleRawInput(IntPtr systemInstance, int wParam, int lParam);
 
+        [DllImport("D3DBackend.dll")]
+        internal static extern float GetNodeSize();
 
         #endregion
     }

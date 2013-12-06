@@ -16,6 +16,7 @@ namespace Laboras21.ViewModels
         private int minY;
         private int maxY;
         private double standardDeviation;
+        private int vertexAreaRadius;
 
         public GeneratorOptionViewModel()
         {
@@ -25,7 +26,7 @@ namespace Laboras21.ViewModels
             maxX = MagicalNumbers.MaxX;
             minY = MagicalNumbers.MinY;
             maxY = MagicalNumbers.MaxY;
-
+            vertexAreaRadius = 1;
             standardDeviation = 2500.0;
         }
 
@@ -65,6 +66,11 @@ namespace Laboras21.ViewModels
             set { standardDeviation = value; NotifyPropertyChanged(); }
         }
 
+        public int VertexAreaRadius
+        {
+            get { return vertexAreaRadius; }
+            set { vertexAreaRadius = value; NotifyPropertyChanged(); }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
