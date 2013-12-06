@@ -19,5 +19,11 @@ namespace Laboras21
             Coordinates = coords;
             Neighbours = new List<Vertex>();
         }
+
+        // For debugging purposes
+        public override string ToString()
+        {
+            return "(" + Coordinates.x.ToString() + "; " + Coordinates.y.ToString() + ")";
+        }
     }
 }
