@@ -5,7 +5,7 @@
         xmlns:MetroControls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:Behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
-        Title="MainWindow" 
+        Title="Laboras21" 
         MinHeight="300"
         MinWidth="500"
         Height="300" 
