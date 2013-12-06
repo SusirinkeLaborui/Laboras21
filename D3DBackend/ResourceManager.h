@@ -19,13 +19,15 @@ class ResourceManager
 
 	static vector<FaceVertex> GetVerticesFromFace(string &line);
 	static FaceVertex GetVertexFromString(string &vertex);
+	static void InsertVertex(map<VertexType, int>& vertexMap, const DirectX::XMFLOAT3& position, const DirectX::XMFLOAT3& normal, 
+		vector<VertexType>& vertices, vector<int>& indices);
 
 	ResourceManager(const ResourceManager&);
 	ResourceManager &operator=(const ResourceManager&);
 	static ResourceManager *handle;
 
-	static void InsertVertex(map<VertexType, int>& vertexMap, const DirectX::XMFLOAT3& position, const DirectX::XMFLOAT3& normal, vector<VertexType>& vertices, vector<int>& indices);
 	static ColorModel GetModelFromOBJ(wstring filename);
+
 public:
 	ResourceManager();
 	~ResourceManager() {}

@@ -62,8 +62,10 @@ ColorModel ResourceManager::GetModelFromOBJ(wstring filename)
 
 				for (auto &vertex : vertices)
 				{
-					model.indices.push_back(model.vertices.size());
-					model.vertices.emplace_back(positions[vertex.vertex], normals[vertex.normal]);
+					InsertVertex(vertexMap, positions[vertex.vertex], normals[vertex.normal], model.vertices, model.indices);
+
+					//model.indices.push_back(model.vertices.size());
+					//model.vertices.emplace_back(positions[vertex.vertex], normals[vertex.normal]);
 				}
 			}
 		}
@@ -71,6 +73,7 @@ ColorModel ResourceManager::GetModelFromOBJ(wstring filename)
 
 	return model;
 }
+
 
 vector<ResourceManager::FaceVertex> ResourceManager::GetVerticesFromFace(string &line)
 {
@@ -103,6 +106,24 @@ ResourceManager::FaceVertex ResourceManager::GetVertexFromString(string &vertex)
 
 	return ret;
 }
+
+
+void ResourceManager::InsertVertex(map<VertexType, int>& vertexMap, const DirectX::XMFLOAT3& position, const DirectX::XMFLOAT3& normal, 
+	vector<VertexType>& vertices, vector<int>& indices)
+{
+	VertexType vertex(position, normal);
+
+	auto vertexIterator = vertexMap.find(vertex);
+
+	if (vertexIterator == vertexMap.end())
+	{
+		vertexIterator = vertexMap.insert(make_pair(vertex, vertices.size())).first;
+		vertices.push_back(vertex);
+	}
+	
+	indices.push_back(vertexIterator->second);
+}
+
 
 void ResourceManager::InitShaders(ComPtr<ID3D11Device> device)
 {

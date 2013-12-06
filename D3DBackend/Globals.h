@@ -28,6 +28,46 @@ struct VertexType
 	VertexType(const DirectX::XMFLOAT3& position, const DirectX::XMFLOAT3& normal) : position(position), normal(normal), color(1.0f, 0.0f, 0.0f, 1.0f)
 	{
 	}
+
+	bool operator<(const VertexType& other) const
+	{
+		if (position.x == other.position.x)
+		{
+			if (position.y == other.position.y)
+			{
+				if (position.z == other.position.z)
+				{
+					if (normal.x == other.normal.x)
+					{
+						if (normal.y == other.normal.y)
+						{
+							return normal.z < other.normal.z;
+						}
+						else
+						{
+							return normal.y < other.normal.y;
+						}
+					}
+					else
+					{
+						return normal.x < other.normal.x;
+					}
+				}
+				else
+				{
+					return position.z < other.position.z;
+				}
+			}
+			else
+			{
+				return position.y < other.position.y;
+			}
+		}
+		else
+		{
+			return position.x < other.position.x;
+		}
+	}
 };
 
 __declspec(align(16)) struct RenderParams
