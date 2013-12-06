@@ -23,6 +23,12 @@
         </ResourceDictionary>
     </Window.Resources>
 
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo x:Name="taskBarProgressBar">
+            
+        </TaskbarItemInfo>
+    </Window.TaskbarItemInfo>
+    
     <Grid x:Name="LayoutRoot">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -48,188 +54,209 @@
             </Grid>
             <Button Grid.Row="1" x:Name="buttonStartComputing" Style="{StaticResource MetroAccentButton}" Content="Start computing" Click="ButtonStartComputing_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
             <Button Grid.Row="2" x:Name="buttonSaveResults" Style="{StaticResource MetroAccentButton}" Content="Save results" Click="ButtonSaveResults_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
-            
-            <StackPanel Grid.Row="3" VerticalAlignment="Center" Height="200">
-                <TextBlock x:Name="operationNameTextBlock" Margin="20,30,20,10" HorizontalAlignment="Center" FontSize="24" TextAlignment="Center" TextWrapping="Wrap"/>
-                <MetroControls:MetroProgressBar x:Name="progressBar" Foreground="#B53351"/>
-                <Grid>
-                    <Button x:Name="buttonStopComputing" Style="{StaticResource MetroAccentButton}" Content="Cancel operation" Click="ButtonStopComputing_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
-                    <Button x:Name="buttonStopGenerating" Style="{StaticResource MetroAccentButton}" Content="Cancel operation" Click="ButtonStopGenerating_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
-                </Grid>
-            </StackPanel>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <MetroControls:ProgressRing Grid.Column="0" x:Name="progressRing" Foreground="#890725" Visibility="Visible" VerticalAlignment="Center" />
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" Height="200">
+                    <TextBlock x:Name="operationNameTextBlock" Margin="20,30,20,10" HorizontalAlignment="Center" FontSize="24" TextAlignment="Center" TextWrapping="Wrap"/>
+                    <Grid>
+                        <Button x:Name="buttonStopComputing" Style="{StaticResource MetroAccentButton}" Content="Cancel operation" Click="ButtonStopComputing_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
+                        <Button x:Name="buttonStopGenerating" Style="{StaticResource MetroAccentButton}" Content="Cancel operation" Click="ButtonStopGenerating_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,5" Margin="10,5" />
+                    </Grid>
+                </StackPanel>
+            </Grid>
         </Grid>
-        
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="CustomStates">
-                <VisualState x:Name="StateInput">
-                    <Storyboard>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonLoad" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonGenerate" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonSaveResults" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
-                            <DiscreteObjectKeyFrame Value="" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="progressBar" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopComputing" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopGenerating" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>                    
-                </VisualState>
-                <VisualState x:Name="StateReadingFile">
-                    <Storyboard>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonLoad" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonGenerate" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonSaveResults" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
-                            <DiscreteObjectKeyFrame Value="Reading graph vertices..." KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="progressBar" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopComputing" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopGenerating" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-                <VisualState x:Name="StateGenerating">
-                    <Storyboard>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonLoad" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonGenerate" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonSaveResults" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
-                            <DiscreteObjectKeyFrame Value="Generating graph vertices..." KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="progressBar" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopComputing" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopGenerating" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>                    
-                </VisualState>
-                <VisualState x:Name="StateReadyToCompute">
-                    <Storyboard>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonLoad" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonGenerate" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonSaveResults" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
-                            <DiscreteObjectKeyFrame Value="" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="progressBar" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopComputing" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopGenerating" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-                <VisualState x:Name="StateComputing">
-                    <Storyboard>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonLoad" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonGenerate" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonSaveResults" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
-                            <DiscreteObjectKeyFrame Value="Finding minimal spanning tree..." KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="progressBar" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopComputing" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopGenerating" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-                <VisualState x:Name="StateDoneComputing">
-                    <Storyboard>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonLoad" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonGenerate" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonSaveResults" Storyboard.TargetProperty="IsEnabled">
-                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
-                        </BooleanAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
-                            <DiscreteObjectKeyFrame Value="" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="progressBar" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopComputing" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopGenerating" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
     </Grid>
+
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CustomStates">
+            <VisualState x:Name="StateInput">
+                <Storyboard>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonLoad" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonGenerate" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonSaveResults" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
+                        <DiscreteObjectKeyFrame Value="" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopComputing" Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopGenerating" Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="taskBarProgressBar" Storyboard.TargetProperty="ProgressState">
+                        <DiscreteObjectKeyFrame Value="{x:Static TaskbarItemProgressState.None}" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+            <VisualState x:Name="StateReadingFile">
+                <Storyboard>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonLoad" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonGenerate" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonSaveResults" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
+                        <DiscreteObjectKeyFrame Value="Reading graph vertices..." KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopComputing" Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopGenerating" Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="progressRing" Storyboard.TargetProperty="IsActive">
+                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="taskBarProgressBar" Storyboard.TargetProperty="ProgressState">
+                        <DiscreteObjectKeyFrame Value="{x:Static TaskbarItemProgressState.Indeterminate}" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+            <VisualState x:Name="StateGenerating">
+                <Storyboard>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonLoad" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonGenerate" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonSaveResults" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
+                        <DiscreteObjectKeyFrame Value="Generating graph vertices..." KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopComputing" Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopGenerating" Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="progressRing" Storyboard.TargetProperty="IsActive">
+                        <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="taskBarProgressBar" Storyboard.TargetProperty="ProgressState">
+                        <DiscreteObjectKeyFrame Value="{x:Static TaskbarItemProgressState.Paused}" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+            <VisualState x:Name="StateReadyToCompute">
+                <Storyboard>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonLoad" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonGenerate" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonSaveResults" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
+                        <DiscreteObjectKeyFrame Value="" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopComputing" Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopGenerating" Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="progressRing" Storyboard.TargetProperty="IsActive">
+                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="taskBarProgressBar" Storyboard.TargetProperty="ProgressState">
+                        <DiscreteObjectKeyFrame Value="{x:Static TaskbarItemProgressState.None}" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+            <VisualState x:Name="StateComputing">
+                <Storyboard>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonLoad" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonGenerate" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonSaveResults" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
+                        <DiscreteObjectKeyFrame Value="Finding minimal spanning tree..." KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopComputing" Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopGenerating" Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="progressRing" Storyboard.TargetProperty="IsActive">
+                        <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="taskBarProgressBar" Storyboard.TargetProperty="ProgressState">
+                        <DiscreteObjectKeyFrame Value="{x:Static TaskbarItemProgressState.Indeterminate}" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+            <VisualState x:Name="StateDoneComputing">
+                <Storyboard>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonLoad" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonGenerate" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonStartComputing" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="buttonSaveResults" Storyboard.TargetProperty="IsEnabled">
+                        <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="operationNameTextBlock" Storyboard.TargetProperty="Text">
+                        <DiscreteObjectKeyFrame Value="" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopComputing" Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="buttonStopGenerating" Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="progressRing" Storyboard.TargetProperty="IsActive">
+                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0"/>
+                    </BooleanAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="taskBarProgressBar" Storyboard.TargetProperty="ProgressState">
+                        <DiscreteObjectKeyFrame Value="{x:Static TaskbarItemProgressState.None}" KeyTime="0"/>
+                    </ObjectAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
 </MetroControls:MetroWindow>

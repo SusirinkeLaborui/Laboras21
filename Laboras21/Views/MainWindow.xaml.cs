@@ -32,16 +32,11 @@ namespace Laboras21.Views
         public MainWindow()
         {
             InitializeComponent();
-            AllowsTransparency = false;     // Fixes win32 window being invisible
+            AllowsTransparency = false;     // Fixes win32 window being invisible;
 
-            Action<double> reportProgressCallback = (progress) => progressBar.Dispatcher.InvokeAsync(() =>
-                {
-                    progressBar.Value = progress;
-                }, DispatcherPriority.Background);
+            treeFinder = new MinimalSpanningTreeFinder(canvas.AddEdgeAsync);
 
-            treeFinder = new MinimalSpanningTreeFinder(canvas.AddEdgeAsync, reportProgressCallback);
-
-            VisualStateManager.GoToElementState(this.LayoutRoot, "StateInput", true);
+            VisualStateManager.GoToElementState(this, "StateInput", true);
         }
 
         private async void ButtonLoad_Click(object sender, RoutedEventArgs e)
@@ -51,7 +46,7 @@ namespace Laboras21.Views
 
             if (userClickedOK == true)
             {             
-                VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadingFile", true);
+                VisualStateManager.GoToElementState(this, "StateReadingFile", true);
                 try
                 {
                     graph = await DataProvider.ReadFromFileAsync(openFileDialog.FileName);
@@ -59,13 +54,13 @@ namespace Laboras21.Views
                 catch (BadFileFormatException exc)
                 {
                     StyledMessageDialog.Show("The selected file is not valid: " + exc.Message, "Error");
-                    VisualStateManager.GoToElementState(this.LayoutRoot, "StateInput", true);
+                    VisualStateManager.GoToElementState(this, "StateInput", true);
 
                     return;
                 }
 
                 await canvas.SetCollectionAsync(graph);
-                VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);               
+                VisualStateManager.GoToElementState(this, "StateReadyToCompute", true);               
             }
         }
         
@@ -80,18 +75,17 @@ namespace Laboras21.Views
                 return;
             }
             
-            progressBar.Value = 0;
             try
             {
-                VisualStateManager.GoToElementState(this.LayoutRoot, "StateGenerating", true);
+                VisualStateManager.GoToElementState(this, "StateGenerating", true);
                 var generationTask = canvas.SetCollectionAsync(graph);
                 await AskToSaveGeneratedData();
                 await generationTask;
-                VisualStateManager.GoToElementState(this.LayoutRoot, "StateReadyToCompute", true);
+                VisualStateManager.GoToElementState(this, "StateReadyToCompute", true);
             }
             catch (OperationCanceledException)
             {
-                VisualStateManager.GoToElementState(this.LayoutRoot, "StateInput", true);
+                VisualStateManager.GoToElementState(this, "StateInput", true);
             }
         }
         
@@ -102,13 +96,11 @@ namespace Laboras21.Views
 
         private async void ButtonStartComputing_Click(object sender, RoutedEventArgs e)
         {
-            progressBar.Value = 0;
-
-            VisualStateManager.GoToElementState(this.LayoutRoot, "StateComputing", true);
+            VisualStateManager.GoToElementState(this, "StateComputing", true);
             await canvas.ClearEdgesAsync();
             await treeFinder.FindAsync(graph);
             await canvas.FinishDrawingAsync();
-            VisualStateManager.GoToElementState(this.LayoutRoot, "StateDoneComputing", true);
+            VisualStateManager.GoToElementState(this, "StateDoneComputing", true);
         }
 
         private void ButtonStopComputing_Click(object sender, RoutedEventArgs e)

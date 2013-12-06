@@ -14,7 +14,6 @@ namespace Laboras21
     public class MinimalSpanningTreeFinder
     {
         private Action<Vertex, Vertex> drawEdge;
-        private Action<double> reportProgress;
 
         private Task currentFindTask;
         private CancellationTokenSource cancellationTokenSource;
@@ -30,21 +29,14 @@ namespace Laboras21
         /// Constructs MinimalSpanningTreeFinder object.
         /// </summary>
         /// <param name="drawEdgeCallback">Callback which is called during minimal spanning tree search when edge is confirmed to be part of minimal spanning tree. Takes two parameters - two points that the edge joins.</param>
-        /// <param name="reportProgressCallback">Callback which is periodically called during minimal spanning tree search to report current progress. Takes one parameter - percentage of completion.</param>
-        public MinimalSpanningTreeFinder(Action<Vertex, Vertex> drawEdgeCallback, Action<double> reportProgressCallback)
+        public MinimalSpanningTreeFinder(Action<Vertex, Vertex> drawEdgeCallback)
         {
             if (drawEdgeCallback == null)
             {
                 throw new ArgumentException("Draw edge callback was null!", "drawEdgeCallback");
             }
 
-            if (reportProgressCallback == null)
-            {
-                throw new ArgumentException("Report progress callback was null!", "reportProgressCallback");
-            }
-
             drawEdge = drawEdgeCallback;
-            reportProgress = reportProgressCallback;
         }
 
         /// <summary>
@@ -192,7 +184,6 @@ namespace Laboras21
                     sparePoints.Remove(spareCoordinate);
 
                     DrawEdge(graph[treeIndex], graph[spareIndex]);
-                    ReportProgress(treePoints.Count, graph.Count);
 
                     i = -1;
 
@@ -249,22 +240,6 @@ namespace Laboras21
             {
                 drawEdge(vertex1, vertex2);
             }
-        }
-
-        /// <summary>
-        /// Reports minimal spanning tree search progress to callback that was passed to this object in constructor.
-        /// </summary>
-        /// <param name="nodesInTree">Number of vertices that are currently connected to the tree.</param>
-        /// <param name="totalNodes">Number of vertices in the graph.</param>
-        private void ReportProgress(long nodesInTree, long totalNodes)
-        {
-            if (reportProgress == null)
-            {
-                return;
-            }
-
-            double progress = 100 * (double)nodesInTree / (double)totalNodes;
-            reportProgress(progress);
         }
 
         public double MeasureTreeLength(IList<Vertex> Tree)
