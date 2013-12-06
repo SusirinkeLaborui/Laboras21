@@ -91,7 +91,7 @@ namespace Laboras21.Views
                 } while (PointSet.Contains(p));
                 PointSet.Add(p);
 
-                graph.Add(new Vertex(generator.GeneratePoint()));
+                graph.Add(new Vertex(p));
             }
 
             Result = true;
