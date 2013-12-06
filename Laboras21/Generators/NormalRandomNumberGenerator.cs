@@ -44,7 +44,7 @@ namespace Laboras21.Generators
                 x = x * d * standardDeviation + offsetX;
                 y = y * d * standardDeviation + offsetY;
 
-            } while (x > maxX && x < minY && y > maxY && y < minY);
+            } while (x > maxX || x < minX || y > maxY || y < minY);
 
             return new Point((int)x, (int)y);
         }
