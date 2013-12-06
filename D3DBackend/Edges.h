@@ -8,6 +8,6 @@ public:
 	void Add(Point a, Point b);
 	void AddBatch(pair<Point, Point>* points, int count);
 private:
-	static XMFLOAT4X4 GetEdgeMatrix(Point a, Point b);
+	static pair<XMFLOAT4X4, XMFLOAT4X4> GetEdgeMatrix(Point a, Point b);
 };
 

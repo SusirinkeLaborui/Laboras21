@@ -112,7 +112,7 @@ void System::HandleRawInput(long lParam, long wParam)
 {
 	unsigned int dataSize;
 
-	GetRawInputData((HRAWINPUT)lParam, RID_INPUT, NULL, &dataSize, sizeof(RAWINPUTHEADER));
+	GetRawInputData((HRAWINPUT)lParam, RID_INPUT, nullptr, &dataSize, sizeof(RAWINPUTHEADER));
 	auto buffer = unique_ptr<unsigned char[]>(new unsigned char[dataSize]);
 	GetRawInputData((HRAWINPUT)lParam, RID_INPUT, buffer.get(), &dataSize, sizeof(RAWINPUTHEADER));
 

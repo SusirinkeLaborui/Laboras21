@@ -40,7 +40,7 @@ protected:
 	void Add(vector<it> items);
 };
 
-typedef BaseInstancer<VertexType, ColorInstancedShader, XMFLOAT4X4> Instancer;
+typedef BaseInstancer<VertexType, ColorInstancedShader, pair<XMFLOAT4X4, XMFLOAT4X4>> Instancer;
 
 template<class vt, class sh, class it>
 BaseInstancer<vt, sh, it>::BaseInstancer(Model<vt> &model, sh &shader, size_t maxObjectCount)
@@ -97,7 +97,7 @@ void BaseInstancer<vt, sh, it>::InitBuffers(ComPtr<ID3D11Device> device)
 	instanceBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	instanceBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
-	Assert(device->CreateBuffer(&instanceBufferDesc, NULL, &instanceBuffer));
+	Assert(device->CreateBuffer(&instanceBufferDesc, nullptr, &instanceBuffer));
 
 	instanceInfo.offset = 0;
 	instanceInfo.stride = sizeof(it);

@@ -17,7 +17,7 @@ void Edges::AddBatch(pair<Point, Point>* points, int count)
 }
 
 
-XMFLOAT4X4 Edges::GetEdgeMatrix(Point a, Point b)
+pair<XMFLOAT4X4, XMFLOAT4X4> Edges::GetEdgeMatrix(Point a, Point b)
 {
 	if (a.x < b.x)
 	{
@@ -36,7 +36,12 @@ XMFLOAT4X4 Edges::GetEdgeMatrix(Point a, Point b)
 	XMMATRIX scale = XMMatrixScaling(Constants::EdgeWidth, length, Constants::EdgeWidth);
 	XMMATRIX rot = XMMatrixRotationZ(angle);
 	XMMATRIX pos = XMMatrixTranslation((a.x + b.x) / 2.0f, (a.y + b.y) / 2.0f, 0.0f);
-	XMFLOAT4X4 world;
-	XMStoreFloat4x4(&world, XMMatrixTranspose(scale * rot * pos));
-	return world;
+
+	XMFLOAT4X4 world, inversedTransposedWorld;
+	XMMATRIX transposedWorld = scale * rot * pos;
+	
+	XMStoreFloat4x4(&world, XMMatrixTranspose(transposedWorld));
+	XMStoreFloat4x4(&inversedTransposedWorld, XMMatrixInverse(nullptr, transposedWorld));
+	
+	return make_pair(world, inversedTransposedWorld);
 }

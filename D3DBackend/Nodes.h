@@ -10,5 +10,5 @@ public:
 	void Add(Point point);
 	void Add(const Point *points, size_t count);
 private:
-	static XMFLOAT4X4 GetNodeMatrix(Point p);
+	static pair<XMFLOAT4X4, XMFLOAT4X4> GetNodeMatrix(Point p);
 };

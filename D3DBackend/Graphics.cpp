@@ -29,6 +29,9 @@ void Graphics::Render()
 	params.projection = XMMatrixTranspose(d3D.GetProjectionMatrix());
 	params.context = d3D.GetDeviceContext();
 
+	auto cameraPos = camera.GetPosition();
+	params.cameraPos = DirectX::XMFLOAT4(cameraPos.x, cameraPos.y, cameraPos.z, 1.0f);
+
 	nodes.Render(params);
 	edges.Render(params);
 

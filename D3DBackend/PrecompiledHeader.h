@@ -1,6 +1,8 @@
 #include <algorithm>
+#include <condition_variable>
 #include <ctime>
 #include <fstream>
+#include <map>
 #include <memory>
 #include <mutex>
 #include <set>
@@ -10,8 +12,6 @@
 #include <set>
 #include <thread>
 #include <unordered_map>
-#include <mutex>
-#include <condition_variable>
 
 #include <dxgi.h>
 

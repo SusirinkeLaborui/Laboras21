@@ -24,16 +24,17 @@ class ResourceManager
 	ResourceManager &operator=(const ResourceManager&);
 	static ResourceManager *handle;
 
+	static void InsertVertex(map<VertexType, int>& vertexMap, const DirectX::XMFLOAT3& position, const DirectX::XMFLOAT3& normal, vector<VertexType>& vertices, vector<int>& indices);
 	static ColorModel GetModelFromOBJ(wstring filename);
 public:
 	ResourceManager();
 	~ResourceManager() {}
 
 	void InitShaders(Microsoft::WRL::ComPtr<ID3D11Device>);
-	ColorModel &GetModel(int model){ return models[model]; }
-	static ResourceManager &Get(){ return *handle; }
+	ColorModel &GetModel(int model) { return models[model]; }
+	static ResourceManager &Get() { return *handle; }
 
-	ColorInstancedShader &GetShader(){ return shader; }
+	ColorInstancedShader &GetShader() { return shader; }
 
 	enum Models
 	{

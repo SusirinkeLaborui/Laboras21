@@ -20,6 +20,9 @@ ColorModel ResourceManager::GetModelFromOBJ(wstring filename)
 
 	string input;
 	float x, y, z;
+	map<VertexType, int> vertexMap;
+
+	vector<DirectX::XMFLOAT3> positions, normals;
 
 	while (!in.eof())
 	{
@@ -34,17 +37,34 @@ ColorModel ResourceManager::GetModelFromOBJ(wstring filename)
 		if (input == "v")
 		{
 			in >> x >> y >> z;
-			model.vertices.emplace_back(x, y, -z);
+
+			if (!in.fail())
+			{
+				positions.emplace_back(x, y, z);
+			}
+		}
+		else if (input == "vn")
+		{
+			in >> x >> y >> z;
+			if (!in.fail())
+			{
+				normals.emplace_back(x, y, z);
+			}
 		}
 		else if (input == "f")
 		{
 			string blob;
 			getline(in, blob, '\n');
-			auto vertices = GetVerticesFromFace(blob);
-			Tools::Reverse(vertices);
-			for (auto &vertex : vertices)
+			if (!in.fail())
 			{
-				model.indices.push_back(vertex.vertex);
+				auto vertices = GetVerticesFromFace(blob);
+				Tools::Reverse(vertices);
+
+				for (auto &vertex : vertices)
+				{
+					model.indices.push_back(model.vertices.size());
+					model.vertices.emplace_back(positions[vertex.vertex], normals[vertex.normal]);
+				}
 			}
 		}
 	}

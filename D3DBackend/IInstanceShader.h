@@ -20,14 +20,16 @@ public:
 		InstancedMatrixType matrices;
 		XMStoreFloat4x4(&matrices.view, params.view);
 		XMStoreFloat4x4(&matrices.projection, params.projection);
+		matrices.cameraPos = params.cameraPos;
+
 		Tools::CopyToBuffer(matrixBuffer, matrices, params.context);
 
 		params.context->VSSetConstantBuffers(0, 1, matrixBuffer.GetAddressOf());
 
 		params.context->IASetInputLayout(layout.Get());
 
-		params.context->VSSetShader(vertexShader.Get(), NULL, 0);
-		params.context->PSSetShader(pixelShader.Get(), NULL, 0);
+		params.context->VSSetShader(vertexShader.Get(), nullptr, 0);
+		params.context->PSSetShader(pixelShader.Get(), nullptr, 0);
 	}
 
 	virtual void InitializeShaderBuffers(ComPtr<ID3D11Device> device)
@@ -43,6 +45,6 @@ public:
 		matrixBufferDesc.StructureByteStride = 0;
 
 		// Create the constant buffer pointer so we can access the vertex shader constant buffer from within this class.
-		Assert(device->CreateBuffer(&matrixBufferDesc, NULL, &matrixBuffer));
+		Assert(device->CreateBuffer(&matrixBufferDesc, nullptr, &matrixBuffer));
 	}
 };

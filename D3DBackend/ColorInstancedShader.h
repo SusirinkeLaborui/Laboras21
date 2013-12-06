@@ -15,6 +15,7 @@ public:
 
 protected:
 	virtual vector<D3D11_INPUT_ELEMENT_DESC> GetInputLayout();
+	void AppendMatrix(D3D11_INPUT_ELEMENT_DESC& matrixDesc, vector<D3D11_INPUT_ELEMENT_DESC>& destination);
 
 private:
 	ComPtr<ID3D11Buffer> matrixBuffer;

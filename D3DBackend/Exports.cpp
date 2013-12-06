@@ -75,7 +75,7 @@ extern "C"
 	{	
 		WNDCLASSEX windowInfo;
 
-		auto programInstance = GetModuleHandle(NULL);
+		auto programInstance = GetModuleHandle(nullptr);
 
 		ZeroMemory(&windowInfo, sizeof(WNDCLASSEX));
 		windowInfo.style = CS_HREDRAW | CS_VREDRAW | CS_PARENTDC;
@@ -92,11 +92,11 @@ extern "C"
 		};
 
 		windowInfo.hInstance = programInstance;
-		windowInfo.hIcon = LoadIcon(NULL, IDI_WINLOGO);
+		windowInfo.hIcon = LoadIcon(nullptr, IDI_WINLOGO);
 		windowInfo.hIconSm = windowInfo.hIcon;
-		windowInfo.hCursor = LoadCursor(NULL, IDC_ARROW);
+		windowInfo.hCursor = LoadCursor(nullptr, IDC_ARROW);
 		windowInfo.hbrBackground = CreateSolidBrush(RGB(r, g, b));
-		windowInfo.lpszMenuName = NULL;
+		windowInfo.lpszMenuName = nullptr;
 		windowInfo.lpszClassName = Constants::ApplicationName.c_str();
 		windowInfo.cbSize = sizeof(WNDCLASSEX);
 	

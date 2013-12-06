@@ -9,16 +9,16 @@ Windowing::Windowing(int windowWidth, int windowHeight, HWND parentWindow)
 {
 	WNDCLASSEX windowInfo;
 
-	auto programInstance = GetModuleHandle(NULL);
+	auto programInstance = GetModuleHandle(nullptr);
 
 	ZeroMemory(&windowInfo, sizeof(WNDCLASSEX));
 	windowInfo.style = CS_HREDRAW | CS_VREDRAW | CS_PARENTDC;
 	windowInfo.hInstance = programInstance;
-	windowInfo.hIcon = LoadIcon(NULL, IDI_WINLOGO);
+	windowInfo.hIcon = LoadIcon(nullptr, IDI_WINLOGO);
 	windowInfo.hIconSm = windowInfo.hIcon;
-	windowInfo.hCursor = LoadCursor(NULL, IDC_ARROW);
+	windowInfo.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	windowInfo.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-	windowInfo.lpszMenuName = NULL;
+	windowInfo.lpszMenuName = nullptr;
 	windowInfo.lpszClassName = Constants::ApplicationName.c_str();
 	windowInfo.cbSize = sizeof(WNDCLASSEX);
 	
