@@ -117,7 +117,7 @@ void ResourceManager::InsertVertex(map<VertexType, int>& vertexMap, const Direct
 
 	if (vertexIterator == vertexMap.end())
 	{
-		vertexIterator = vertexMap.insert(make_pair(vertex, vertices.size())).first;
+		vertexIterator = vertexMap.insert(make_pair(vertex, static_cast<int>(vertices.size()))).first;
 		vertices.push_back(vertex);
 	}
 	
