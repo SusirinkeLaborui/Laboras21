@@ -160,7 +160,7 @@
                         <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
                     </BooleanAnimationUsingKeyFrames>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="taskBarProgressBar" Storyboard.TargetProperty="ProgressState">
-                        <DiscreteObjectKeyFrame Value="{x:Static TaskbarItemProgressState.Paused}" KeyTime="0"/>
+                        <DiscreteObjectKeyFrame Value="{x:Static TaskbarItemProgressState.Indeterminate}" KeyTime="0"/>
                     </ObjectAnimationUsingKeyFrames>
                 </Storyboard>
             </VisualState>
