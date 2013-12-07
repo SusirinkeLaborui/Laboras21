@@ -28,6 +28,16 @@ namespace Laboras21.Views
         GeneratorOptionViewModel viewModel;
         public bool? Result { get; private set; }
 
+        private int Scale
+        {
+            get
+            {
+                int scale = viewModel.VertexAreaRadius;
+                int nodeSize = (int)PInvoke.GetNodeSize() * 4;
+                return (scale == 0) ? 1 : scale * nodeSize;
+            }
+        }
+
         public GeneratorOptionSelectionWindow(List<Vertex> graph, Window owner)
         {
             this.Owner = owner;
@@ -56,11 +66,8 @@ namespace Laboras21.Views
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
             IRandomNumberGenerator generator;
+            int scale = Scale;
 
-            int scale = viewModel.VertexAreaRadius;
-            int nodeSize = (int) PInvoke.GetNodeSize() * 4;
-            scale = (scale == 0) ? 1 : scale * nodeSize;
-            
             int minX = viewModel.MinX / scale;
             int maxX = viewModel.MaxX / scale;
             int minY = viewModel.MinY / scale;
@@ -148,14 +155,10 @@ namespace Laboras21.Views
                 return result;
             }
 
-            int scale = viewModel.VertexAreaRadius;
-            int nodeSize = (int)PInvoke.GetNodeSize();
-            scale = (scale == 0) ? 1 : scale * nodeSize * 4;
+            int scale = Scale;
+            int fieldSize = (viewModel.MaxX / scale - viewModel.MinX / scale) * (viewModel.MaxX / scale - viewModel.MinX / scale);
 
-            int fieldSize = (viewModel.MaxY - viewModel.MinY) * (viewModel.MaxX - viewModel.MinX);
-            fieldSize = fieldSize / (scale * scale);
-
-            result &= fieldSize > viewModel.NumberOfPoints;
+            result &= fieldSize >= viewModel.NumberOfPoints;
             if (!result)
             {
                 StyledMessageDialog.Show("Area is too small for given number of points!", "Error");
