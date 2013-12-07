@@ -26,7 +26,7 @@ namespace Laboras21.ViewModels
             maxX = MagicalNumbers.MaxX;
             minY = MagicalNumbers.MinY;
             maxY = MagicalNumbers.MaxY;
-            vertexAreaRadius = 1;
+            vertexAreaRadius = 2;
             standardDeviation = MagicalNumbers.DefaultStandardDeviation;
         }
 
