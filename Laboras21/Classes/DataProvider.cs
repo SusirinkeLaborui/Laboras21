@@ -83,7 +83,7 @@ namespace Laboras21
                     {
                         fileContent.AppendFormat(" {0} {1}", neighbour.Coordinates.x, neighbour.Coordinates.y);
                     }
-                    fileContent.Append("\n");
+                    fileContent.Append("\r\n");
 
                     await fileWriteTask;
                     fileWriteTask = file.WriteAsync(fileContent.ToString());
@@ -100,7 +100,7 @@ namespace Laboras21
             {
                 foreach (var vertex in vertices)
                 {
-                    await file.WriteAsync(String.Format("{0} {1}\n", vertex.Coordinates.x, vertex.Coordinates.y));
+                    await file.WriteAsync(String.Format("{0} {1}\r\n", vertex.Coordinates.x, vertex.Coordinates.y));
                 }
             }
         }
