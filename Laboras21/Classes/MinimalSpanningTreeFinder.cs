@@ -171,7 +171,6 @@ namespace Laboras21
                     return item2.Distance.CompareTo(item1.Distance);
                 });
 
-            var start = DateTime.Now;
             int distancesSize = distances.Length;
             for (int i = distancesSize - 1; i > -1 && treePoints.Count < graph.Count; i--)
             {
@@ -205,12 +204,6 @@ namespace Laboras21
 
                     cancellationToken.ThrowIfCancellationRequested();
                 }
-            }
-
-            var diff = DateTime.Now - start;
-            using (var writer = new System.IO.StreamWriter("out.txt", true))
-            {
-                writer.WriteLine(string.Format("It took {0} ms.", diff.TotalMilliseconds));
             }
         }
 
