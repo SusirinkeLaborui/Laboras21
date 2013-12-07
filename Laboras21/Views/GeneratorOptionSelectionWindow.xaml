@@ -113,10 +113,10 @@
                 </TextBox.Text>
             </TextBox>
 
-            <TextBlock Grid.Row="5" Grid.Column="0" Name="textBlockDisplacement" Text="Vertex area radius" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="5" Grid.Column="0" Name="textBlockDisplacement" Text="Vertex area diameter" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <TextBox Grid.Row="5" Grid.Column="1" Name="textBoxDisplacement" MetroControls:TextboxHelper.ClearTextButton="True" Style="{StaticResource ValidatedTextBoxStyle}" Height="20" Margin="10,0">
                 <TextBox.Text>
-                    <Binding Path="VertexAreaRadius" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="VertexAreaDiameter" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <ValidationRules:IntValidationRule Min="1" Max="8" />
                         </Binding.ValidationRules>

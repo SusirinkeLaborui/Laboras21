@@ -32,7 +32,7 @@ namespace Laboras21.Views
         {
             get
             {
-                return viewModel.VertexAreaRadius * (int)PInvoke.GetNodeSize();
+                return viewModel.VertexAreaDiameter * (int)PInvoke.GetNodeSize();
             }
         }
 
@@ -110,7 +110,7 @@ namespace Laboras21.Views
                 graph.Add(new Vertex(p));
             }
 
-            int possibleDelta = (scale - (int)PInvoke.GetNodeSize()) / 2;
+            int possibleDelta = (viewModel.VertexAreaDiameter > 1) ? (scale / 2 - (int)PInvoke.GetNodeSize()) : 0;
             var rng = new Random();
             foreach (var v in graph)
             {
