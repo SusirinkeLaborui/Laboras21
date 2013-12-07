@@ -4,7 +4,7 @@
         xmlns:Laboras21="clr-namespace:Laboras21"
         xmlns:ValidationRules="clr-namespace:Laboras21.ValidationRules"
         xmlns:MetroControls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Generation options" Height="337" Width="300" ResizeMode="CanMinimize" WindowStartupLocation="CenterOwner">
+        Title="Generation options" Height="380" Width="300" ResizeMode="CanMinimize" WindowStartupLocation="CenterOwner">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -27,9 +27,9 @@
     
     <Grid Name="LayoutRoot">
         <Grid.RowDefinitions>
-            <RowDefinition Height="45" />
-            <RowDefinition Height="150" />
-            <RowDefinition Height="37" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="180" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">

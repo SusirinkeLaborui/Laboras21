@@ -12,7 +12,7 @@ Graphics::Graphics(int windowWidth, int windowHeight, DirectX::XMFLOAT4 backgrou
 	RM::Get().InitShaders(d3D.GetDevice());
 	edges.Init(d3D.GetDevice());
 	nodes.Init(d3D.GetDevice());
-	camera.Forward(-30000.0f);
+	camera.Forward(-1125.0f);
 }
 
 Graphics::~Graphics()

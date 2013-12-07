@@ -11,10 +11,10 @@ namespace Laboras21
     /// </summary>
     static class MagicalNumbers
     {
-        public const int MinX = -10000;
-        public const int MaxX = 10000;
-        public const int MinY = -10000;
-        public const int MaxY = 10000;
+        public const int MinX = -500;
+        public const int MaxX = 500;
+        public const int MinY = -500;
+        public const int MaxY = 500;
         public const int DataWidth = MaxX - MinX;
         public const int DataHeight = MaxY - MinY;
 
