@@ -118,7 +118,7 @@
                 <TextBox.Text>
                     <Binding Path="VertexAreaRadius" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <ValidationRules:DoubleValidationRule />
+                            <ValidationRules:IntValidationRule Min="1" Max="8" />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>

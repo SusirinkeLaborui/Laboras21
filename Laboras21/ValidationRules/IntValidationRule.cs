@@ -8,12 +8,15 @@ using System.Windows.Controls;
 
 namespace Laboras21.ValidationRules
 {
-    class PositiveIntValidationRule : ValidationRule
+    class IntValidationRule : ValidationRule
     {
-        public PositiveIntValidationRule()
+        public IntValidationRule()
         {
         }
-        
+
+        public int Min { get; set; }
+        public int Max { get; set; }
+
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             int intValue;
@@ -27,13 +30,13 @@ namespace Laboras21.ValidationRules
                 return new ValidationResult(false, "Entered value is not a valid integer.");
             }
 
-            if (intValue > 0 && intValue <= MagicalNumbers.MaxN)
+            if (intValue >= Min && intValue <= Max)
             {
                 return new ValidationResult(true, null);
             }
             else
             {
-                return new ValidationResult(false, "Value has to be in bounds [0; " + MagicalNumbers.MaxN + "].");
+                return new ValidationResult(false, "Value has to be in bounds [" + Min + "; " + Max + "].");
             }
         }
     }

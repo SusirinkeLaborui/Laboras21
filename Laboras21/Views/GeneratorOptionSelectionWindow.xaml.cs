@@ -32,9 +32,7 @@ namespace Laboras21.Views
         {
             get
             {
-                int scale = viewModel.VertexAreaRadius;
-                int nodeSize = (int)PInvoke.GetNodeSize() * 4;
-                return (scale == 0) ? 1 : scale * nodeSize;
+                return viewModel.VertexAreaRadius * (int)PInvoke.GetNodeSize();
             }
         }
 
@@ -112,13 +110,12 @@ namespace Laboras21.Views
                 graph.Add(new Vertex(p));
             }
 
-            int maxDelta = scale / 4;
-            int minDelta = - scale / 4;
+            int possibleDelta = (scale - (int)PInvoke.GetNodeSize()) / 2;
             var rng = new Random();
             foreach (var v in graph)
             {
                 var old = v.Coordinates;
-                v.Coordinates = new Point(old.x * scale + rng.Next(minDelta, maxDelta), old.y * scale + rng.Next(minDelta, maxDelta));
+                v.Coordinates = new Point(old.x * scale + rng.Next(-possibleDelta, possibleDelta), old.y * scale + rng.Next(-possibleDelta, possibleDelta));
             }
 
             Result = true;
