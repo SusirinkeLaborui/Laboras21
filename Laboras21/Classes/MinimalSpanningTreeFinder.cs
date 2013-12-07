@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -139,6 +140,12 @@ namespace Laboras21
                 Coordinates1 = coordinates1;
                 Coordinates2 = coordinates2;
             }
+
+            // For debugging purposes
+            public override string ToString()
+            {
+                return Distance.ToString() + ", {" + Coordinates1.ToString() + "; " + Coordinates2.ToString() + "}";
+            }
         }
 
         /// <summary>
@@ -161,18 +168,27 @@ namespace Laboras21
             Array.Sort(distances, (item1, item2) =>
                 {
                     cancellationToken.ThrowIfCancellationRequested();
-                    return item1.Distance.CompareTo(item2.Distance);
+                    return item2.Distance.CompareTo(item1.Distance);
                 });
 
-            for (int i = 0; i < distances.Length && treePoints.Count < graph.Count; i++)
+            var start = DateTime.Now;
+            int distancesSize = distances.Length;
+            for (int i = distancesSize - 1; i > -1 && treePoints.Count < graph.Count; i--)
             {
-                bool containsFirst = treePoints.ContainsKey(distances[i].Coordinates1),
-                     containsSecond = treePoints.ContainsKey(distances[i].Coordinates2);
+                var distance = distances[i];
+                bool containsFirst = treePoints.ContainsKey(distance.Coordinates1),
+                     containsSecond = treePoints.ContainsKey(distance.Coordinates2);
+
+                if (containsFirst || containsSecond)     // If both are in the tree (or gonna end up in one, if at least 1 is in the tree),
+                {                                        // then remove the edge from distances array.
+                    distancesSize--;
+                    Array.Copy(distances, i + 1, distances, i, distancesSize - i);
+                }
 
                 if (containsFirst != containsSecond)
                 {
-                    var treeCoordinate = containsFirst ? distances[i].Coordinates1 : distances[i].Coordinates2;
-                    var spareCoordinate = containsFirst ? distances[i].Coordinates2 : distances[i].Coordinates1;
+                    var treeCoordinate = containsFirst ? distance.Coordinates1 : distance.Coordinates2;
+                    var spareCoordinate = containsFirst ? distance.Coordinates2 : distance.Coordinates1;
 
                     int treeIndex = treePoints[treeCoordinate];
                     int spareIndex = sparePoints[spareCoordinate];
@@ -185,10 +201,16 @@ namespace Laboras21
 
                     DrawEdge(graph[treeIndex], graph[spareIndex]);
 
-                    i = -1;
+                    i = distancesSize;
 
                     cancellationToken.ThrowIfCancellationRequested();
                 }
+            }
+
+            var diff = DateTime.Now - start;
+            using (var writer = new System.IO.StreamWriter("out.txt", true))
+            {
+                writer.WriteLine(string.Format("It took {0} ms.", diff.TotalMilliseconds));
             }
         }
 
