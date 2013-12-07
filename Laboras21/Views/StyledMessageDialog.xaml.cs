@@ -1,4 +1,5 @@
 ﻿using Laboras21.Classes;
+using Laboras21.Controls;
 using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
@@ -54,8 +55,12 @@ namespace Laboras21.Views
 
         public static bool? Show(string message, string title, MessageBoxButton buttons = MessageBoxButton.OK)
         {
+            UberCanvas.ForwardInput = false;
             var dialog = new StyledMessageDialog(message, title, buttons);
-            return dialog.ShowDialog();
+            var result = dialog.ShowDialog();
+            UberCanvas.ForwardInput = true;
+
+            return result;
         }
 
         private void ButtonYes_Click(object sender, RoutedEventArgs e)

@@ -19,6 +19,8 @@ namespace Laboras21.Controls
         private PInvoke.RawInputCallback inputCallback;
         private double pixelScale = 1.0;
 
+        public static bool ForwardInput { get; set; }
+
         public UberCanvas()
         {
             Loaded += (sender, e) =>
@@ -32,11 +34,13 @@ namespace Laboras21.Controls
 
             inputCallback = (wParam, lParam) =>
                 {
-                    if (d3DWindowHandle != null)
+                    if (d3DWindowHandle != null && ForwardInput)
                     {
                         PInvoke.HandleRawInput(d3DWindowHandle, wParam, lParam);
                     }
                 };
+
+            ForwardInput = true;
         }
 
         private int ScalePixel(int size)

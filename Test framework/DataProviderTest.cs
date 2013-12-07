@@ -77,7 +77,7 @@ namespace Test_framework
         [TestMethod]
         public void TestSaveResultsToFile()
         {
-            DataProvider.SaveResultsToFile(WritingFile, Tree).Wait();
+            DataProvider.SaveResultsToFileAsync(WritingFile, Tree).Wait();
 
             using (StreamReader file = new StreamReader(WritingFile))
             {

@@ -68,7 +68,7 @@ namespace Laboras21
          * ten bus nurodyta viršūnės koordinatės, kaimynių skaičius ir jų koordinatės.
          * Vienos rezultatų eilutės duomenys bus atskiriami tarpu.
          */
-        public static async Task SaveResultsToFile(string filename, IList<Vertex> vertices)
+        public static async Task SaveResultsToFileAsync(string filename, IList<Vertex> vertices)
         {
             using (var file = new StreamWriter(filename))
             {

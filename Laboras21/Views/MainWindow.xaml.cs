@@ -3,8 +3,10 @@ using MahApps.Metro.Controls;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -42,10 +44,12 @@ namespace Laboras21.Views
         private async void ButtonLoad_Click(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog();
+            UberCanvas.ForwardInput = false;
             bool? userClickedOK = openFileDialog.ShowDialog();
+            UberCanvas.ForwardInput = true;
 
             if (userClickedOK == true)
-            {             
+            {
                 VisualStateManager.GoToElementState(this, "StateReadingFile", true);
                 try
                 {
@@ -68,7 +72,10 @@ namespace Laboras21.Views
         {
             var generatorWindow = new GeneratorOptionSelectionWindow(graph, this);
             
+            UberCanvas.ForwardInput = false;
             generatorWindow.ShowDialog();
+            UberCanvas.ForwardInput = true;
+
             var dialogResult = generatorWindow.Result;
             if (!dialogResult.HasValue || !dialogResult.Value)
             {
@@ -108,9 +115,47 @@ namespace Laboras21.Views
             treeFinder.CancelSearch();
         }
 
-        private void ButtonSaveResults_Click(object sender, RoutedEventArgs e)
+        private async void ButtonSaveResults_Click(object sender, RoutedEventArgs e)
         {
+            var fileDialog = new SaveFileDialog();
+            fileDialog.CheckPathExists = true;
+            fileDialog.ValidateNames = true;
+            fileDialog.OverwritePrompt = true;
 
+            fileDialog.FileName = "Results.txt";
+            fileDialog.DefaultExt = ".txt";
+            fileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+
+            UberCanvas.ForwardInput = false;
+            bool? userClickedOK = fileDialog.ShowDialog();
+            UberCanvas.ForwardInput = true;
+
+            if (userClickedOK.HasValue && userClickedOK.Value)
+            {
+                VisualStateManager.GoToElementState(this, "StateWritingToFile", true);
+
+                try
+                {
+                    await DataProvider.SaveResultsToFileAsync(fileDialog.FileName, graph);
+                }
+                catch (Exception ex)
+                {
+                    if (ex is UnauthorizedAccessException || ex is SecurityException)
+                    {
+                        StyledMessageDialog.Show("Insufficient rights to write to specified location.", "Error");
+                    }
+                    else if (ex is ArgumentException || ex is DirectoryNotFoundException)
+                    {
+                        StyledMessageDialog.Show("Invalid file was specified.", "Error");
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                VisualStateManager.GoToElementState(this, "StateDoneComputing", true);
+            }
         }
 
         private async Task AskToSaveGeneratedData()
@@ -125,7 +170,12 @@ namespace Laboras21.Views
                     saveFileDialog.FileName = "untitled.txt";
                     saveFileDialog.Filter = "Text File (*.txt)|*.*";
                     saveFileDialog.Title = "Save as";
-                    if (saveFileDialog.ShowDialog() == true)
+
+                    UberCanvas.ForwardInput = false;
+                    var dialogResult = saveFileDialog.ShowDialog();
+                    UberCanvas.ForwardInput = true;
+
+                    if (dialogResult == true)
                     {
                         await DataProvider.SaveDataToFileAsync(saveFileDialog.FileName, graph);
                         showDialog = false;
