@@ -2,6 +2,7 @@
 
 #include "System.h"
 #include "Tools.h"
+#include "Constants.h"
 
 System::System(int windowWidth, int windowHeight, DirectX::XMFLOAT4 backgroundColor, HWND parentWindow) :
 	running(false), 
@@ -104,8 +105,12 @@ void System::CheckInputState()
 
 	// Zoom
 	auto wheelDisplacement = input.HandleWheelDisplacement();
-	
-	camera.Forward(cameraPos.z * wheelDisplacement - cameraPos.z);
+	auto cameraForward = (cameraPos.z - Constants::NodeSize - Constants::ScreenNear) * (wheelDisplacement - 1.0f);
+
+	if (cameraForward + cameraPos.z > 0.0f)
+	{
+		camera.Forward(cameraForward);
+	}
 }
 
 void System::HandleRawInput(long lParam, long wParam)
