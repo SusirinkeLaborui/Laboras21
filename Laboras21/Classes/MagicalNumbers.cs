@@ -19,5 +19,7 @@ namespace Laboras21
         public const int DataHeight = MaxY - MinY;
 
         public const int MaxN = 10002;
+
+        public const int DefaultStandardDeviation = 125;
     }
 }
