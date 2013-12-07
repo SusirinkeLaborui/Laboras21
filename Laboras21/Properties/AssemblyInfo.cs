@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("Laboras21")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("SusirinkeLaborui")]
 [assembly: AssemblyProduct("Laboras21")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
