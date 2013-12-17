@@ -6,10 +6,10 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:Behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         Title="Laboras21" 
-        MinHeight="300"
-        MinWidth="500"
-        Height="300" 
-        Width="500">
+        MinHeight="400"
+        MinWidth="750"
+        Height="400" 
+        Width="750">
     
     <Window.Resources>
         <ResourceDictionary>
@@ -43,6 +43,7 @@
                 <RowDefinition Height="40" />
                 <RowDefinition Height="40" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="100" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -69,6 +70,8 @@
                     </Grid>
                 </StackPanel>
             </Grid>
+
+            <TextBlock Grid.Row="4" Text="Pan with W, A, S, D;&#x0a;Zoom with mouse wheel" FontSize="20" VerticalAlignment="Bottom" TextAlignment="Center" HorizontalAlignment="Center" Margin="20" TextWrapping="Wrap"/>
         </Grid>
     </Grid>
 
