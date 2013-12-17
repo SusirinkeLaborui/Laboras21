@@ -35,11 +35,11 @@ namespace Test_framework
 
         private float minLength = float.MaxValue;
 
-        private void MakePairs(ref List<Tuple<Vertex, Vertex>> chosenPairs, List<Tuple<Vertex, Vertex>> pairs, int currentPos, int from, int n)
+        private void MakePairs(List<Tuple<Vertex, Vertex>> chosenPairs, List<Tuple<Vertex, Vertex>> pairs, int currentPos, int from, int n)
         {
 	        if (currentPos == n)
 	        {
-		        if (IsSpanningTree(ref chosenPairs, n))
+		        if (IsSpanningTree(chosenPairs, n))
 		        {
                     foreach (var numberPair in chosenPairs)
                     {
@@ -53,17 +53,19 @@ namespace Test_framework
 	        {
 		        for (var i = from; i < pairs.Count; i++)
 		        {
-			        chosenPairs[currentPos] = pairs[i];
-			        MakePairs(ref chosenPairs, pairs, currentPos + 1, i + 1, n);
+			        chosenPairs.Add(pairs[i]);
+			        MakePairs(chosenPairs, pairs, currentPos + 1, i + 1, n);
+                    chosenPairs.RemoveAt(chosenPairs.Count - 1);
 		        }
 	        }
         }
 
-        private bool IsSpanningTree(ref List<Tuple<Vertex, Vertex>> edges, int n)
+        private bool IsSpanningTree(List<Tuple<Vertex, Vertex>> edges, int n)
         {
-	        var vertices = new List<Vertex>(n + 1);
+	        var vertices = new Vertex[n + 1];
 	        int numberOfVerticesVisited = 0;
-            Queue<Vertex> toVisit;
+            var toVisit = new Queue<Vertex>();
+            var visitedVertices = new HashSet<Vertex>();
 
 	        foreach (var edge in edges)
 	        {

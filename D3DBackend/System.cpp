@@ -107,7 +107,7 @@ void System::CheckInputState()
 	auto wheelDisplacement = input.HandleWheelDisplacement();
 	auto cameraForward = (cameraPos.z - Constants::NodeSize - Constants::ScreenNear) * (wheelDisplacement - 1.0f);
 
-	if (cameraForward + cameraPos.z > 0.0f)
+	if (cameraForward + cameraPos.z > 1.0001f)
 	{
 		camera.Forward(cameraForward);
 	}
